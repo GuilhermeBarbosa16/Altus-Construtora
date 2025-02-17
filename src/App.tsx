@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { CheckCircle2, Clock, PenTool as Tool, Users, Award, Instagram, Sparkles } from 'lucide-react';
@@ -15,7 +15,7 @@ function Section({ children, className = '' }: { children: React.ReactNode; clas
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.8 }}
       className={`py-20 ${className}`}
     >
       {children}
@@ -51,6 +51,22 @@ function App() {
       answer: "O prazo varia de acordo com a complexidade e escopo do projeto. Após a análise inicial, estabelecemos um cronograma detalhado e nos comprometemos com sua execução precisa."
     },
   ];
+  function FAQItem({ question, answer }: { question: string; answer: string }) {
+    const [isOpen, setIsOpen] = useState(false);
+  
+    return (
+      <div className="border-b border-gray-200 pb-6">
+        <div
+          onClick={() => setIsOpen(!isOpen)}
+          className="cursor-pointer flex justify-between items-center"
+        >
+          <h3 className="text-xl font-semibold mb-2">{question}</h3>
+          <span>{isOpen ? '-' : '+'}</span>
+        </div>
+        {isOpen && <p className="text-gray-600">{answer}</p>}
+      </div>
+    );
+  }
 
   return (
     <div className="font-sans">
@@ -184,8 +200,8 @@ function App() {
                 key={i}
                 initial={{ opacity: 0, x: i % 2 === 0 ? 100 : -100 }} 
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 2, ease: "easeOut" }}
-                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+                viewport={{ once: true, amount: 0.5 }}
                 className={`w-full flex flex-col items-center ${i % 2 === 0 ? "md:items-start" : "md:items-end"}`}
               >
                 <h3 className="text-2xl font-semibold text-center md:text-left">{project.title}</h3>
@@ -215,17 +231,13 @@ function App() {
         </div>
       </Section>
 
-
-      {/* FAQ Section */}
-      <Section className="bg-white">
+        {/* FAQ Section */}
+        <Section className="bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-16">Perguntas Frequentes</h2>
           <div className="max-w-3xl mx-auto space-y-8">
             {faqs.map((faq, i) => (
-              <div key={i} className="border-b border-gray-200 pb-6">
-                <h3 className="text-xl font-semibold mb-2">{faq.question}</h3>
-                <p className="text-gray-600">{faq.answer}</p>
-              </div>
+              <FAQItem key={i} question={faq.question} answer={faq.answer} />
             ))}
           </div>
         </div>
