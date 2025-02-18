@@ -53,7 +53,7 @@ function App() {
   ];
   function FAQItem({ question, answer }: { question: string; answer: string }) {
     const [isOpen, setIsOpen] = useState(false);
-  
+
     return (
       <div className="border-b border-gray-200 pb-6">
         <div
@@ -71,17 +71,16 @@ function App() {
   return (
     <div className="font-sans">
       {/* Hero Section */}
-      <Section className="min-h-screen relative">
+      <Section className="relative pt-16">
         {/* Background Image */}
         <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: 'url(https://images.unsplash.com/photo-1503387762-592deb58ef4e)',
-            filter: 'brightness(0.3)'
+            filter: 'brightness(0.3)',
           }}
         />
-
-        <div className="container mx-auto px-4 relative z-10 min-h-screen flex items-center">
+        <div className="container mx-auto px-4 relative z-10 flex items-start">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="text-white">
               <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
@@ -94,14 +93,14 @@ function App() {
                 Quero um orçamento exclusivo
               </button>
             </div>
-            <div className="relative aspect-video bg-black rounded-lg overflow-hidden">
-              <YouTubePlayer videoId="zkcjDmi_siQ" />
+            <div className="relative aspect-[9/16] w-full max-w-xs bg-black rounded-lg overflow-hidden mx-auto">
+              <YouTubePlayer videoId="gJN3CgDFIt4" />
             </div>
           </div>
         </div>
       </Section>
 
-      {/* Rest of the sections remain unchanged */}
+
       {/* Pain Points Section */}
       <Section className="bg-white">
         <div className="container mx-auto px-4">
@@ -198,10 +197,10 @@ function App() {
             {beforeAfterProjects.map((project, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: i % 2 === 0 ? 100 : -100 }} 
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
-                viewport={{ once: true, amount: 0.5 }}
+                viewport={{ once: true, amount: 0.2 }} // Reduzi o amount para ativar mais cedo
                 className={`w-full flex flex-col items-center ${i % 2 === 0 ? "md:items-start" : "md:items-end"}`}
               >
                 <h3 className="text-2xl font-semibold text-center md:text-left">{project.title}</h3>
@@ -231,8 +230,8 @@ function App() {
         </div>
       </Section>
 
-        {/* FAQ Section */}
-        <Section className="bg-white">
+      {/* FAQ Section */}
+      <Section className="bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-16">Perguntas Frequentes</h2>
           <div className="max-w-3xl mx-auto space-y-8">

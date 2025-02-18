@@ -22,7 +22,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId }) => {
   const playerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isPlayerReady, setIsPlayerReady] = useState<boolean>(false);
-  const [isApiLoaded, setIsApiLoaded] = useState<boolean>(false); 
+  const [isApiLoaded, setIsApiLoaded] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId }) => {
             setIsApiLoaded(true);
             resolve();
           };
-          
+
           if (!document.querySelector("#youtube-api-script")) {
             const script = document.createElement('script');
             script.id = "youtube-api-script";
@@ -93,10 +93,25 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId }) => {
   }
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full aspect-[9/16] overflow-hidden">
       {!isApiLoaded && <div>Carregando API do YouTube...</div>}
       {!isPlayerReady && <div>Carregando vídeo...</div>}
-      <div ref={containerRef} className="absolute inset-0" />
+  
+      {/* Container que mantém o aspecto 9:16 */}
+      <div ref={containerRef} className="absolute top-0 left-0 w-full h-full">
+        {/* Estilização extra para forçar o preenchimento */}
+        <style>
+          {`
+            iframe {
+              width: 100vw !important;
+              height: 177.77vw !important;
+              position: absolute;
+              top: -38.88vw; /* Ajuste para centralizar */
+              left: 0;
+            }
+          `}
+        </style>
+      </div>
     </div>
   );
 };
