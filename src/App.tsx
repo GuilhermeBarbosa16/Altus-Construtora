@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { CheckCircle2, Clock, PenTool as Tool, Users, Award, Instagram, Sparkles } from 'lucide-react';
 import YouTubePlayer from './components/YouTubePlayer';
+import Logo2 from '../src/assets/logo2.png'
 
 function Section({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const [ref, inView] = useInView({
@@ -80,10 +81,18 @@ function App() {
             filter: 'brightness(0.3)',
           }}
         />
-        <div className="container mx-auto px-4 relative z-10 flex items-start">
+        <div className='mb-3'>
+          {/* Logo centralizada */}
+          <img
+            src={Logo2}
+            alt="Logo"
+            className="absolute top-0 left-1/2 transform -translate-x-1/2 z-10 w-24 md:w-32 opacity-90 mb-2"
+          />
+        </div>
+        <div className="container mx-auto px-2 relative z-10 flex items-start">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="text-white">
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
                 Execução de obra sem dores de cabeça: Qualidade, Exclusividade e Gestão Rigorosa
               </h1>
               <p className="text-xl mb-8 text-gray-300">
