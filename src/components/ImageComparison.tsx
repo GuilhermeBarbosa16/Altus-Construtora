@@ -8,10 +8,10 @@ type ImageComparisonProps = {
 };
 
 const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, afterImageSrc }) => {
-    const [sliderPosition, setSliderPosition] = useState(30); // 🔥 Começa em 30%
+    const [sliderPosition, setSliderPosition] = useState(30);
     const containerRef = useRef<HTMLDivElement>(null);
     const isDragging = useRef(false);
-    const [hasAnimated, setHasAnimated] = useState(false); // 🔥 Controla se a animação já foi feita
+    const [hasAnimated, setHasAnimated] = useState(false);
 
     const transitionConfig = { duration: 0.5, ease: "easeInOut" };
 
@@ -20,10 +20,10 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
             ([entry]) => {
                 if (entry.isIntersecting && !hasAnimated) {
                     setHasAnimated(true);
-                    setTimeout(() => setSliderPosition(50), 500); // 🔥 Inicia a animação ao entrar na tela
+                    setTimeout(() => setSliderPosition(50), 500);
                 }
             },
-            { threshold: 0.5 } // 🔥 Ativa quando 30% do componente aparece
+            { threshold: 0.5}
         );
 
         if (containerRef.current) observer.observe(containerRef.current);
@@ -43,22 +43,27 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
         const clientX = "touches" in event ? event.touches[0].clientX : event.clientX;
         updateSliderPosition(clientX);
 
-        document.body.style.overflow = "hidden"; // 🔥 Bloqueia o scroll no mobile
+        if ("touches" in event) {
+            event.preventDefault();
+        }
     };
 
     const handlePointerMove = (event: MouseEvent | TouchEvent) => {
         if (!isDragging.current) return;
         const clientX = "touches" in event ? event.touches[0].clientX : event.clientX;
         updateSliderPosition(clientX);
-        if ("touches" in event) event.preventDefault();
+
+        if ("touches" in event) {
+            event.preventDefault();
+        }
     };
 
     const handlePointerUp = () => {
         isDragging.current = false;
-        document.body.style.overflow = "auto"; // 🔥 Restaura o scroll
     };
 
     useEffect(() => {
+        // Adiciona o evento de movimento apenas quando o mouse estiver ativo
         document.addEventListener("mousemove", handlePointerMove);
         document.addEventListener("mouseup", handlePointerUp);
         document.addEventListener("touchmove", handlePointerMove, { passive: false });
@@ -79,7 +84,6 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
             onMouseDown={handlePointerDown}
             onTouchStart={handlePointerDown}
         >
-            {/* Imagens e Slider juntos */}
             <motion.div
                 className="absolute inset-0"
                 animate={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
@@ -96,7 +100,6 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
                 <img src={afterImageSrc} alt="Depois" className="w-full h-full object-cover" draggable={false} />
             </motion.div>
 
-            {/* Linha + Indicador de Arrasto */}
             <motion.div
                 className="absolute top-0 bottom-0 flex items-center justify-center cursor-pointer select-none"
                 style={{
@@ -107,8 +110,6 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
                 animate={{ left: `${sliderPosition}%` }}
                 transition={transitionConfig}
             >
-                <div className="w-[3px] h-full"></div>
-
                 <div className="flex items-center justify-center p-2 rounded-full shadow-lg">
                     <FaChevronLeft className="text-gray-700 text-lg" />
                     <FaChevronRight className="text-gray-700 text-lg ml-2" />
