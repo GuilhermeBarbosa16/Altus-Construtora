@@ -90,7 +90,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
 
             {/* Linha do Slider */}
             <motion.div
-                className="absolute top-0 bottom-0 w-[3px] bg-gray-700"
+                className="absolute top-0 bottom-0 w-[3px] "
                 animate={{ left: `${sliderPosition}%` }}
                 transition={transitionConfig}
                 style={{ transform: "translateX(-50%)", userSelect: "none" }}
@@ -98,7 +98,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
 
             {/* Indicador de Arrasto */}
             <motion.div
-                className="absolute flex items-center justify-center p-2 rounded-full shadow-lg cursor-grab active:cursor-grabbing select-none bg-white"
+                className="absolute flex items-center justify-center p-2 rounded-full shadow-lg cursor-grab active:cursor-grabbing select-none"
                 animate={{
                     left: `${sliderPosition}%`,
                     top: "50%",
