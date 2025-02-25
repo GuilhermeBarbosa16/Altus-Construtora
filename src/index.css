@@ -52,3 +52,9 @@ small, span {
   font-weight: 300;
   color: #777;
 }
+.user-select-none {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}

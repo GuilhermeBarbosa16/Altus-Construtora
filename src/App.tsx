@@ -4,6 +4,8 @@ import { useInView } from 'react-intersection-observer';
 import { CheckCircle2, Clock, PenTool as Tool, Users, Award, Instagram, Sparkles } from 'lucide-react';
 import YouTubePlayer from './components/YouTubePlayer';
 import Logo2 from '../src/assets/logo2.png'
+import BeforeAfterSlider from 'react-before-after-slider-component';
+import ImageComparison from "./components/ImageComparison";
 
 function Section({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const [ref, inView] = useInView({
@@ -199,46 +201,29 @@ function App() {
       </Section>
 
       {/* Projects Section */}
-      <Section className="bg-gray-100">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-16">Nossos Projetos</h2>
-          <div className="flex flex-col gap-16">
-            {beforeAfterProjects.map((project, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-                viewport={{ once: true, amount: 0.2 }} // Reduzi o amount para ativar mais cedo
-                className={`w-full flex flex-col items-center ${i % 2 === 0 ? "md:items-start" : "md:items-end"}`}
-              >
-                <h3 className="text-2xl font-semibold text-center md:text-left">{project.title}</h3>
-
-                <div className="flex gap-4 w-full md:w-3/4 lg:w-2/3 justify-center">
-                  <div className="w-1/2 text-center">
-                    <p className="text-lg text-gray-500 mb-2">Antes</p>
-                    <img
-                      src={project.before}
-                      alt="Antes"
-                      className="w-full h-auto md:h-64 object-cover rounded-lg shadow-lg transition-transform hover:scale-105"
-                    />
-                  </div>
-
-                  <div className="w-1/2 text-center">
-                    <p className="text-lg text-gray-500 mb-2">Depois</p>
-                    <img
-                      src={project.after}
-                      alt="Depois"
-                      className="w-full h-auto md:h-64 object-cover rounded-lg shadow-lg transition-transform hover:scale-105"
-                    />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+      <Section className="bg-gray-100"> 
+  <div className="container mx-auto px-4">
+    <h2 className="text-3xl font-bold text-center mb-16">Nossos Projetos</h2>
+    <div className="flex flex-col gap-16">
+      {beforeAfterProjects.map((project, i) => (
+        <motion.div
+        key={i}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.5 }} 
+        className="w-full flex flex-col items-center"
+      >
+      
+          <h3 className="text-2xl font-semibold text-center mb-4">{project.title}</h3>
+          <div className="w-full md:w-3/4 lg:w-2/3 shadow-lg rounded-lg overflow-hidden">
+            <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
           </div>
-        </div>
-      </Section>
-
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</Section>
       {/* FAQ Section */}
       <Section className="bg-white">
         <div className="container mx-auto px-4">
