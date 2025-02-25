@@ -23,7 +23,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
                     setTimeout(() => setSliderPosition(50), 500); // 🔥 Inicia a animação ao entrar na tela
                 }
             },
-            { threshold: 1 } // 🔥 Ativa quando 30% do componente aparece
+            { threshold: 0.5 } // 🔥 Ativa quando 30% do componente aparece
         );
 
         if (containerRef.current) observer.observe(containerRef.current);
