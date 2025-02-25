@@ -13,7 +13,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
     const containerRef = useRef<HTMLDivElement>(null);
     const isDragging = useRef(false);
 
-    // 🔥 Agora a transição é a mesma para todos os elementos
+    
     const transitionConfig = { duration: 0.7, ease: "easeOut" };
 
     const updateSliderPosition = (clientX: number) => {
@@ -24,7 +24,6 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
         setSliderPosition(newPosition);
     };
 
-    // 🖱️ Eventos para Desktop
     const handleMouseDown = (e: React.MouseEvent) => {
         isDragging.current = true;
         e.preventDefault();
@@ -39,7 +38,6 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
         isDragging.current = false;
     };
 
-    // 📱 Eventos para Touch (Mobile)
     const handleTouchStart = () => {
         isDragging.current = true;
     };
@@ -94,19 +92,19 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
                 style={{ transform: "translateX(-50%)", userSelect: "none" }}
             />
 
-            {/* Indicador de Arrasto - 🔥 Agora acompanha o delay das imagens */}
+            {/* Indicador de Arrasto */}
             <motion.div
                 className="absolute flex items-center justify-center p-2 rounded-full shadow-lg cursor-grab active:cursor-grabbing select-none"
                 animate={{
                     left: `${sliderPosition}%`,
                     top: "50%",
                     transform: "translate(-50%, -50%)",
-                }} // 🔥 Agora usa motion.animate para acompanhar o delay
-                transition={transitionConfig} // 🔥 Agora a seta tem o mesmo delay!
+                }} 
+                transition={transitionConfig} 
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 onMouseDown={handleMouseDown}
-                onTouchStart={handleTouchStart} // 📱 Permite toque no botão
+                onTouchStart={handleTouchStart} 
             >
                 <motion.div animate={{ x: isHovered ? -6 : 0 }} transition={{ duration: 0.2 }}>
                     <FaChevronLeft className="text-gray-700 text-lg select-none" />
