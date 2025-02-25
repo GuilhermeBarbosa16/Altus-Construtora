@@ -13,8 +13,9 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
     const containerRef = useRef<HTMLDivElement>(null);
     const isDragging = useRef(false);
 
-    const transitionConfig = { duration: 0.3, ease: "easeOut" }; // 🔥 Adiciona um atraso suave na linha!
+    const transitionConfig = { duration: 0.3, ease: "easeOut" };
 
+    // Eventos para DESKTOP
     const handleMouseDown = (e: React.MouseEvent) => {
         isDragging.current = true;
         e.preventDefault();
@@ -26,9 +27,29 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!isDragging.current || !containerRef.current) return;
+        updateSliderPosition(e.clientX);
+    };
+
+    // Eventos para TOUCHSCREEN (Mobile)
+    const handleTouchStart = (e: React.TouchEvent) => {
+        isDragging.current = true;
+    };
+
+    const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+        if (!isDragging.current || !containerRef.current) return;
+        updateSliderPosition(e.touches[0].clientX);
+    };
+
+    const handleTouchEnd = () => {
+        isDragging.current = false;
+    };
+
+    // 🛠️ Atualiza a posição do slider (Mouse e Toque)
+    const updateSliderPosition = (clientX: number) => {
+        if (!containerRef.current) return;
 
         const { left, width } = containerRef.current.getBoundingClientRect();
-        let newPosition = ((e.clientX - left) / width) * 100;
+        let newPosition = ((clientX - left) / width) * 100;
         newPosition = Math.max(0, Math.min(100, newPosition));
 
         setSliderPosition(newPosition);
@@ -42,6 +63,9 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
+            onTouchStart={handleTouchStart} 
+            onTouchMove={handleTouchMove} 
+            onTouchEnd={handleTouchEnd} 
             style={{ userSelect: "none" }}
         >
             {/* Imagem Antes */}
@@ -50,7 +74,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
                 alt="Antes"
                 className="absolute w-full h-full object-cover"
                 animate={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0% 100%)` }}
-                transition={transitionConfig} // 🔥 Delay na transição!
+                transition={transitionConfig}
                 draggable={false}
             />
 
@@ -60,31 +84,32 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
                 alt="Depois"
                 className="absolute w-full h-full object-cover"
                 animate={{ clipPath: `polygon(${sliderPosition}% 0, 100% 0, 100% 100%, ${sliderPosition}% 100%)` }}
-                transition={transitionConfig} // 🔥 Delay na transição!
+                transition={transitionConfig}
                 draggable={false}
             />
 
-            {/* Linha do Slider (🔥 Agora tem o mesmo delay das imagens) */}
+            {/* Linha do Slider */}
             <motion.div
-                className="absolute top-0 bottom-0 w-[3px] select-none"
+                className="absolute top-0 bottom-0 w-[3px] bg-gray-700"
                 animate={{ left: `${sliderPosition}%` }}
-                transition={transitionConfig} // 🔥 Delay igual das imagens!
+                transition={transitionConfig}
                 style={{ transform: "translateX(-50%)", userSelect: "none" }}
             />
 
             {/* Indicador de Arrasto */}
             <motion.div
-                className="absolute flex items-center justify-center  p-2 rounded-full shadow-lg cursor-grab active:cursor-grabbing select-none"
+                className="absolute flex items-center justify-center p-2 rounded-full shadow-lg cursor-grab active:cursor-grabbing select-none bg-white"
                 animate={{
                     left: `${sliderPosition}%`,
                     top: "50%",
                     transform: "translate(-50%, -50%)",
                     scale: isHovered ? 1.2 : 1,
                 }}
-                transition={transitionConfig} // 🔥 Agora até o botão acompanha o delay!
+                transition={transitionConfig}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 onMouseDown={handleMouseDown}
+                onTouchStart={handleTouchStart} 
             >
                 <motion.div animate={{ x: isHovered ? -6 : 0 }} transition={{ duration: 0.2 }}>
                     <FaChevronLeft className="text-gray-700 text-lg select-none" />
