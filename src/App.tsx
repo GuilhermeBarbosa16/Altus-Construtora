@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { CheckCircle2, Clock, PenTool as Tool, Users, Award, Instagram, Sparkles } from 'lucide-react';
+import { CheckCircle2, Award, Instagram, Clock, Users, Sparkles, ClipboardList, CalendarCheck, CheckCircle, ShieldCheck, Eye, Briefcase, HardHat, PenTool } from 'lucide-react';
 import YouTubePlayer from './components/YouTubePlayer';
 import Logo2 from '../src/assets/logo2.png'
-import BeforeAfterSlider from 'react-before-after-slider-component';
 import ImageComparison from "./components/ImageComparison";
+import PhotoSlider from "./components/PhotoSlider";
 
 function Section({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const [ref, inView] = useInView({
@@ -32,12 +32,7 @@ function App() {
       before: "https://images.unsplash.com/photo-1504307651254-35680f356dfd",
       after: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
       title: "Residência Alto de Pinheiros"
-    },
-    {
-      before: "https://images.unsplash.com/photo-1513694203232-719a280e022f",
-      after: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9",
-      title: "Apartamento Jardins"
-    },
+    }
   ];
 
   const faqs = [
@@ -94,15 +89,19 @@ function App() {
         <div className="container mx-auto px-2 relative z-10 flex items-start">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="text-white">
+              <p className="text-xl text-center text-gray-300">Reforma e Construção de Alto Padrão</p>
               <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
-                Execução de obra sem dores de cabeça: Qualidade, Exclusividade e Gestão Rigorosa
+                Obra sem estresse, sem dor de cabeça e com qualidade garantida.
               </h1>
-              <p className="text-xl mb-8 text-gray-300">
-                Transformamos seu projeto em realidade com excelência e precisão.
+              <p className="text-xl mb-8 text-center text-gray-300">
+                Na Altus Engenharia, entregamos seu projeto no prazo, sem surpresas, com uma gestão profissional e transparência total.
+                Chega de atrasos e gastos extras: construa com quem cumpre o que promete.
               </p>
-              <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                Quero um orçamento exclusivo
-              </button>
+              <div className="flex justify-center items-center">
+                <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                  Quero uma obra sem surpresas!
+                </button>
+              </div>
             </div>
             <div className="relative aspect-[9/16] w-full max-w-xs bg-black rounded-lg overflow-hidden mx-auto">
               <YouTubePlayer videoId="gJN3CgDFIt4" />
@@ -112,49 +111,31 @@ function App() {
       </Section>
 
 
-      {/* Pain Points Section */}
+      {/* Differentials Section */}
       <Section className="bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-            Cansado de obras atrasadas, sujas, desorganizadas e sem acompanhamento?
-          </h2>
-          <div className="mb-16">
-            <img
-              src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15"
-              alt="Contraste de organização"
-              className="w-full max-h-[500px] md:max-h-[600px] object-cover rounded-lg shadow-lg"
-            />
-
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gray-100 p-8 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4">Problemas Comuns</h3>
-              <ul className="space-y-4">
-                <li className="flex items-center text-red-600">
-                  <span className="mr-2">✕</span> Atrasos constantes
-                </li>
-                <li className="flex items-center text-red-600">
-                  <span className="mr-2">✕</span> Falta de organização
-                </li>
-                <li className="flex items-center text-red-600">
-                  <span className="mr-2">✕</span> Comunicação precária
-                </li>
-              </ul>
-            </div>
-            <div className="bg-gray-900 text-white p-8 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4">Solução Altus</h3>
-              <ul className="space-y-4">
-                <li className="flex items-center">
-                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Cumprimento rigoroso de prazos
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Gestão profissional e organizada
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Comunicação transparente
-                </li>
-              </ul>
-            </div>
+          <h2 className="text-3xl font-bold text-center mb-4">Por que a Altus Engenharia é a escolha certa para sua obra?</h2>
+          <p className="text-xl mb-8 text-center text-gray-650">Entendemos que uma obra pode ser estressante: prazos que se estendem, orçamentos que fogem do controle e falta de transparência. Por isso, trabalhamos com um processo claro e eficiente.</p>
+          <div className="grid md:grid-cols-4 gap-8 justify-items-center">
+            {[
+              { icon: Clock, title: "Pontualidade", desc: "Entrega no prazo prometido" },
+              { icon: Users, title: "Equipe Qualificada", desc: "Profissionais especializados" },
+              { icon: PenTool, title: "Gestão Completa", desc: "Acompanhamento em tempo real" },
+              { icon: Sparkles, title: "Organização Impecável", desc: "Limpeza e ordem em toda a obra" },
+              { icon: ClipboardList, title: "Gestão Profissional", desc: "Planejamento detalhado e execução impecável, garantindo que cada etapa da obra seja realizada com eficiência e organização." },
+              { icon: CalendarCheck, title: "Diário de Obra", desc: "Acompanhamento em tempo real da evolução da obra, com atualizações constantes para que você saiba exatamente o que está acontecendo." },
+              { icon: CheckCircle, title: "Cumprimento de Prazos", desc: "Sua obra entregue no prazo combinado, sem atrasos e com a qualidade que você espera." },
+              { icon: ShieldCheck, title: "Segurança da Família", desc: "O conforto e a segurança da sua família são nossa prioridade. Trabalhamos com um serviço limpo e organizado, para que sua rotina seja impactada o mínimo possível durante a obra." },
+             /*  { icon: Eye, title: "Transparência Total", desc: "Orçamento claro e sem surpresas. Você sabe exatamente o que está pagando e por quê." },
+              { icon: Briefcase, title: "Comodidade Total", desc: "Cuidamos de tudo, desde a compra dos materiais até a entrega final. Você pode relaxar ou até viajar enquanto transformamos seu espaço." },
+              { icon: HardHat, title: "Mão de Obra Qualificada", desc: "Contamos com os melhores profissionais do mercado, garantindo agilidade, qualidade e atenção aos detalhes em cada etapa da obra." }, */
+            ].map(({ icon: Icon, title, desc }, i) => (
+              <div key={i} className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg hover:shadow-md transition-shadow">
+                <Icon className="w-12 h-12 mb-4 text-gray-900" />
+                <h3 className="text-xl font-semibold mb-2">{title}</h3>
+                <p className="text-gray-600">{desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </Section>
@@ -179,51 +160,108 @@ function App() {
         </div>
       </Section>
 
-      {/* Differentials Section */}
+      {/* Pain Points Section */}
       <Section className="bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-16">Por que escolher a Altus?</h2>
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { icon: Clock, title: "Pontualidade", desc: "Entrega no prazo prometido" },
-              { icon: Users, title: "Equipe Qualificada", desc: "Profissionais especializados" },
-              { icon: Tool, title: "Gestão Completa", desc: "Acompanhamento em tempo real" },
-              { icon: Sparkles, title: "Organização Impecável", desc: "Limpeza e ordem em toda a obra" },
-            ].map(({ icon: Icon, title, desc }, i) => (
-              <div key={i} className="text-center p-6 bg-gray-50 rounded-lg hover:shadow-md transition-shadow">
-                <Icon className="w-12 h-12 mx-auto mb-4 text-gray-900" />
-                <h3 className="text-xl font-semibold mb-2">{title}</h3>
-                <p className="text-gray-600">{desc}</p>
-              </div>
-            ))}
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            Por que a Altus Engenharia é diferente?
+          </h2>
+
+          <div className="mb-16">
+            {/* <img
+              src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15"
+              alt="Contraste de organização"
+              className="w-full max-h-[500px] md:max-h-[600px] object-cover rounded-lg shadow-lg"
+            /> */}
+
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-gray-100 p-8 rounded-lg">
+              <h3 className="text-xl font-semibold mb-4">Problemas Comuns</h3>
+              <ul className="space-y-4">
+                <li className="flex items-center text-red-600">
+                  <span className="mr-2">✕</span> Atrasos constantes
+                </li>
+                <li className="flex items-center text-red-600">
+                  <span className="mr-2">✕</span> Orçamentos furados
+                </li>
+                <li className="flex items-center text-red-600">
+                  <span className="mr-2">✕</span> Falta de transparência
+                </li>
+                <li className="flex items-center text-red-600">
+                  <span className="mr-2">✕</span> Desorganização da obra
+                </li>
+                <li className="flex items-center text-red-600">
+                  <span className="mr-2">✕</span> Falta de comunicação
+                </li>
+                <li className="flex items-center text-red-600">
+                  <span className="mr-2">✕</span> Incomodação excessiva
+                </li>
+              </ul>
+            </div>
+            <div className="bg-gray-900 text-white p-8 rounded-lg">
+              <h3 className="text-xl font-semibold mb-4">Solução Altus</h3>
+              <ul className="space-y-4">
+                <li className="flex items-center">
+                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Cumprimento rigoroso de prazos
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Orçamento transparente
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Transparência total
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Gestão profissional
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Comunicação constante
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Comodidade e segurança
+                </li>
+              </ul>
+            </div>
+            <br />
+          </div>
+          <div className="flex justify-center items-center">
+            <button className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
+              Quero começar minha obra!
+            </button>
           </div>
         </div>
       </Section>
 
       {/* Projects Section */}
-      <Section className="bg-gray-100"> 
-  <div className="container mx-auto px-4">
-    <h2 className="text-3xl font-bold text-center mb-16">Nossos Projetos</h2>
-    <div className="flex flex-col gap-16">
-      {beforeAfterProjects.map((project, i) => (
-        <motion.div
-        key={i}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        viewport={{ once: false, amount: 0.5 }} 
-        className="w-full flex flex-col items-center"
-      >
-      
-          <h3 className="text-2xl font-semibold text-center mb-4">{project.title}</h3>
-          <div className="w-full md:w-3/4 lg:w-2/3 shadow-lg rounded-lg overflow-hidden">
-            <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
+      <Section className="bg-gray-100">
+        <div className="container mx-auto ">
+          <h2 className="text-3xl font-bold text-center mb-8">Nossos Projetos</h2>
+          <div className="flex flex-col gap-16">
+            {beforeAfterProjects.map((project, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+                viewport={{ once: true }}
+                className="w-full flex flex-col items-center"
+              >
+
+                <h3 className="text-2xl font-semibold text-center">{project.title}</h3>
+                <div className="w-full md:w-3/4 lg:w-2/3 shadow-lg rounded-lg">
+                  <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
+                </div>
+              </motion.div>
+            ))}
           </div>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</Section>
+        </div>
+      </Section>
+      <Section className='bg-white'>
+        <div className="flex flex-col items-center justify-center">
+          <h1 className="text-2xl font-bold mb-8">Sonhos que já realizamos</h1>
+          <PhotoSlider />
+        </div>
+      </Section>
       {/* FAQ Section */}
       <Section className="bg-white">
         <div className="container mx-auto px-4">

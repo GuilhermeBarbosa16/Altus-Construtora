@@ -11,7 +11,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
     const containerRef = useRef<HTMLDivElement>(null);
     const isDragging = useRef(false);
     const [hasAnimated, setHasAnimated] = useState(false);
-    const [isMouseMoving, setIsMouseMoving] = useState(false);
+    const [, setIsMouseMoving] = useState(false);
 
     const transitionConfig = { duration: 0.5, ease: "easeInOut" };
 
