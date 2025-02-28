@@ -87,17 +87,17 @@ function App() {
           />
         </div>
         <div className="container mx-auto px-2 relative z-10 flex items-start">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 ">
             <div className="text-white">
-              <p className="text-xl text-center text-gray-300">Reforma e Construção de Alto Padrão</p>
+              <p className="text-xl  text-gray-300 mb-3">Reforma e Construção de Alto Padrão</p>
               <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
                 Obra sem estresse, sem <br /> dor de cabeça e com qualidade garantida.
               </h1>
-              <p className="text-xl mb-8 text-center text-gray-300">
+              <p className="text-xl mb-8  text-gray-300">
                 Na Altus Engenharia, entregamos seu projeto no prazo, sem surpresas, com uma gestão profissional e transparência total.
                 Chega de atrasos e gastos extras: construa com quem cumpre o que promete.
               </p>
-              <div className="flex justify-center items-center">
+              <div className="flex justify-center">
                 <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                   Quero uma obra sem surpresas!
                 </button>
