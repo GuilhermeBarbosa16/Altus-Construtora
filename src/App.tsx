@@ -91,7 +91,7 @@ function App() {
             <div className="text-white">
               <p className="text-xl text-center text-gray-300">Reforma e Construção de Alto Padrão</p>
               <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
-                Obra sem estresse, sem dor de cabeça e com qualidade garantida.
+                Obra sem estresse, sem <br /> dor de cabeça e com qualidade garantida.
               </h1>
               <p className="text-xl mb-8 text-center text-gray-300">
                 Na Altus Engenharia, entregamos seu projeto no prazo, sem surpresas, com uma gestão profissional e transparência total.
