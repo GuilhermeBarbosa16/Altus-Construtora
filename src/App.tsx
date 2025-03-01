@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { CheckCircle2, Award, Instagram, Clock, Users, Sparkles, ClipboardList, CalendarCheck, CheckCircle, ShieldCheck, Eye, Briefcase, HardHat, PenTool } from 'lucide-react';
+import { CheckCircle2, Award, Instagram, Clock, Users, Sparkles, ClipboardList, CalendarCheck, CheckCircle, ShieldCheck, PenTool } from 'lucide-react';
 import YouTubePlayer from './components/YouTubePlayer';
 import Logo2 from '../src/assets/logo2.png'
 import ImageComparison from "./components/ImageComparison";
@@ -78,7 +78,7 @@ function App() {
             filter: 'brightness(0.3)',
           }}
         />
-        <div className='mb-3'>
+        <div className="mb-3">
           {/* Logo centralizada */}
           <img
             src={Logo2}
@@ -86,25 +86,29 @@ function App() {
             className="absolute top-0 left-1/2 transform -translate-x-1/2 z-10 w-24 md:w-32 opacity-90 mb-2"
           />
         </div>
-        <div className="container mx-auto px-2 relative z-10 flex items-start">
-          <div className="grid md:grid-cols-2 gap-12 ">
-            <div className="text-white">
-              <p className="text-xl  text-gray-300 mb-3">Reforma e Construção de Alto Padrão</p>
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
-                Obra sem estresse, sem <br /> dor de cabeça e com qualidade garantida.
-              </h1>
-              <p className="text-xl mb-8  text-gray-300">
-                Na Altus Engenharia, entregamos seu projeto no prazo, sem surpresas, com uma gestão profissional e transparência total.
-                Chega de atrasos e gastos extras: construa com quem cumpre o que promete.
-              </p>
-              <div className="flex justify-center">
-                <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                  Quero uma obra sem surpresas!
-                </button>
+        <div className="relative z-10 flex items-start w-full">
+          <div className="w-full px-1 md:px-8">
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="text-white">
+                <p className="text-xl text-gray-300 mb-3">Reforma e Construção de Alto Padrão</p>
+                <h1 className="text-[48px] md:text-[52px] lg:text-[52px] xl:text-[52px] font-bold leading-tight mb-4">
+                  Obra sem estresse,<br className="hidden md:inline" />
+                  dor de cabeça e com <br className="hidden md:inline" />
+                  qualidade garantida.
+                </h1>
+                <p className="text-xl mb-8 text-gray-300">
+                  Na Altus Engenharia, entregamos seu projeto no prazo, sem surpresas, com uma gestão profissional e transparência total.
+                  Chega de atrasos e gastos extras: construa com quem cumpre o que promete.
+                </p>
+                <div className="">
+                  <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Quero uma obra sem surpresas!
+                  </button>
+                </div>
               </div>
-            </div>
-            <div className="relative aspect-[9/16] w-full max-w-xs bg-black rounded-lg overflow-hidden mx-auto">
-              <YouTubePlayer videoId="gJN3CgDFIt4" />
+              <div className="relative aspect-[9/16] w-full max-w-xs bg-black rounded-lg overflow-hidden mx-auto">
+                <YouTubePlayer videoId="gJN3CgDFIt4" />
+              </div>
             </div>
           </div>
         </div>
@@ -115,7 +119,7 @@ function App() {
       <Section className="bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-4">Por que a Altus Engenharia é a escolha certa para sua obra?</h2>
-          <p className="text-xl mb-8 text-center text-gray-650">Entendemos que uma obra pode ser estressante: prazos que se estendem, orçamentos que fogem do controle e falta de transparência. Por isso, trabalhamos com um processo claro e eficiente.</p>
+          <p className="text-xl mb-8 text-center text-gray-650">Entendemos que uma obra pode ser estressante: prazos que se estendem, orçamentos que fogem do controle e falta de transparência. <br className="hidden md:inline" />Por isso, trabalhamos com um processo claro e eficiente.</p>
           <div className="grid md:grid-cols-4 gap-8 justify-items-center">
             {[
               { icon: Clock, title: "Pontualidade", desc: "Entrega no prazo prometido" },
@@ -126,9 +130,9 @@ function App() {
               { icon: CalendarCheck, title: "Diário de Obra", desc: "Acompanhamento em tempo real da evolução da obra, com atualizações constantes para que você saiba exatamente o que está acontecendo." },
               { icon: CheckCircle, title: "Cumprimento de Prazos", desc: "Sua obra entregue no prazo combinado, sem atrasos e com a qualidade que você espera." },
               { icon: ShieldCheck, title: "Segurança da Família", desc: "O conforto e a segurança da sua família são nossa prioridade. Trabalhamos com um serviço limpo e organizado, para que sua rotina seja impactada o mínimo possível durante a obra." },
-             /*  { icon: Eye, title: "Transparência Total", desc: "Orçamento claro e sem surpresas. Você sabe exatamente o que está pagando e por quê." },
-              { icon: Briefcase, title: "Comodidade Total", desc: "Cuidamos de tudo, desde a compra dos materiais até a entrega final. Você pode relaxar ou até viajar enquanto transformamos seu espaço." },
-              { icon: HardHat, title: "Mão de Obra Qualificada", desc: "Contamos com os melhores profissionais do mercado, garantindo agilidade, qualidade e atenção aos detalhes em cada etapa da obra." }, */
+              /*  { icon: Eye, title: "Transparência Total", desc: "Orçamento claro e sem surpresas. Você sabe exatamente o que está pagando e por quê." },
+               { icon: Briefcase, title: "Comodidade Total", desc: "Cuidamos de tudo, desde a compra dos materiais até a entrega final. Você pode relaxar ou até viajar enquanto transformamos seu espaço." },
+               { icon: HardHat, title: "Mão de Obra Qualificada", desc: "Contamos com os melhores profissionais do mercado, garantindo agilidade, qualidade e atenção aos detalhes em cada etapa da obra." }, */
             ].map(({ icon: Icon, title, desc }, i) => (
               <div key={i} className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg hover:shadow-md transition-shadow">
                 <Icon className="w-12 h-12 mb-4 text-gray-900" />
