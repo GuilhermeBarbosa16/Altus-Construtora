@@ -99,7 +99,7 @@ function App() {
                 </div>
               </div>
               <div className="relative aspect-[9/16] w-full max-w-xs bg-black rounded-lg overflow-hidden mx-auto">
-                <YouTubePlayer videoId="gJN3CgDFIt4" />
+                <YouTubePlayer videoId="fUi3JVMepmQ" />
               </div>
             </div>
           </div>
