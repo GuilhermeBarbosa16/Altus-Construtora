@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { CheckCircle2, Award, Instagram, Clock, Users, Sparkles, ClipboardList, CalendarCheck, CheckCircle, ShieldCheck, PenTool, Briefcase, Eye, HardHat } from 'lucide-react';
+import { CheckCircle2, Menu, Award, Instagram, Clock, Users, Sparkles, ClipboardList, CalendarCheck, CheckCircle, ShieldCheck, PenTool, Briefcase, Eye, HardHat } from 'lucide-react';
 import YouTubePlayer from './components/YouTubePlayer';
-
+import Logo2 from '../src/assets/logo2.png'
 import ImageComparison from "./components/ImageComparison";
 import PhotoSlider from "./components/PhotoSlider";
 
@@ -34,7 +34,39 @@ function App() {
       title: "Residência Alto de Pinheiros"
     }
   ];
-
+  const Header = () => {
+    const [isOpen, setIsOpen] = useState(false);
+  
+    return (
+      <header className="w-full p-4 flex justify-between items-center bg-transparent">
+        {/* Logo */}
+        <img src={Logo2} alt="Logo" className="w-24 md:w-32 opacity-90" />
+  
+        {/* Desktop Menu */}
+        <nav className="hidden md:flex space-x-8 text-white items-center ml-auto">
+          <a href="#diferenciais" className="nav-link">Diferenciais</a>
+          <a href="#feedbacks" className="nav-link">Feedbacks</a>
+          <a href="#Servicos" className="nav-link">Serviços</a>
+        </nav>
+  
+        {/* Mobile Menu Button */}
+        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+          <Menu size={24} />
+        </button>
+  
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="absolute top-16 right-4 p-4 rounded-lg shadow-lg bg-gray-800 md:hidden z-20">
+            <nav className="flex flex-col space-y-4 text-white">
+              <a href="#diferenciais" className="nav-link">Diferenciais</a>
+              <a href="#feedbacks" className="nav-link">Feedbacks</a>
+              <a href="#Servicos" className="nav-link">Serviços</a>
+            </nav>
+        </div>       
+        )}
+      </header>
+    );
+  };
   const faqs = [
     {
       question: "Como funciona o acompanhamento da obra?",
@@ -68,55 +100,59 @@ function App() {
 
   return (
     <div className="font-sans">
-      {/* Hero Section */}
-      <Section className="relative pt-16">
-        {/* Background Image */}
-        <div
+    {/* Hero Section */}
+    <Section className="relative pt-[5px]"> {/* Empurrando o conteúdo para baixo */}
+      {/* Background Image */}
+      <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: 'url(https://images.unsplash.com/photo-1503387762-592deb58ef4e)',
             filter: 'brightness(0.3)',
           }}
         />
-        <div className="relative z-10 flex items-start w-full">
-          <div className="w-full px-1 md:px-8">
-            <div className="grid md:grid-cols-2 gap-12">
-              <div className="text-white">
-                <p className="text-xl text-gray-300 mb-3">Reforma e Construção de Alto Padrão</p>
-                <h1 className="text-[36px] md:text-[52px] font-bold leading-tight mb-4 text-wrap whitespace-normal">
-                  Obra sem estresse,<br className="hidden md:inline" />
-                  dor de cabeça e com <br className="hidden md:inline" />
-                  qualidade garantida.
-                </h1>
-                <p className="text-xl mb-8 text-gray-300">
-                  Na Altus Engenharia, entregamos seu projeto no prazo, sem surpresas, com uma gestão profissional e transparência total.
-                  Chega de atrasos e gastos extras: construa com quem cumpre o que promete.
-                </p>
-                <div className="">
+      <div className="font-sans relative">
+        <div className="relative z-0">
+          {/* O Header agora está no topo da página */}
+          <Header />
+
+          <div className="relative z-10 flex items-start w-full">
+            <div className="w-full px-1 md:px-8">
+              <div className="grid md:grid-cols-2 gap-12">
+                <div className="text-white">
+                  <p className="text-xl text-gray-300 mb-3">Reforma e Construção de Alto Padrão</p>
+                  <h1 className="text-[36px] md:text-[52px] font-bold leading-tight mb-4">
+                    Obra sem estresse,<br className="hidden md:inline" />
+                    dor de cabeça e com <br className="hidden md:inline" />
+                    qualidade garantida.
+                  </h1>
+                  <p className="text-xl mb-8 text-gray-300">
+                    Na Altus Engenharia, entregamos seu projeto no prazo, sem surpresas, com uma gestão profissional e transparência total.
+                    Chega de atrasos e gastos extras: construa com quem cumpre o que promete.
+                  </p>
                   <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Quero uma obra sem surpresas!
                   </button>
                 </div>
-              </div>
-              <div className="relative aspect-[9/16] w-full max-w-xs bg-black rounded-lg overflow-hidden mx-auto">
-                <YouTubePlayer videoId="fUi3JVMepmQ" />
+                <div className="relative aspect-[9/16] w-full max-w-xs bg-black rounded-lg overflow-hidden mx-auto">
+                  <YouTubePlayer videoId="fUi3JVMepmQ" />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </Section>
-
-
+      </div>
+    </Section>
       {/* Differentials Section */}
-      <Section className="bg-white">
+      <div id="diferenciais">  </div>
+      <Section className="bg-white" >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-4">Por que a Altus Engenharia é a escolha certa para sua obra?</h2>
           <p className="text-xl mb-8 text-center text-gray-650">Entendemos que uma obra pode ser estressante: prazos que se estendem, orçamentos que fogem do controle e falta de transparência. <br className="hidden md:inline" />Por isso, trabalhamos com um processo claro e eficiente.</p>
           <div className="grid md:grid-cols-4 gap-8 justify-items-center">
             {[
-             /*  { icon: Clock, title: "Pontualidade", desc: "Entrega no prazo prometido" },
-              { icon: Users, title: "Equipe Qualificada", desc: "Profissionais especializados" },
-              { icon: PenTool, title: "Gestão Completa", desc: "Acompanhamento em tempo real" }, */
+              /*  { icon: Clock, title: "Pontualidade", desc: "Entrega no prazo prometido" },
+               { icon: Users, title: "Equipe Qualificada", desc: "Profissionais especializados" },
+               { icon: PenTool, title: "Gestão Completa", desc: "Acompanhamento em tempo real" }, */
               { icon: Sparkles, title: "Organização Impecável", desc: "Ambiente sempre limpo e organizado, garantindo mais eficiência, segurança e qualidade em cada etapa da obra." },
               { icon: ClipboardList, title: "Gestão Profissional", desc: "Planejamento detalhado e execução impecável, garantindo que cada etapa da obra seja realizada com eficiência e organização." },
               { icon: CalendarCheck, title: "Diário de Obra", desc: "Acompanhamento em tempo real da evolução da obra, com atualizações constantes para que você saiba exatamente o que está acontecendo." },
@@ -124,7 +160,7 @@ function App() {
               { icon: ShieldCheck, title: "Segurança da Família", desc: "O conforto e a segurança da sua família são nossa prioridade. Trabalhamos com um serviço limpo e organizado, para que sua rotina seja impactada o mínimo possível durante a obra." },
               { icon: Eye, title: "Transparência Total", desc: "Orçamento claro e sem surpresas. Você sabe exatamente o que está pagando e por quê." },
               { icon: Briefcase, title: "Comodidade Total", desc: "Cuidamos de tudo, desde a compra dos materiais até a entrega final. Você pode relaxar ou até viajar enquanto transformamos seu espaço." },
-              { icon: HardHat, title: "Mão de Obra Qualificada", desc: "Contamos com os melhores profissionais do mercado, garantindo agilidade, qualidade e atenção aos detalhes em cada etapa da obra." }, 
+              { icon: HardHat, title: "Mão de Obra Qualificada", desc: "Contamos com os melhores profissionais do mercado, garantindo agilidade, qualidade e atenção aos detalhes em cada etapa da obra." },
             ].map(({ icon: Icon, title, desc }, i) => (
               <div key={i} className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg hover:shadow-md transition-shadow">
                 <Icon className="w-12 h-12 mb-4 text-gray-900" />
@@ -138,7 +174,7 @@ function App() {
 
       {/* Testimonials Section */}
       <Section className="bg-gray-100">
-        <div className="container mx-auto px-4">
+        <div id="feedbacks" className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-16">O que nossos clientes dizem</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {[1, 2].map((i) => (
@@ -230,7 +266,7 @@ function App() {
 
       {/* Projects Section */}
       <Section className="bg-gray-100">
-        <div className="container mx-auto ">
+        <div id="Servicos" className="container mx-auto ">
           <h2 className="text-3xl font-bold text-center mb-8">Nossos Projetos</h2>
           <div className="flex flex-col gap-16">
             {beforeAfterProjects.map((project, i) => (
