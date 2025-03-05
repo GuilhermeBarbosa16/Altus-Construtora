@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { CheckCircle2, Award, Instagram, Clock, Users, Sparkles, ClipboardList, CalendarCheck, CheckCircle, ShieldCheck, PenTool, Briefcase, Eye, HardHat } from 'lucide-react';
 import YouTubePlayer from './components/YouTubePlayer';
-import Logo2 from '../src/assets/logo2.png'
+
 import ImageComparison from "./components/ImageComparison";
 import PhotoSlider from "./components/PhotoSlider";
 
@@ -78,20 +78,12 @@ function App() {
             filter: 'brightness(0.3)',
           }}
         />
-        <div className="mb-3">
-          {/* Logo centralizada */}
-          <img
-            src={Logo2}
-            alt="Logo"
-            className="absolute top-0 left-1/2 transform -translate-x-1/2 z-10 w-24 md:w-32 opacity-90 mb-2"
-          />
-        </div>
         <div className="relative z-10 flex items-start w-full">
           <div className="w-full px-1 md:px-8">
             <div className="grid md:grid-cols-2 gap-12">
               <div className="text-white">
                 <p className="text-xl text-gray-300 mb-3">Reforma e Construção de Alto Padrão</p>
-                <h1 className="text-[48px] md:text-[52px] lg:text-[52px] xl:text-[52px] font-bold leading-tight mb-4">
+                <h1 className="text-[36px] md:text-[52px] font-bold leading-tight mb-4 text-wrap whitespace-normal">
                   Obra sem estresse,<br className="hidden md:inline" />
                   dor de cabeça e com <br className="hidden md:inline" />
                   qualidade garantida.
