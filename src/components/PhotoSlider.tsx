@@ -44,25 +44,36 @@ export default function PhotoSlider() {
 
   return (
     <div className="w-full flex justify-center">
-  <Swiper
-    slidesPerView={4} 
-    spaceBetween={10}
-    autoplay={{ delay: 2000, disableOnInteraction: false }}
-    loop={true}
-    pagination={{ clickable: true }}
-    modules={[Autoplay, Pagination]}
-    className="w-full" // Garante que o Swiper ocupe toda a largura
-  >
-    {images.map((image, index) => (
-      <SwiperSlide key={index} className="w-full flex justify-center">
-        <img              
-          src={image.src} 
-          alt={image.name}
-          className="w-[300px] h-auto rounded-lg shadow-md"
-        />
-      </SwiperSlide>
-    ))}
-  </Swiper>
-</div>
+      <Swiper
+        slidesPerView={1} // Exibe 1 slide por vez por padrão
+        spaceBetween={10}
+        autoplay={{ delay: 2000, disableOnInteraction: false }}
+        loop={true}
+        pagination={{ clickable: true }}
+        modules={[Autoplay, Pagination]}
+        className="w-full" // Garante que o Swiper ocupe toda a largura
+        breakpoints={{
+          640: {
+            slidesPerView: 2, // 2 slides em telas pequenas
+          },
+          768: {
+            slidesPerView: 3, // 3 slides em telas médias
+          },
+          1024: {
+            slidesPerView: 4, // 4 slides em telas grandes
+          },
+        }}
+      >
+        {images.map((image, index) => (
+          <SwiperSlide key={index} className="flex justify-center">
+            <img
+              src={image.src}
+              alt={image.name}
+              className="w-full h-auto rounded-lg shadow-md" // Ajusta a largura para 100% e altura automática
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   );
 }
