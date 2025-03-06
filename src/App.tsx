@@ -95,6 +95,7 @@ function App() {
               <a href="#diferenciais" className="nav-link">Diferenciais</a>
               <a href="#feedbacks" className="nav-link">Feedbacks</a>
               <a href="#Servicos" className="nav-link">Serviços</a>
+              <a href="#Sobre" className="nav-link">Sobre</a>
             </nav>
           </div>
         )}
