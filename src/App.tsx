@@ -153,15 +153,16 @@ function App() {
                     <p className="text-xl mb-3">Reforma e Construção de Alto Padrão</p>
                     <h1 className="text-[36px] md:text-[52px] font-bold leading-tight mb-4">
                       A sua obra entregue no prazo, e com <br className="hidden md:inline" />
-                        qualidade garantida 
+                      qualidade garantida
                     </h1>
                     <p className="text-xl mb-8">
-                      Na Altus Engenharia, entregamos seu projeto no prazo, sem surpresas, com uma gestão profissional e transparência total.
-                      Chega de atrasos e gastos extras: construa com quem cumpre o que promete.
+                      Na Altus Engenharia, somos especialistas em <strong>construções e reformas de alto padrão</strong>. Nosso compromisso é cuidar de toda a obra para você, com <strong>transparência, qualidade e cumprimento de prazos</strong>, para que você possa focar na sua rotina sem preocupações.
                     </p>
-                    <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                      Quero uma obra sem surpresas!
-                    </button>
+                    <a href="#video">
+                      <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        Entenda porque a Altus é diferente!
+                      </button>
+                    </a>
                   </div>
                   <div className="form-container">
                     <h2 className="form-title">Fale com um especialista</h2>
@@ -227,41 +228,52 @@ function App() {
       </Section>
 
       <Section>
-        <div className='text-3xl font-bold text-center mb-16'>
+        <div id='video' className='text-3xl font-bold text-center mb-0'>
           <h1>Sobre a Altus</h1>
         </div>
-        <div className="relative aspect-[9/16] w-full max-w-xs bg-black rounded-lg overflow-hidden mx-auto">
-        <YouTubePlayer videoId="fUi3JVMepmQ" aspectRatio="9/16" />
+        <div className="flex flex-col items-center">
+          {/* Para vídeo horizontal 16:9 */}
+          <div className="relative w-full max-w-3xl overflow-hidden" style={{ paddingTop: '5%' }}> {/* 16:9 */}
+            <YouTubePlayer videoId="5JZ2rlNg82Q" aspectRatio="16/9" />
+          </div>
         </div>
       </Section>
 
       {/* Differentials Section */}
       <div id="diferenciais"></div>
       <Section>
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">Por que a Altus Engenharia é a escolha certa para sua obra?</h2>
-          <p className="text-xl mb-8 text-center">Entendemos que uma obra pode ser estressante: prazos que se estendem, orçamentos que fogem do controle e falta de transparência. <br className="hidden md:inline" />Por isso, trabalhamos com um processo claro e eficiente.</p>
-          <div className="grid md:grid-cols-4 gap-8 justify-items-center">
+        <div className="container mx-auto px-4 text-center text-white">
+          <h2 className="text-3xl font-bold mb-4">Por que a Altus Engenharia é a escolha certa para sua obra?</h2>
+          <p className="text-xl mb-8">
+            Entendemos que uma obra pode ser estressante: prazos que se estendem, orçamentos que fogem do controle e falta de transparência. <br className="hidden md:inline" />
+            Por isso, trabalhamos com um processo claro e eficiente.
+          </p>
+          <div className="grid md:grid-cols-3 gap-8 justify-items-center">
             {[
-              { icon: Sparkles, title: "Organização Impecável", desc: "Ambiente sempre limpo e organizado, garantindo mais eficiência, segurança e qualidade em cada etapa da obra." },
               { icon: ClipboardList, title: "Gestão Profissional", desc: "Planejamento detalhado e execução impecável, garantindo que cada etapa da obra seja realizada com eficiência e organização." },
               { icon: CalendarCheck, title: "Diário de Obra", desc: "Acompanhamento em tempo real da evolução da obra, com atualizações constantes para que você saiba exatamente o que está acontecendo." },
               { icon: CheckCircle, title: "Cumprimento de Prazos", desc: "Sua obra entregue no prazo combinado, sem atrasos e com a qualidade que você espera." },
-              { icon: ShieldCheck, title: "Segurança da Família", desc: "O conforto e a segurança da sua família são nossa prioridade. Trabalhamos com um serviço limpo e organizado, para que sua rotina seja impactada o mínimo possível durante a obra." },
               { icon: Eye, title: "Transparência Total", desc: "Orçamento claro e sem surpresas. Você sabe exatamente o que está pagando e por quê." },
               { icon: Briefcase, title: "Comodidade Total", desc: "Cuidamos de tudo, desde a compra dos materiais até a entrega final. Você pode relaxar ou até viajar enquanto transformamos seu espaço." },
               { icon: HardHat, title: "Mão de Obra Qualificada", desc: "Contamos com os melhores profissionais do mercado, garantindo agilidade, qualidade e atenção aos detalhes em cada etapa da obra." },
             ].map(({ icon: Icon, title, desc }, i) => (
               <div key={i} className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg hover:shadow-md transition-shadow">
-                <Icon className="w-12 h-12 mb-4 text-gray-900 icon-gold" /> {/* Aplicando a classe dourada */}
+                <Icon className="w-12 h-12 mb-4 text-[#DAA84B]" /> {/* Aplicando a cor dourada */}
                 <h3 className="text-xl font-semibold mb-2">{title}</h3>
                 <p className="text-gray-600">{desc}</p>
               </div>
             ))}
           </div>
+          {/* Botão centralizado */}
+          <div className="mt-8">
+            <a href="#orcamento">
+              <button className="bg-[#DAA84B] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#eab308] transition-colors">
+                Quero um orçamento
+              </button>
+            </a>
+          </div>
         </div>
       </Section>
-
       {/* Testimonials Section */}
       <Section>
         <div id="feedbacks" className="container mx-auto px-4">
@@ -415,7 +427,7 @@ function App() {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-            <p>&copy; 2024 Altus. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Altus. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>

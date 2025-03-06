@@ -31,7 +31,7 @@ h1, h2, h3 {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   letter-spacing: 0.8px;
-  color: #DAA84B; /* Cor dourada para os títulos */
+  color: #ffffff; /* Cor dourada para os títulos */
 }
 
 /* Parágrafos */
@@ -39,7 +39,7 @@ p {
   font-family: 'Lora', serif;
   font-weight: 400;
   line-height: 1.6;
-  color: #DAA84B; /* Cor dourada para os parágrafos */
+  color: #c7c7c7; /* Cor dourada para os parágrafos */
 }
 
 /* Botões */
