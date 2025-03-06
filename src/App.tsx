@@ -84,6 +84,7 @@ function App() {
           <a href="#diferenciais" className="nav-link">Diferenciais</a>
           <a href="#feedbacks" className="nav-link">Feedbacks</a>
           <a href="#Servicos" className="nav-link">Serviços</a>
+          <a href="#Sobre" className="nav-link">Sobre</a>
         </nav>
         <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
           <Menu size={24} />
@@ -389,7 +390,7 @@ function App() {
         </div>
       </Section>
       <Section>
-        <div className="container mx-auto px-4">
+        <div id='Sobre' className="container mx-auto px-4">
           <div className="flex justify-center">
             <div className="bg-gray-500 text-gray-800 p-8 rounded-lg shadow-lg w-full max-w-3xl transition-transform transform hover:scale-105">
               <div className="grid md:grid-cols-2 gap-6">
