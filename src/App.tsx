@@ -7,6 +7,7 @@ import Logo2 from '../src/assets/logo2.png';
 import ImageComparison from "./components/ImageComparison";
 import PhotoSlider from "./components/PhotoSlider";
 import emailjs from '@emailjs/browser';
+import imgtexto from '../src/assets/IMG_01.jpg'
 
 // CSS para o fundo com animação
 import './index.css'; // Certifique-se de que o CSS está importado
@@ -387,7 +388,28 @@ function App() {
           <PhotoSlider />
         </div>
       </Section>
-
+      <Section>
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center">
+            <div className="bg-gray-500 text-gray-800 p-8 rounded-lg shadow-lg w-full max-w-3xl transition-transform transform hover:scale-105">
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Título à esquerda com padding no topo */}
+                <div className="flex flex-col">
+                  <h2 className="text-3xl font-bold text-left">
+                    Oferecemos soluções completas para construção e reforma, do alicerce ao acabamento.
+                  </h2>
+                  {/* Imagem abaixo do título */}
+                  <img src={Logo2} alt="Descrição da Imagem" className="w-200 h-500 object-cover rounded-md mt-2" />
+                </div>
+                {/* Texto à direita */}
+                <p className="text-lg text-left">
+                  Desde o planejamento inicial, desenvolvemos um cronograma detalhado, garantindo que todas as etapas sejam executadas dentro do prazo. Nossa mão de obra qualificada é composta por profissionais experientes e capacitados, que trabalham com precisão e dedicação para transformar seu sonho em realidade. Com a Altus Engenharia, você tem a certeza de uma obra entregue no prazo, sem surpresas e com a qualidade que só nós oferecemos. Deixe a burocracia e os imprevistos com a gente e foque no que realmente importa: desfrutar do seu espaço dos sonhos. 🏗️✨
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
       {/* FAQ Section */}
       <Section>
         <div className="container mx-auto px-4">
