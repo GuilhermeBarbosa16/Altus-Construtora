@@ -16,9 +16,10 @@ declare global {
 
 interface YouTubePlayerProps {
   videoId: string;
+  aspectRatio?: string; // Adicionando a propriedade aspectRatio
 }
 
-const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId }) => {
+const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId, aspectRatio = '16/9' }) => {
   const playerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isPlayerReady, setIsPlayerReady] = useState<boolean>(false);
@@ -92,21 +93,25 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId }) => {
     return <div className="text-red-500">{error}</div>;
   }
 
+  // Calcular a proporção
+  const [width, height] = aspectRatio.split('/').map(Number);
+  const aspectRatioValue = height / width;
+
   return (
-    <div className="relative w-full aspect-[9/16] overflow-hidden">
+    <div className="relative w-full overflow-hidden" style={{ paddingTop: `${aspectRatioValue * 100}%` }}>
       {!isApiLoaded && <div>Carregando API do YouTube...</div>}
       {!isPlayerReady && <div>Carregando vídeo...</div>}
   
-      {/* Container que mantém o aspecto 9:16 */}
+      {/* Container que mantém o aspecto definido */}
       <div ref={containerRef} className="absolute top-0 left-0 w-full h-full">
         {/* Estilização extra para forçar o preenchimento */}
         <style>
           {`
             iframe {
-              width: 100vw !important;
-              height: 177.77vw !important;
+              width: 100% !important;
+              height: 100% !important;
               position: absolute;
-              top: -38.88vw; /* Ajuste para centralizar */
+              top: 0;
               left: 0;
             }
           `}

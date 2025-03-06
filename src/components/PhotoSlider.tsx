@@ -45,22 +45,22 @@ export default function PhotoSlider() {
   return (
     <div className="w-full flex justify-center">
       <Swiper
-        slidesPerView={1} // Exibe 1 slide por vez por padrão
+        slidesPerView={1} 
         spaceBetween={10}
         autoplay={{ delay: 2000, disableOnInteraction: false }}
         loop={true}
         pagination={{ clickable: true }}
         modules={[Autoplay, Pagination]}
-        className="w-full" // Garante que o Swiper ocupe toda a largura
+        className="w-full" 
         breakpoints={{
           640: {
-            slidesPerView: 2, // 2 slides em telas pequenas
+            slidesPerView: 2, 
           },
           768: {
-            slidesPerView: 3, // 3 slides em telas médias
+            slidesPerView: 3, 
           },
           1024: {
-            slidesPerView: 4, // 4 slides em telas grandes
+            slidesPerView: 4, 
           },
         }}
       >

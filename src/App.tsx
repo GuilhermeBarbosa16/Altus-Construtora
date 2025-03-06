@@ -8,6 +8,9 @@ import ImageComparison from "./components/ImageComparison";
 import PhotoSlider from "./components/PhotoSlider";
 import emailjs from '@emailjs/browser';
 
+// CSS para o fundo com animação
+import './index.css'; // Certifique-se de que o CSS está importado
+
 function Section({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -36,7 +39,7 @@ function App() {
     }
   ];
   const form = useRef<HTMLFormElement>(null);
-  const [formStatus, setFormStatus] = useState('');
+  const [, setFormStatus] = useState('');
   const [formData, setFormData] = useState({
     nome: '',
     telefone: '',
@@ -147,13 +150,12 @@ function App() {
               <div className="w-full px-1 md:px-8">
                 <div className="grid md:grid-cols-2 gap-12">
                   <div className="text-white">
-                    <p className="text-xl text-gray-300 mb-3">Reforma e Construção de Alto Padrão</p>
+                    <p className="text-xl mb-3">Reforma e Construção de Alto Padrão</p>
                     <h1 className="text-[36px] md:text-[52px] font-bold leading-tight mb-4">
-                      Obra sem estresse,<br className="hidden md:inline" />
-                      dor de cabeça e com <br className="hidden md:inline" />
-                      qualidade garantida.
+                      A sua obra entregue no prazo, e com <br className="hidden md:inline" />
+                        qualidade garantida 
                     </h1>
-                    <p className="text-xl mb-8 text-gray-300">
+                    <p className="text-xl mb-8">
                       Na Altus Engenharia, entregamos seu projeto no prazo, sem surpresas, com uma gestão profissional e transparência total.
                       Chega de atrasos e gastos extras: construa com quem cumpre o que promete.
                     </p>
@@ -224,21 +226,21 @@ function App() {
         </div>
       </Section>
 
-      <Section className='bg-gray '>
+      <Section>
         <div className='text-3xl font-bold text-center mb-16'>
           <h1>Sobre a Altus</h1>
         </div>
         <div className="relative aspect-[9/16] w-full max-w-xs bg-black rounded-lg overflow-hidden mx-auto">
-          <YouTubePlayer videoId="fUi3JVMepmQ" />
+        <YouTubePlayer videoId="fUi3JVMepmQ" aspectRatio="9/16" />
         </div>
       </Section>
 
       {/* Differentials Section */}
       <div id="diferenciais"></div>
-      <Section className="bg-white">
+      <Section>
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-4">Por que a Altus Engenharia é a escolha certa para sua obra?</h2>
-          <p className="text-xl mb-8 text-center text-gray-600">Entendemos que uma obra pode ser estressante: prazos que se estendem, orçamentos que fogem do controle e falta de transparência. <br className="hidden md:inline" />Por isso, trabalhamos com um processo claro e eficiente.</p>
+          <p className="text-xl mb-8 text-center">Entendemos que uma obra pode ser estressante: prazos que se estendem, orçamentos que fogem do controle e falta de transparência. <br className="hidden md:inline" />Por isso, trabalhamos com um processo claro e eficiente.</p>
           <div className="grid md:grid-cols-4 gap-8 justify-items-center">
             {[
               { icon: Sparkles, title: "Organização Impecável", desc: "Ambiente sempre limpo e organizado, garantindo mais eficiência, segurança e qualidade em cada etapa da obra." },
@@ -251,7 +253,7 @@ function App() {
               { icon: HardHat, title: "Mão de Obra Qualificada", desc: "Contamos com os melhores profissionais do mercado, garantindo agilidade, qualidade e atenção aos detalhes em cada etapa da obra." },
             ].map(({ icon: Icon, title, desc }, i) => (
               <div key={i} className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg hover:shadow-md transition-shadow">
-                <Icon className="w-12 h-12 mb-4 text-gray-900" />
+                <Icon className="w-12 h-12 mb-4 text-gray-900 icon-gold" /> {/* Aplicando a classe dourada */}
                 <h3 className="text-xl font-semibold mb-2">{title}</h3>
                 <p className="text-gray-600">{desc}</p>
               </div>
@@ -261,7 +263,7 @@ function App() {
       </Section>
 
       {/* Testimonials Section */}
-      <Section className="bg-gray-100">
+      <Section>
         <div id="feedbacks" className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-16">O que nossos clientes dizem</h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -281,7 +283,7 @@ function App() {
       </Section>
 
       {/* Pain Points Section */}
-      <Section className="bg-white">
+      <Section>
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
             Por que a Altus Engenharia é diferente?
@@ -344,7 +346,7 @@ function App() {
       </Section>
 
       {/* Projects Section */}
-      <Section className="bg-gray-100">
+      <Section>
         <div id="Servicos" className="container mx-auto ">
           <h2 className="text-3xl font-bold text-center mb-8">Nossos Projetos</h2>
           <div className="flex flex-col gap-16">
@@ -367,7 +369,7 @@ function App() {
         </div>
       </Section>
 
-      <Section className='bg-white'>
+      <Section>
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-2xl font-bold mb-8">Sonhos que já realizamos</h1>
           <PhotoSlider />
@@ -375,7 +377,7 @@ function App() {
       </Section>
 
       {/* FAQ Section */}
-      <Section className="bg-white">
+      <Section>
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-16">Perguntas Frequentes</h2>
           <div className="max-w-3xl mx-auto space-y-8">
