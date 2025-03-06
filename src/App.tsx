@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { CheckCircle2, Menu, Award, Instagram, Clock, Users, Sparkles, ClipboardList, CalendarCheck, CheckCircle, ShieldCheck, PenTool, Briefcase, Eye, HardHat } from 'lucide-react';
 import YouTubePlayer from './components/YouTubePlayer';
-import Logo2 from '../src/assets/logo2.png'
+import Logo2 from '../src/assets/logo2.png';
 import ImageComparison from "./components/ImageComparison";
 import PhotoSlider from "./components/PhotoSlider";
+import emailjs from '@emailjs/browser';
 
 function Section({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const [ref, inView] = useInView({
@@ -34,27 +35,55 @@ function App() {
       title: "Residência Alto de Pinheiros"
     }
   ];
+  const form = useRef<HTMLFormElement>(null);
+  const [formStatus, setFormStatus] = useState('');
+  const [formData, setFormData] = useState({
+    nome: '',
+    telefone: '',
+    email: '',
+    mensagem: ''
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      if (form.current) {
+        await emailjs.sendForm(
+          'service_wp9q7pe',
+          'template_7ehwa7c',
+          form.current,
+          'QCv7x6qbx04dK9m7Q'
+        );
+
+        setFormStatus('success');
+        setFormData({
+          nome: '',
+          telefone: '',
+          email: '',
+          mensagem: ''
+        });
+      }
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error);
+      setFormStatus('error');
+    }
+  };
+
   const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
-  
+
     return (
       <header className="w-full p-4 flex justify-between items-center bg-transparent">
-        {/* Logo */}
         <img src={Logo2} alt="Logo" className="w-24 md:w-32 opacity-90" />
-  
-        {/* Desktop Menu */}
         <nav className="hidden md:flex space-x-8 text-white items-center ml-auto">
           <a href="#diferenciais" className="nav-link">Diferenciais</a>
           <a href="#feedbacks" className="nav-link">Feedbacks</a>
           <a href="#Servicos" className="nav-link">Serviços</a>
         </nav>
-  
-        {/* Mobile Menu Button */}
         <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
           <Menu size={24} />
         </button>
-  
-        {/* Mobile Menu */}
         {isOpen && (
           <div className="absolute top-16 right-4 p-4 rounded-lg shadow-lg bg-gray-800 md:hidden z-20">
             <nav className="flex flex-col space-y-4 text-white">
@@ -62,11 +91,12 @@ function App() {
               <a href="#feedbacks" className="nav-link">Feedbacks</a>
               <a href="#Servicos" className="nav-link">Serviços</a>
             </nav>
-        </div>       
+          </div>
         )}
       </header>
     );
   };
+
   const faqs = [
     {
       question: "Como funciona o acompanhamento da obra?",
@@ -81,6 +111,7 @@ function App() {
       answer: "O prazo varia de acordo com a complexidade e escopo do projeto. Após a análise inicial, estabelecemos um cronograma detalhado e nos comprometemos com sua execução precisa."
     },
   ];
+
   function FAQItem({ question, answer }: { question: string; answer: string }) {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -100,59 +131,116 @@ function App() {
 
   return (
     <div className="font-sans">
-    {/* Hero Section */}
-    <Section className="relative pt-[5px]"> {/* Empurrando o conteúdo para baixo */}
-      {/* Background Image */}
-      <div
+      {/* Hero Section */}
+      <Section className="relative pt-[5px]">
+        <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: 'url(https://images.unsplash.com/photo-1503387762-592deb58ef4e)',
             filter: 'brightness(0.3)',
           }}
         />
-      <div className="font-sans relative">
-        <div className="relative z-0">
-          {/* O Header agora está no topo da página */}
-          <Header />
-
-          <div className="relative z-10 flex items-start w-full">
-            <div className="w-full px-1 md:px-8">
-              <div className="grid md:grid-cols-2 gap-12">
-                <div className="text-white">
-                  <p className="text-xl text-gray-300 mb-3">Reforma e Construção de Alto Padrão</p>
-                  <h1 className="text-[36px] md:text-[52px] font-bold leading-tight mb-4">
-                    Obra sem estresse,<br className="hidden md:inline" />
-                    dor de cabeça e com <br className="hidden md:inline" />
-                    qualidade garantida.
-                  </h1>
-                  <p className="text-xl mb-8 text-gray-300">
-                    Na Altus Engenharia, entregamos seu projeto no prazo, sem surpresas, com uma gestão profissional e transparência total.
-                    Chega de atrasos e gastos extras: construa com quem cumpre o que promete.
-                  </p>
-                  <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                    Quero uma obra sem surpresas!
-                  </button>
-                </div>
-                <div className="relative aspect-[9/16] w-full max-w-xs bg-black rounded-lg overflow-hidden mx-auto">
-                  <YouTubePlayer videoId="fUi3JVMepmQ" />
+        <div className="font-sans relative">
+          <div className="relative z-0">
+            <Header />
+            <div className="relative z-10 flex items-start w-full">
+              <div className="w-full px-1 md:px-8">
+                <div className="grid md:grid-cols-2 gap-12">
+                  <div className="text-white">
+                    <p className="text-xl text-gray-300 mb-3">Reforma e Construção de Alto Padrão</p>
+                    <h1 className="text-[36px] md:text-[52px] font-bold leading-tight mb-4">
+                      Obra sem estresse,<br className="hidden md:inline" />
+                      dor de cabeça e com <br className="hidden md:inline" />
+                      qualidade garantida.
+                    </h1>
+                    <p className="text-xl mb-8 text-gray-300">
+                      Na Altus Engenharia, entregamos seu projeto no prazo, sem surpresas, com uma gestão profissional e transparência total.
+                      Chega de atrasos e gastos extras: construa com quem cumpre o que promete.
+                    </p>
+                    <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                      Quero uma obra sem surpresas!
+                    </button>
+                  </div>
+                  <div className="form-container">
+                    <h2 className="form-title">Fale com um especialista</h2>
+                    <form ref={form} onSubmit={handleSubmit} className="space-y-4">
+                      <div>
+                        <label htmlFor="nome" className="form-label">Nome</label>
+                        <input
+                          type="text"
+                          name="from_name"
+                          id="nome"
+                          required
+                          className="form-input"
+                          value={formData.nome}
+                          onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="telefone" className="form-label">Telefone</label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          id="telefone"
+                          required
+                          className="form-input"
+                          value={formData.telefone}
+                          onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="form-label">E-mail</label>
+                        <input
+                          type="email"
+                          name="email"
+                          id="email"
+                          required
+                          className="form-input"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="mensagem" className="form-label">Mensagem</label>
+                        <textarea
+                          id="mensagem"
+                          name="message"
+                          rows={4}
+                          required
+                          className="form-textarea"
+                          value={formData.mensagem}
+                          onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
+                        />
+                      </div>
+                      <button type="submit" className="form-button">
+                        Solicitar Contato
+                      </button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </Section>
+      </Section>
+
+      <Section className='bg-gray '>
+        <div className='text-3xl font-bold text-center mb-16'>
+          <h1>Sobre a Altus</h1>
+        </div>
+        <div className="relative aspect-[9/16] w-full max-w-xs bg-black rounded-lg overflow-hidden mx-auto">
+          <YouTubePlayer videoId="fUi3JVMepmQ" />
+        </div>
+      </Section>
+
       {/* Differentials Section */}
-      <div id="diferenciais">  </div>
-      <Section className="bg-white" >
+      <div id="diferenciais"></div>
+      <Section className="bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-4">Por que a Altus Engenharia é a escolha certa para sua obra?</h2>
-          <p className="text-xl mb-8 text-center text-gray-650">Entendemos que uma obra pode ser estressante: prazos que se estendem, orçamentos que fogem do controle e falta de transparência. <br className="hidden md:inline" />Por isso, trabalhamos com um processo claro e eficiente.</p>
+          <p className="text-xl mb-8 text-center text-gray-600">Entendemos que uma obra pode ser estressante: prazos que se estendem, orçamentos que fogem do controle e falta de transparência. <br className="hidden md:inline" />Por isso, trabalhamos com um processo claro e eficiente.</p>
           <div className="grid md:grid-cols-4 gap-8 justify-items-center">
             {[
-              /*  { icon: Clock, title: "Pontualidade", desc: "Entrega no prazo prometido" },
-               { icon: Users, title: "Equipe Qualificada", desc: "Profissionais especializados" },
-               { icon: PenTool, title: "Gestão Completa", desc: "Acompanhamento em tempo real" }, */
               { icon: Sparkles, title: "Organização Impecável", desc: "Ambiente sempre limpo e organizado, garantindo mais eficiência, segurança e qualidade em cada etapa da obra." },
               { icon: ClipboardList, title: "Gestão Profissional", desc: "Planejamento detalhado e execução impecável, garantindo que cada etapa da obra seja realizada com eficiência e organização." },
               { icon: CalendarCheck, title: "Diário de Obra", desc: "Acompanhamento em tempo real da evolução da obra, com atualizações constantes para que você saiba exatamente o que está acontecendo." },
@@ -198,17 +286,9 @@ function App() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
             Por que a Altus Engenharia é diferente?
           </h2>
-
-          <div className="mb-16">
-            {/* <img
-              src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15"
-              alt="Contraste de organização"
-              className="w-full max-h-[500px] md:max-h-[600px] object-cover rounded-lg shadow-lg"
-            /> */}
-
-          </div>
+          <div className="mb-16"></div>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gray-100 p-8 rounded-lg">
+            <div className="bg-gray-100 p-8 rounded-lg mb-4">
               <h3 className="text-xl font-semibold mb-4">Problemas Comuns</h3>
               <ul className="space-y-4">
                 <li className="flex items-center text-red-600">
@@ -231,7 +311,7 @@ function App() {
                 </li>
               </ul>
             </div>
-            <div className="bg-gray-900 text-white p-8 rounded-lg">
+            <div className="bg-gray-900 text-white p-8 rounded-lg mb-4">
               <h3 className="text-xl font-semibold mb-4">Solução Altus</h3>
               <ul className="space-y-4">
                 <li className="flex items-center">
@@ -254,7 +334,6 @@ function App() {
                 </li>
               </ul>
             </div>
-            <br />
           </div>
           <div className="flex justify-center items-center">
             <button className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
@@ -278,7 +357,6 @@ function App() {
                 viewport={{ once: true }}
                 className="w-full flex flex-col items-center"
               >
-
                 <h3 className="text-2xl font-semibold text-center">{project.title}</h3>
                 <div className="w-full md:w-3/4 lg:w-2/3 shadow-lg rounded-lg">
                   <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
@@ -288,12 +366,14 @@ function App() {
           </div>
         </div>
       </Section>
+
       <Section className='bg-white'>
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-2xl font-bold mb-8">Sonhos que já realizamos</h1>
           <PhotoSlider />
         </div>
       </Section>
+
       {/* FAQ Section */}
       <Section className="bg-white">
         <div className="container mx-auto px-4">

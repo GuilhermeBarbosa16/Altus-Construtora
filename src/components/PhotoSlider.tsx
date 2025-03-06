@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 
 // Import das imagens
 import IMG_01 from "../assets/IMG_01.jpg";
@@ -40,26 +40,29 @@ const images = [
 ];
 
 export default function PhotoSlider() {
+  console.log(images); // Verifica se as imagens estão sendo carregadas corretamente
+
   return (
     <div className="w-full flex justify-center">
-      <Swiper
-        slidesPerView={4} // Ajuste para ver se carrega mais de uma imagem
-        spaceBetween={10}
-        autoplay={{ delay: 2000, disableOnInteraction: false }}
-        loop={true}
-        modules={[Autoplay]}
-        className="w-auto"
-      >
-        {images.map((image, index) => (
-  <SwiperSlide key={index} className="flex justify-center">
-    <img              
-      src={image.src} // Aqui estamos garantindo que a imagem está sendo usada corretamente
-      alt={image.name}
-      className="w-[450px] h-auto rounded-lg shadow-md"
-    />
-  </SwiperSlide>
-))}
-      </Swiper>
-    </div>
+  <Swiper
+    slidesPerView={4} 
+    spaceBetween={10}
+    autoplay={{ delay: 2000, disableOnInteraction: false }}
+    loop={true}
+    pagination={{ clickable: true }}
+    modules={[Autoplay, Pagination]}
+    className="w-full" // Garante que o Swiper ocupe toda a largura
+  >
+    {images.map((image, index) => (
+      <SwiperSlide key={index} className="w-full flex justify-center">
+        <img              
+          src={image.src} 
+          alt={image.name}
+          className="w-[300px] h-auto rounded-lg shadow-md"
+        />
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div>
   );
 }
