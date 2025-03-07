@@ -61,7 +61,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId, aspectRatio = '1
           videoId,
           playerVars: {
             autoplay: 1,
-            controls: 0,
+            controls: 1,
             modestbranding: 0,
             rel: 0,
             showinfo: 0,
