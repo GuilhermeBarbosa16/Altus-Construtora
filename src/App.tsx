@@ -306,7 +306,7 @@ function App() {
           <div className="mb-16"></div>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-gray-100 p-8 rounded-lg mb-4">
-              <h3 className="text-xl font-semibold mb-4">Problemas Comuns</h3>
+              <h3 className="text-xl text-black font-semibold mb-4">Problemas Comuns</h3>
               <ul className="space-y-4">
                 <li className="flex items-center text-red-600">
                   <span className="mr-2">✕</span> Atrasos constantes
