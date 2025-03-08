@@ -8,6 +8,8 @@ import ImageComparison from "./components/ImageComparison";
 import PhotoSlider from "./components/PhotoSlider";
 import emailjs from '@emailjs/browser';
 import imgtexto from '../src/assets/IMG_01.jpg'
+import fundo1 from '../src/assets/FUNDO V1.png'
+import fundo2 from '../src/assets/FUNDO V2.png'
 
 // CSS para o fundo com animação
 import './index.css'; // Certifique-se de que o CSS está importado
@@ -142,7 +144,7 @@ function App() {
         <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1503387762-592deb58ef4e)',
+            backgroundImage: `url(${fundo2})`,
             filter: 'brightness(0.3)',
           }}
         />
@@ -167,7 +169,7 @@ function App() {
                       </button>
                     </a>
                   </div>
-                  <div className="form-container ">
+                  <div className="form-container">
                     <h2 className="form-title">Fale com um especialista</h2>
                     <form ref={form} onSubmit={handleSubmit} className="space-y-4">
                       <div>
@@ -262,7 +264,7 @@ function App() {
             ].map(({ icon: Icon, title, desc }, i) => (
               <div key={i} className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg hover:shadow-md transition-shadow">
                 <Icon className="w-12 h-12 mb-4 text-[#DAA84B]" /> {/* Aplicando a cor dourada */}
-                <h3 className="text-xl font-semibold mb-2">{title}</h3>
+                <h3 className="text-xl font-semibold mb-2 text-black">{title}</h3>
                 <p className="text-gray-600">{desc}</p>
               </div>
             ))}
@@ -306,7 +308,7 @@ function App() {
           <div className="mb-16"></div>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-gray-100 p-8 rounded-lg mb-4">
-              <h3 className="text-xl text-black font-semibold mb-4">Problemas Comuns</h3>
+              <h3 className="text-xl font-semibold mb-4">Problemas Comuns</h3>
               <ul className="space-y-4">
                 <li className="flex items-center text-red-600">
                   <span className="mr-2">✕</span> Atrasos constantes
