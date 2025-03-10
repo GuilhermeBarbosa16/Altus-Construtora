@@ -138,98 +138,100 @@ function App() {
   }
 
   return (
-    <div className="font-sans">
-      {/* Hero Section */}
-      <Section className="relative pt-[5px]">
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${fundo2})`,          
-          }}
-        />
-        <div className="font-sans relative">
-          <div className="relative z-0">
-            <Header />
-            <div className="relative z-10 flex items-start w-full">
-              <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-2"> {/* Adicionando padding responsivo */}
-                <div className="grid md:grid-cols-2 gap-12">
-                  <div className="text-white">
-                    <p className="text-xl mb-3">Reforma e Construção de Alto Padrão</p>
-                    <h1 className="text-[36px] md:text-[52px] font-bold leading-tight mb-4">
-                      A sua obra entregue no prazo, <span className="whitespace-nowrap">e com</span> <br className="hidden md:inline" />
-                      qualidade garantida
-                    </h1>
-                    <p className="text-xl mb-8">
-                      Na Altus Engenharia, somos especialistas em <strong>construções e reformas de alto padrão</strong>. Nosso compromisso é cuidar de toda a obra para você, com <strong>transparência, qualidade e cumprimento de prazos</strong>, para que você possa focar na sua rotina sem preocupações.
-                    </p>
-                    <a href="#video">
-                      <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                        Entenda porque a Altus é diferente!
-                      </button>
-                    </a>
+   
+    < div className = "font-sans" >
+      {/* Hero Section */ }
+      < Section className = "relative pt-[5px]" >
+    <div
+      className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: `url(${fundo2})`,
+        filter: 'brightness(0.3)',
+      }}
+    />
+    <div className="font-sans relative">
+      <div className="relative z-0">
+        <Header />
+        <div className="relative z-10 flex items-start w-full">
+          <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8"> {/* Adicionando padding responsivo */}
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="text-white">
+                <p className="text-xl mb-3 leading-snug">Reforma e Construção de Alto Padrão</p>
+                <h1 className="text-[32px] sm:text-[36px] md:text-[52px] font-bold leading-tight mb-4">
+                  A sua obra entregue no prazo, <span className="whitespace-nowrap">e com</span> <br className="hidden md:inline" />
+                  qualidade garantida
+                </h1>
+                <p className="text-lg sm:text-xl mb-6 leading-relaxed">
+                  Na Altus Engenharia, somos especialistas em <strong>construções e reformas de alto padrão</strong>. Nosso compromisso é cuidar de toda a obra para você, com <strong>transparência, qualidade e cumprimento de prazos</strong>, para que você possa focar na sua rotina sem preocupações.
+                </p>
+                <a href="#video">
+                  <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Entenda porque a Altus é diferente!
+                  </button>
+                </a>
+              </div>
+              <div className="form-container">
+                <h2 className="form-title text-lg sm:text-xl">Fale com um especialista</h2>
+                <form ref={form} onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label htmlFor="nome" className="form-label">Nome</label>
+                    <input
+                      type="text"
+                      name="from_name"
+                      id="nome"
+                      required
+                      className="form-input"
+                      value={formData.nome}
+                      onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                    />
                   </div>
-                  <div className="form-container">
-                    <h2 className="form-title">Fale com um especialista</h2>
-                    <form ref={form} onSubmit={handleSubmit} className="space-y-4">
-                      <div>
-                        <label htmlFor="nome" className="form-label">Nome</label>
-                        <input
-                          type="text"
-                          name="from_name"
-                          id="nome"
-                          required
-                          className="form-input"
-                          value={formData.nome}
-                          onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="telefone" className="form-label">Telefone</label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          id="telefone"
-                          required
-                          className="form-input"
-                          value={formData.telefone}
-                          onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="form-label">E-mail</label>
-                        <input
-                          type="email"
-                          name="email"
-                          id="email"
-                          required
-                          className="form-input"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="mensagem" className="form-label">Mensagem</label>
-                        <textarea
-                          id="mensagem"
-                          name="message"
-                          rows={4}
-                          required
-                          className="form-textarea"
-                          value={formData.mensagem}
-                          onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
-                        />
-                      </div>
-                      <button type="submit" className="form-button">
-                        Solicitar Contato
-                      </button>
-                    </form>
+                  <div>
+                    <label htmlFor="telefone" className="form-label">Telefone</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      id="telefone"
+                      required
+                      className="form-input"
+                      value={formData.telefone}
+                      onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+                    />
                   </div>
-                </div>
+                  <div>
+                    <label htmlFor="email" className="form-label">E-mail</label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      required
+                      className="form-input"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="mensagem" className="form-label">Mensagem</label>
+                    <textarea
+                      id="mensagem"
+                      name="message"
+                      rows={4}
+                      required
+                      className="form-textarea"
+                      value={formData.mensagem}
+                      onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
+                    />
+                  </div>
+                  <button type="submit" className="form-button">
+                    Solicitar Contato
+                  </button>
+                </form>
               </div>
             </div>
           </div>
         </div>
-      </Section>
+      </div>
+    </div>
+  </Section >
 
       <Section>
         <div id='video' className='text-3xl font-bold text-center mb-0'>
