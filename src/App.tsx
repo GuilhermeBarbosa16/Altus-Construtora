@@ -410,6 +410,12 @@ function App() {
                   Desde o planejamento inicial, desenvolvemos um cronograma detalhado, garantindo que todas as etapas sejam executadas dentro do prazo. Nossa mão de obra qualificada é composta por profissionais experientes e capacitados, que trabalham com precisão e dedicação para transformar seu sonho em realidade. Com a Altus Engenharia, você tem a certeza de uma obra entregue no prazo, sem surpresas e com a qualidade que só nós oferecemos. Deixe a burocracia e os imprevistos com a gente e foque no que realmente importa: desfrutar do seu espaço dos sonhos. 🏗️✨
                 </p>
               </div>
+              {/* Ícone do Instagram */}
+              <div className="flex justify-center mt-4">
+                <a href="https://www.instagram.com/altusengenhariabh/" target="_blank" rel="noopener noreferrer">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="w-8 h-8" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -440,7 +446,7 @@ function App() {
               <h4 className="text-xl font-bold mb-4">Contato</h4>
               <p className="text-gray-400">contato@altus.com.br</p>
               <div className="flex items-center mt-4">
-                <a href="#" className="text-white hover:text-gray-300">
+                <a href="https://www.instagram.com/altusengenhariabh/" className="text-white hover:text-gray-300">
                   <Instagram className="w-6 h-6" />
                 </a>
               </div>
