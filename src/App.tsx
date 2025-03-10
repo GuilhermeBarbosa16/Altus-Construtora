@@ -144,8 +144,7 @@ function App() {
         <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url(${fundo2})`,
-            filter: 'brightness(0.3)',
+            backgroundImage: `url(${fundo2})`,          
           }}
         />
         <div className="font-sans relative">
