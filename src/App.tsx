@@ -151,7 +151,7 @@ function App() {
           <div className="relative z-0">
             <Header />
             <div className="relative z-10 flex items-start w-full">
-              <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8"> {/* Adicionando padding responsivo */}
+              <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-2"> {/* Adicionando padding responsivo */}
                 <div className="grid md:grid-cols-2 gap-12">
                   <div className="text-white">
                     <p className="text-xl mb-3">Reforma e Construção de Alto Padrão</p>
