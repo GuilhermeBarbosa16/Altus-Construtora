@@ -152,12 +152,12 @@ function App() {
           <div className="relative z-0">
             <Header />
             <div className="relative z-10 flex items-start w-full">
-              <div className="w-full px-1 md:px-8">
+              <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8"> {/* Adicionando padding responsivo */}
                 <div className="grid md:grid-cols-2 gap-12">
                   <div className="text-white">
                     <p className="text-xl mb-3">Reforma e Construção de Alto Padrão</p>
                     <h1 className="text-[36px] md:text-[52px] font-bold leading-tight mb-4">
-                      A sua obra entregue no prazo, e com <br className="hidden md:inline" />
+                      A sua obra entregue no prazo, <span className="whitespace-nowrap">e com</span> <br className="hidden md:inline" />
                       qualidade garantida
                     </h1>
                     <p className="text-xl mb-8">
@@ -308,7 +308,7 @@ function App() {
           <div className="mb-16"></div>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-gray-100 p-8 rounded-lg mb-4">
-              <h3 className="text-xl font-semibold mb-4">Problemas Comuns</h3>
+              <h3 className="text-xl text-black font-semibold mb-4">Problemas Comuns</h3>
               <ul className="space-y-4">
                 <li className="flex items-center text-red-600">
                   <span className="mr-2">✕</span> Atrasos constantes
@@ -355,9 +355,11 @@ function App() {
             </div>
           </div>
           <div className="flex justify-center items-center">
+          <a href="#">
             <button className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
               Quero começar minha obra!
             </button>
+            </a>
           </div>
         </div>
       </Section>
