@@ -173,8 +173,8 @@ function App() {
       </div>
 
       {/* Formulário */}
-      <div className="form-container">
-        <h2 className="form-title text-lg sm:text-xl">Fale com um especialista</h2>
+      <div id="orcamento" className="form-container md:-translate-x-12">
+        <h2 className="form-title text-lg sm:text-xl">Contato para orçamento</h2>
         <form ref={form} onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="nome" className="form-label">Nome</label>
@@ -249,38 +249,46 @@ function App() {
       {/* Differentials Section */}
       <div id="diferenciais"></div>
       <Section>
-        <div className="container mx-auto px-4 text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">Por que a Altus Engenharia é a escolha certa para sua obra?</h2>
-          <p className="text-xl mb-8">
-            Entendemos que uma obra pode ser estressante: prazos que se estendem, orçamentos que fogem do controle e falta de transparência. <br className="hidden md:inline" />
-            Por isso, trabalhamos com um processo claro e eficiente.
-          </p>
-          <div className="grid md:grid-cols-3 gap-8 justify-items-center">
-            {[
-              { icon: ClipboardList, title: "Gestão Profissional", desc: "Planejamento detalhado e execução impecável, garantindo que cada etapa da obra seja realizada com eficiência e organização." },
-              { icon: CalendarCheck, title: "Diário de Obra", desc: "Acompanhamento em tempo real da evolução da obra, com atualizações constantes para que você saiba exatamente o que está acontecendo." },
-              { icon: CheckCircle, title: "Cumprimento de Prazos", desc: "Sua obra entregue no prazo combinado, sem atrasos e com a qualidade que você espera." },
-              { icon: Eye, title: "Transparência Total", desc: "Orçamento claro e sem surpresas. Você sabe exatamente o que está pagando e por quê." },
-              { icon: Briefcase, title: "Comodidade Total", desc: "Cuidamos de tudo, desde a compra dos materiais até a entrega final. Você pode relaxar ou até viajar enquanto transformamos seu espaço." },
-              { icon: HardHat, title: "Mão de Obra Qualificada", desc: "Contamos com os melhores profissionais do mercado, garantindo agilidade, qualidade e atenção aos detalhes em cada etapa da obra." },
-            ].map(({ icon: Icon, title, desc }, i) => (
-              <div key={i} className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg hover:shadow-md transition-shadow">
-                <Icon className="w-12 h-12 mb-4 text-[#DAA84B]" /> {/* Aplicando a cor dourada */}
-                <h3 className="text-xl font-semibold mb-2 text-black">{title}</h3>
-                <p className="text-gray-600">{desc}</p>
-              </div>
-            ))}
-          </div>
-          {/* Botão centralizado */}
-          <div className="mt-8">
-            <a href="#orcamento">
-              <button className="bg-[#DAA84B] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#eab308] transition-colors">
-                Quero um orçamento
-              </button>
-            </a>
-          </div>
+  <div className="container max-w-4xl mx-auto px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24 text-center text-white">
+    <h2 className="text-3xl font-bold mb-4">
+      Por que a Altus Engenharia é a escolha certa para sua obra?
+    </h2>
+    <p className="text-xl mb-8">
+      Entendemos que uma obra pode ser estressante: prazos que se estendem, orçamentos que fogem do controle e falta de transparência. <br className="hidden md:inline" />
+      Por isso, trabalhamos com um processo claro e eficiente.
+    </p>
+  </div>
+
+  {/* Grid dos ícones mais larga */}
+  <div className="container max-w-6xl mx-auto px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24">
+    <div className="grid md:grid-cols-3 gap-8 justify-items-center">
+      {[
+        { icon: ClipboardList, title: "Gestão Profissional", desc: "Planejamento detalhado e execução impecável, garantindo que cada etapa da obra seja realizada com eficiência e organização." },
+        { icon: CalendarCheck, title: "Diário de Obra", desc: "Acompanhamento em tempo real da evolução da obra, com atualizações constantes para que você saiba exatamente o que está acontecendo." },
+        { icon: CheckCircle, title: "Cumprimento de Prazos", desc: "Sua obra entregue no prazo combinado, sem atrasos e com a qualidade que você espera." },
+        { icon: Eye, title: "Transparência Total", desc: "Orçamento claro e sem surpresas. Você sabe exatamente o que está pagando e por quê." },
+        { icon: Briefcase, title: "Comodidade Total", desc: "Cuidamos de tudo, desde a compra dos materiais até a entrega final. Você pode relaxar ou até viajar enquanto transformamos seu espaço." },
+        { icon: HardHat, title: "Mão de Obra Qualificada", desc: "Contamos com os melhores profissionais do mercado, garantindo agilidade, qualidade e atenção aos detalhes em cada etapa da obra." },
+      ].map(({ icon: Icon, title, desc }, i) => (
+        <div key={i} className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg hover:shadow-md transition-shadow">
+          <Icon className="w-12 h-12 mb-4 text-[#DAA84B]" /> {/* Aplicando a cor dourada */}
+          <h3 className="text-xl font-semibold mb-2 text-black">{title}</h3>
+          <p className="text-gray-600">{desc}</p>
         </div>
-      </Section>
+      ))}
+    </div>
+  </div>
+
+  {/* Botão centralizado */}
+  <div className="mt-8 text-center">
+    <a href="#orcamento">
+      <button className="bg-[#DAA84B] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#eab308] transition-colors">
+        Quero um orçamento
+      </button>
+    </a>
+  </div>
+</Section>
+
       {/* Testimonials Section */}
       <Section>
         <div id="feedbacks" className="container mx-auto px-4">
