@@ -404,28 +404,37 @@ function App() {
 
       {/* Projects Section */}
       <Section>
-        <div id="Servicos" className="container ml-4 md:ml-8 lg:ml-20">
-          <h2 className="text-3xl font-bold text-center mb-8">Sonhos que já realizamos</h2>
+        <div id="Servicos" className="container px-4 sm:px-6 md:px-8 lg:px-12">
+          <h2 className="text-3xl font-bold text-center mb-8">
+            Sonhos que já realizamos
+          </h2>
+
           <div className="flex flex-col gap-16">
             {beforeAfterProjects.map((project, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
                 viewport={{ once: true }}
-                className="w-full flex flex-col md:flex-row items-center md:items-start gap-8"
+                className="w-full flex flex-col-reverse md:flex-row items-center md:items-start gap-8 overflow-hidden"
               >
-                {/* Texto (Acima da Imagem) */}
+                {/* Texto (acima da imagem no mobile) */}
                 <div className="w-full md:w-1/2 text-left space-y-4">
                   <p className="text-center md:text-left">Antes e Depois</p>
-                  <h3 className="text-2xl font-semibold text-center md:text-left">{project.title}</h3>
-                  <p className="text-center md:text-left">Execução de uma casa de alto padrão no condomínio Amendoeiras</p>
+                  <h3 className="text-2xl font-semibold text-center md:text-left">
+                    {project.title}
+                  </h3>
+                  <p className="text-center md:text-left">
+                    Execução de uma casa de alto padrão no condomínio Amendoeiras
+                  </p>
                 </div>
 
-                {/* Imagem */}
-                <div className="w-full md:w-1/2 lg:w-1/2 shadow-lg rounded-lg flex justify-center">
-                  <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
+                {/* Imagem - Ajustando para não causar overflow */}
+                <div className="w-full md:w-1/2 lg:w-1/2 flex justify-center">
+                  <div className="max-w-full overflow-hidden rounded-lg shadow-lg">
+                    <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
+                  </div>
                 </div>
 
                 {/* Informações da Obra */}
@@ -450,6 +459,7 @@ function App() {
           </div>
         </div>
       </Section>
+
       <Section>
         <div className="flex flex-col items-center justify-center">
           <PhotoSlider />
