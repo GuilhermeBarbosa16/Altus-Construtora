@@ -295,7 +295,7 @@ function App() {
 
         {/* Grid dos ícones mais larga */}
         <div className="container max-w-6xl mx-auto px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24">
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 justify-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 justify-items-center">
             {[
               { icon: ClipboardList, title: "Gestão Profissional", desc: "Planejamento detalhado e execução impecável, garantindo que cada etapa da obra seja realizada com eficiência e organização." },
               { icon: CalendarCheck, title: "Diário de Obra", desc: "Acompanhamento em tempo real da evolução da obra, com atualizações constantes para que você saiba exatamente o que está acontecendo." },
@@ -403,62 +403,53 @@ function App() {
       </Section>
 
       {/* Projects Section */}
-      <Section>
-        <div id="Servicos" className="container px-4 sm:px-6 md:px-8 lg:px-12">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            Sonhos que já realizamos
-          </h2>
-
-          <div className="flex flex-col gap-16">
-            {beforeAfterProjects.map((project, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-                viewport={{ once: true }}
-                className="w-full flex flex-col-reverse md:flex-row items-center md:items-start gap-8 overflow-hidden"
-              >
-                {/* Texto (acima da imagem no mobile) */}
-                <div className="w-full md:w-1/2 text-left space-y-4">
-                  <p className="text-center md:text-left">Antes e Depois</p>
-                  <h3 className="text-2xl font-semibold text-center md:text-left">
-                    {project.title}
-                  </h3>
-                  <p className="text-center md:text-left">
-                    Execução de uma casa de alto padrão no condomínio Amendoeiras
-                  </p>
-                </div>
-
-                {/* Imagem - Ajustando para não causar overflow */}
-                <div className="w-full md:w-1/2 lg:w-1/2 flex justify-center">
-                  <div className="max-w-full overflow-hidden rounded-lg shadow-lg">
-                    <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
-                  </div>
-                </div>
-
-                {/* Informações da Obra */}
-                <div className="w-full md:w-1/2 text-left space-y-4">
-                  <div className="text-lg space-y-2">
-                    <p className="flex items-center gap-2">
-                      <MapPin className="w-5 h-5 text-[#DAA84B]" />
-                      <strong>Ano de Execução:</strong> {project.executionYear}
-                    </p>
-                    <p className="flex items-center gap-2">
-                      <Hourglass className="w-5 h-5 text-[#DAA84B]" />
-                      <strong>Prazo de Entrega:</strong> {project.deliveryDeadline}
-                    </p>
-                    <p className="flex items-center gap-2">
-                      <Ruler className="w-5 h-5 text-[#DAA84B]" />
-                      <strong>Área Construída:</strong> {project.builtArea} m²
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+{/* Projects Section */}
+{/* Projects Section */}
+<Section>
+  <div id="Servicos" className="container ml-4 md:ml-8 lg:ml-20">
+    <h2 className="text-3xl font-bold text-center mb-8">Sonhos que já realizamos</h2>
+    <div className="flex flex-col gap-16">
+      {beforeAfterProjects.map((project, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="w-full flex flex-col md:flex-row items-center md:items-start gap-8"
+        >
+          {/* Imagem (À esquerda em telas grandes) */}
+          <div className="w-full md:w-1/2 lg:w-1/2 shadow-lg rounded-lg flex justify-center max-w-xs mx-auto">
+            <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
           </div>
-        </div>
-      </Section>
+
+          {/* Texto (À direita em telas grandes) */}
+          <div className="w-full md:w-1/2 text-left space-y-4">
+            <p className="text-center md:text-left">Antes e Depois</p>
+            <h3 className="text-2xl font-semibold text-center md:text-left">{project.title}</h3>
+            <p className="text-center md:text-left">Execução de uma casa de alto padrão no condomínio Amendoeiras</p>
+
+            {/* Informações da Obra */}
+            <div className="text-lg space-y-2">
+              <p className="flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-[#DAA84B]" />
+                <strong>Ano de Execução:</strong> {project.executionYear}
+              </p>
+              <p className="flex items-center gap-2">
+                <Hourglass className="w-5 h-5 text-[#DAA84B]" />
+                <strong>Prazo de Entrega:</strong> {project.deliveryDeadline}
+              </p>
+              <p className="flex items-center gap-2">
+                <Ruler className="w-5 h-5 text-[#DAA84B]" />
+                <strong>Área Construída:</strong> {project.builtArea} m²
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</Section>
 
       <Section>
         <div className="flex flex-col items-center justify-center">
