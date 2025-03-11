@@ -38,7 +38,7 @@ function App() {
     {
       before: "https://images.unsplash.com/photo-1504307651254-35680f356dfd",
       after: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-      title: "Residência Alto de Pinheiros",
+      title: "Residêncial Amendoeiras",
       executionYear:"2025",
       deliveryDeadline:"1 ano",
       builtArea:"300"
@@ -319,9 +319,9 @@ function App() {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
             Por que a Altus Engenharia é diferente?
           </h2>
-          <div className="mb-16"></div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gray-100 p-8 rounded-lg mb-4">
+          <div className="mb-10"></div>
+          <div className="grid md:grid-cols-2 gap-2"> 
+            <div className="bg-gray-100 p-6 rounded-lg mb-8 w-3/4 mx-auto"> 
               <h3 className="text-xl text-black font-semibold mb-4">Problemas Comuns</h3>
               <ul className="space-y-4">
                 <li className="flex items-center text-red-600">
@@ -338,10 +338,10 @@ function App() {
                 </li>
                 <li className="flex items-center text-red-600">
                   <span className="mr-2">✕</span> Incomodação excessiva
-                </li>                
+                </li>
               </ul>
             </div>
-            <div className="bg-gray-900 text-white p-8 rounded-lg mb-4">
+            <div className="bg-gray-900 text-white p-6 rounded-lg mb-8 w-3/4 mx-auto"> {/* Diminuindo o padding e largura */}
               <h3 className="text-xl font-semibold mb-4">Solução Altus</h3>
               <ul className="space-y-4">
                 <li className="flex items-center">
@@ -355,7 +355,7 @@ function App() {
                 </li>
                 <li className="flex items-center">
                   <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Equipe qualificada e organizada
-                </li>                
+                </li>
                 <li className="flex items-center">
                   <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Comodidade e segurança para você e sua família
                 </li>
@@ -374,8 +374,8 @@ function App() {
 
       {/* Projects Section */}
       <Section>
-        <div id="Servicos" className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">Nossos Projetos</h2>
+        <div id="Servicos" className="container ml-4 md:ml-8 lg:ml-20"> 
+          <h2 className="text-3xl font-bold text-center mb-8">Sonhos que ja realizamos</h2>
           <div className="flex flex-col gap-16">
             {beforeAfterProjects.map((project, i) => (
               <motion.div
@@ -384,25 +384,32 @@ function App() {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
                 viewport={{ once: true }}
-                className="w-full flex flex-col items-center"
+                className="w-full flex flex-col md:flex-row items-center md:items-start gap-8"
               >
-                <h3 className="text-2xl font-semibold text-center">{project.title}</h3>                
-                <div className="w-full md:w-3/4 lg:w-2/3 shadow-lg rounded-lg">
+                {/* Imagem (Esquerda) */}
+                <div className="w-full md:w-1/2 lg:w-1/2 shadow-lg rounded-lg flex justify-center">
                   <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
                 </div>
-                <div className="text-center text-lg mb-4 space-y-2">
-                  <p className="flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-[#DAA84B]" />
-                    <strong>Ano de Execução:</strong> {project.executionYear}
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <Hourglass className="w-5 h-5 text-[#DAA84B]" />
-                    <strong>Prazo de Entrega:</strong> {project.deliveryDeadline}
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <Ruler className="w-5 h-5 text-[#DAA84B]" />
-                    <strong>Área Construída:</strong> {project.builtArea} m²
-                  </p>
+
+                {/* Texto (Direita) */}
+                <div className="w-full md:w-1/2 text-left space-y-4">
+                  <p>Antes e Depois</p>
+                  <h3 className="text-2xl font-semibold text-center md:text-left">{project.title}</h3>
+                  <p>Execução de uma casa de alto padrão no condomínio Amendoeiras</p>
+                  <div className="text-lg space-y-2">
+                    <p className="flex items-center gap-2">
+                      <MapPin className="w-5 h-5 text-[#DAA84B]" />
+                      <strong>Ano de Execução:</strong> {project.executionYear}
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <Hourglass className="w-5 h-5 text-[#DAA84B]" />
+                      <strong>Prazo de Entrega:</strong> {project.deliveryDeadline}
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <Ruler className="w-5 h-5 text-[#DAA84B]" />
+                      <strong>Área Construída:</strong> {project.builtArea} m²
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -412,7 +419,6 @@ function App() {
 
       <Section>
         <div className="flex flex-col items-center justify-center">
-          <h1 className="text-2xl font-bold mb-8">Sonhos que já realizamos</h1>
           <PhotoSlider />
         </div>
       </Section>

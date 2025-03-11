@@ -16,7 +16,7 @@ declare global {
 
 interface YouTubePlayerProps {
   videoId: string;
-  aspectRatio?: string; // Propriedade para definir a proporção
+  aspectRatio?: string; 
 }
 
 const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId, aspectRatio = '16/9' }) => {
@@ -93,9 +93,8 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId, aspectRatio = '1
     return <div className="text-red-500">{error}</div>;
   }
 
-  // Calcular a proporção
   const [width, height] = aspectRatio.split('/').map(Number);
-  const aspectRatioValue = (height / width) * 100; // Calcular a altura em porcentagem
+  const aspectRatioValue = (height / width) * 100; 
 
   return (
     <div className="relative w-full overflow-hidden" style={{ paddingTop: `${aspectRatioValue}%` }}>

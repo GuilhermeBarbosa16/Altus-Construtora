@@ -40,8 +40,7 @@ const images = [
 
 
 export default function PhotoSlider() {
-  console.log(images); // Verifica se as imagens estão sendo carregadas corretamente
-
+  console.log(images); 
   return (
     <div className="w-full flex justify-center">
       <Swiper
@@ -69,7 +68,7 @@ export default function PhotoSlider() {
             <img
               src={image.src}
               alt={image.name}
-              className="w-full h-auto rounded-lg shadow-md" // Ajusta a largura para 100% e altura automática
+              className="w-full h-auto rounded-lg shadow-md"
             />
           </SwiperSlide>
         ))}

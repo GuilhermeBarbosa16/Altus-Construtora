@@ -21,8 +21,8 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
             ([entry]) => {
                 if (entry.isIntersecting && !hasAnimated) {
                     setHasAnimated(true);
-                    setSliderPosition(30); // Inicia um pouco à esquerda
-                    setTimeout(() => setSliderPosition(50), 500); // Move para o centro após o delay
+                    setSliderPosition(30); 
+                    setTimeout(() => setSliderPosition(50), 500); 
                 }
             },
             { threshold: 0.5}
