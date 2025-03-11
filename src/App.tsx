@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { CheckCircle2, Menu, Award, Instagram, Clock, Users, Sparkles, ClipboardList, CalendarCheck, CheckCircle, ShieldCheck, PenTool, Briefcase, Eye, HardHat } from 'lucide-react';
+import { CheckCircle2, Menu, Award, Instagram, Clock, Users, Sparkles, ClipboardList, CalendarCheck, CheckCircle, ShieldCheck, PenTool, Briefcase, Eye, HardHat,MapPin, Hourglass, Ruler, Facebook, MessageCircle} from 'lucide-react';
 import YouTubePlayer from './components/YouTubePlayer';
 import Logo2 from '../src/assets/logo2.png';
 import ImageComparison from "./components/ImageComparison";
@@ -38,7 +38,10 @@ function App() {
     {
       before: "https://images.unsplash.com/photo-1504307651254-35680f356dfd",
       after: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-      title: "Residência Alto de Pinheiros"
+      title: "Residência Alto de Pinheiros",
+      executionYear:"2025",
+      deliveryDeadline:"1 ano",
+      builtArea:"300"
     }
   ];
   const form = useRef<HTMLFormElement>(null);
@@ -137,101 +140,101 @@ function App() {
     );
   }
 
-  return (   
+  return (
     <div className="font-sans">
       {/* Hero Section */}
       <Section className="relative pt-[5px]">
-  {/* Background */}
-  <div
-    className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-    style={{
-      backgroundImage: `url(${fundo2})`,
-      filter: 'brightness(0.3)',
-    }}
-  />
+        {/* Background */}
+        <div
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${fundo2})`,
+            filter: 'brightness(0.3)',
+          }}
+        />
 
-  {/* Conteúdo da Section */}
-  <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-10 py-11">
-    <Header />
-    <div className="grid md:grid-cols-2 gap-12">
-      {/* Texto */}
-      <div className="text-white">
-        <p className="text-xl mb-3 leading-snug">Reforma e Construção de Alto Padrão</p>
-        <h1 className="text-[30px] sm:text-[36px] md:text-[52px] font-bold leading-tight mb-4 max-w-xl">
-          A sua obra entregue no prazo, <span className="inline">e com</span> qualidade garantida
-        </h1>
-        <p className="text-lg sm:text-xl mb-6 leading-relaxed">
-          Na Altus Engenharia, somos especialistas em <strong>construções e reformas de alto padrão</strong>.
-          Nosso compromisso é cuidar de toda a obra para você, com <strong>transparência, qualidade e cumprimento de prazos</strong>,
-          para que você possa focar na sua rotina sem preocupações.
-        </p>
-        <a href="#video">
-          <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-            Entenda porque a Altus é diferente!
-          </button>
-        </a>
-      </div>
+        {/* Conteúdo da Section */}
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-10 py-11">
+          <Header />
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Texto */}
+            <div className="text-white">
+              <p className="text-xl mb-3 leading-snug">Reforma e Construção de Alto Padrão</p>
+              <h1 className="text-[30px] sm:text-[36px] md:text-[52px] font-bold leading-tight mb-4 max-w-xl">
+                A sua obra entregue no prazo, <span className="inline">e com</span> qualidade garantida
+              </h1>
+              <p className="text-lg sm:text-xl mb-6 leading-relaxed">
+                Na Altus Engenharia, somos especialistas em <strong>construções e reformas de alto padrão</strong>.
+                Nosso compromisso é cuidar de toda a obra para você, com <strong>transparência, qualidade e cumprimento de prazos</strong>,
+                para que você possa focar na sua rotina sem preocupações.
+              </p>
+              <a href="#video">
+                <button className="bg-white text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                  Entenda porque a Altus é diferente!
+                </button>
+              </a>
+            </div>
 
-      {/* Formulário */}
-      <div id="orcamento" className="form-container md:-translate-x-12">
-        <h2 className="form-title text-lg sm:text-xl">Contato para orçamento</h2>
-        <form ref={form} onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="nome" className="form-label">Nome</label>
-            <input
-              type="text"
-              name="from_name"
-              id="nome"
-              required
-              className="form-input"
-              value={formData.nome}
-              onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-            />
+            {/* Formulário */}
+            <div id="orcamento" className="form-container md:-translate-x-12">
+              <h2 className="form-title text-lg sm:text-xl">Contato para orçamento</h2>
+              <form ref={form} onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="nome" className="form-label">Nome</label>
+                  <input
+                    type="text"
+                    name="from_name"
+                    id="nome"
+                    required
+                    className="form-input"
+                    value={formData.nome}
+                    onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="telefone" className="form-label">Telefone</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    id="telefone"
+                    required
+                    className="form-input"
+                    value={formData.telefone}
+                    onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="form-label">E-mail</label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    required
+                    className="form-input"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="mensagem" className="form-label">Mensagem</label>
+                  <textarea
+                    id="mensagem"
+                    name="message"
+                    rows={4}
+                    required
+                    className="form-textarea"
+                    value={formData.mensagem}
+                    onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
+                  />
+                </div>
+                <button type="submit" className="form-button">
+                  Solicitar Contato
+                </button>
+              </form>
+            </div>
           </div>
-          <div>
-            <label htmlFor="telefone" className="form-label">Telefone</label>
-            <input
-              type="tel"
-              name="phone"
-              id="telefone"
-              required
-              className="form-input"
-              value={formData.telefone}
-              onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="form-label">E-mail</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              required
-              className="form-input"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            />
-          </div>
-          <div>
-            <label htmlFor="mensagem" className="form-label">Mensagem</label>
-            <textarea
-              id="mensagem"
-              name="message"
-              rows={4}
-              required
-              className="form-textarea"
-              value={formData.mensagem}
-              onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
-            />
-          </div>
-          <button type="submit" className="form-button">
-            Solicitar Contato
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</Section>
+        </div>
+      </Section>
 
 
       <Section>
@@ -249,45 +252,46 @@ function App() {
       {/* Differentials Section */}
       <div id="diferenciais"></div>
       <Section>
-  <div className="container max-w-4xl mx-auto px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24 text-center text-white">
-    <h2 className="text-3xl font-bold mb-4">
-      Por que a Altus Engenharia é a escolha certa para sua obra?
-    </h2>
-    <p className="text-xl mb-8">
-      Entendemos que uma obra pode ser estressante: prazos que se estendem, orçamentos que fogem do controle e falta de transparência. <br className="hidden md:inline" />
-      Por isso, trabalhamos com um processo claro e eficiente.
-    </p>
-  </div>
-
-  {/* Grid dos ícones mais larga */}
-  <div className="container max-w-6xl mx-auto px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24">
-    <div className="grid md:grid-cols-3 gap-8 justify-items-center">
-      {[
-        { icon: ClipboardList, title: "Gestão Profissional", desc: "Planejamento detalhado e execução impecável, garantindo que cada etapa da obra seja realizada com eficiência e organização." },
-        { icon: CalendarCheck, title: "Diário de Obra", desc: "Acompanhamento em tempo real da evolução da obra, com atualizações constantes para que você saiba exatamente o que está acontecendo." },
-        { icon: CheckCircle, title: "Cumprimento de Prazos", desc: "Sua obra entregue no prazo combinado, sem atrasos e com a qualidade que você espera." },
-        { icon: Eye, title: "Transparência Total", desc: "Orçamento claro e sem surpresas. Você sabe exatamente o que está pagando e por quê." },
-        { icon: Briefcase, title: "Comodidade Total", desc: "Cuidamos de tudo, desde a compra dos materiais até a entrega final. Você pode relaxar ou até viajar enquanto transformamos seu espaço." },
-        { icon: HardHat, title: "Mão de Obra Qualificada", desc: "Contamos com os melhores profissionais do mercado, garantindo agilidade, qualidade e atenção aos detalhes em cada etapa da obra." },
-      ].map(({ icon: Icon, title, desc }, i) => (
-        <div key={i} className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg hover:shadow-md transition-shadow">
-          <Icon className="w-12 h-12 mb-4 text-[#DAA84B]" /> {/* Aplicando a cor dourada */}
-          <h3 className="text-xl font-semibold mb-2 text-black">{title}</h3>
-          <p className="text-gray-600">{desc}</p>
+        <div className="container max-w-4xl mx-auto px-6 sm:px-10 md:px-16 lg:px-20 xl:px-15 text-center text-white">
+          <h2 className="text-3xl font-bold mb-4">
+            Por que a Altus Engenharia é a escolha certa para sua obra?
+          </h2>
+          <p className="text-lg md:text-base mb-8">
+            Entendemos que uma obra pode ser estressante: prazos que se estendem, orçamentos que fogem do controle e falta de transparência. <br className="hidden md:inline" />
+            Por isso, trabalhamos com um processo claro e eficiente.
+          </p>
         </div>
-      ))}
-    </div>
-  </div>
 
-  {/* Botão centralizado */}
-  <div className="mt-8 text-center">
-    <a href="#orcamento">
-      <button className="bg-[#DAA84B] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#eab308] transition-colors">
-        Quero um orçamento
-      </button>
-    </a>
-  </div>
-</Section>
+
+        {/* Grid dos ícones mais larga */}
+        <div className="container max-w-6xl mx-auto px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24">
+          <div className="grid md:grid-cols-3 gap-10 justify-items-center">
+            {[
+              { icon: ClipboardList, title: "Gestão Profissional", desc: "Planejamento detalhado e execução impecável, garantindo que cada etapa da obra seja realizada com eficiência e organização." },
+              { icon: CalendarCheck, title: "Diário de Obra", desc: "Acompanhamento em tempo real da evolução da obra, com atualizações constantes para que você saiba exatamente o que está acontecendo." },
+              { icon: CheckCircle, title: "Cumprimento de Prazos", desc: "Sua obra entregue no prazo combinado, sem atrasos e com a qualidade que você espera." },
+              { icon: Eye, title: "Transparência Total", desc: "Orçamento claro e sem surpresas. Você sabe exatamente o que está pagando e por quê." },
+              { icon: Briefcase, title: "Comodidade Total", desc: "Cuidamos de tudo, desde a compra dos materiais até a entrega final. Você pode relaxar ou até viajar enquanto transformamos seu espaço." },
+              { icon: HardHat, title: "Mão de Obra Qualificada", desc: "Contamos com os melhores profissionais do mercado, garantindo agilidade, qualidade e atenção aos detalhes em cada etapa da obra." },
+            ].map(({ icon: Icon, title, desc }, i) => (
+              <div key={i} className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg hover:shadow-md transition-shadow">
+                <Icon className="w-12 h-12 mb-4 text-[#DAA84B]" /> {/* Aplicando a cor dourada */}
+                <h3 className="text-xl font-semibold mb-2 text-black">{title}</h3>
+                <p className="text-gray-600">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Botão centralizado */}
+        <div className="mt-8 text-center">
+          <a href="#orcamento">
+            <button className="bg-[#DAA84B] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#eab308] transition-colors">
+              Quero um orçamento
+            </button>
+          </a>
+        </div>
+      </Section>
 
       {/* Testimonials Section */}
       <Section>
@@ -321,54 +325,48 @@ function App() {
               <h3 className="text-xl text-black font-semibold mb-4">Problemas Comuns</h3>
               <ul className="space-y-4">
                 <li className="flex items-center text-red-600">
-                  <span className="mr-2">✕</span> Atrasos constantes
+                  <span className="mr-2">✕</span> Atrasos no prazo de entrega
                 </li>
                 <li className="flex items-center text-red-600">
-                  <span className="mr-2">✕</span> Orçamentos furados
+                  <span className="mr-2">✕</span> Orçamentos estourados
                 </li>
                 <li className="flex items-center text-red-600">
                   <span className="mr-2">✕</span> Falta de transparência
                 </li>
                 <li className="flex items-center text-red-600">
-                  <span className="mr-2">✕</span> Desorganização da obra
-                </li>
-                <li className="flex items-center text-red-600">
-                  <span className="mr-2">✕</span> Falta de comunicação
+                  <span className="mr-2">✕</span> Obra desorganizada e suja
                 </li>
                 <li className="flex items-center text-red-600">
                   <span className="mr-2">✕</span> Incomodação excessiva
-                </li>
+                </li>                
               </ul>
             </div>
             <div className="bg-gray-900 text-white p-8 rounded-lg mb-4">
               <h3 className="text-xl font-semibold mb-4">Solução Altus</h3>
               <ul className="space-y-4">
                 <li className="flex items-center">
-                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Cumprimento rigoroso de prazos
+                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Todas as entregas dentro do Prazo
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Orçamento transparente
+                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Orçamentos transparentes e sem surpresas
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Transparência total
+                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Atualização da sua obra em tempo real
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Gestão profissional
-                </li>
+                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Equipe qualificada e organizada
+                </li>                
                 <li className="flex items-center">
-                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Comunicação constante
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Comodidade e segurança
+                  <CheckCircle2 className="mr-2 h-5 w-5 text-green-400" /> Comodidade e segurança para você e sua família
                 </li>
               </ul>
             </div>
           </div>
           <div className="flex justify-center items-center">
-          <a href="#orcamento">
-            <button className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
-              Quero começar minha obra!
-            </button>
+            <a href="#orcamento">
+              <button className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
+                Quero começar minha obra!
+              </button>
             </a>
           </div>
         </div>
@@ -376,7 +374,7 @@ function App() {
 
       {/* Projects Section */}
       <Section>
-        <div id="Servicos" className="container mx-auto ">
+        <div id="Servicos" className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-8">Nossos Projetos</h2>
           <div className="flex flex-col gap-16">
             {beforeAfterProjects.map((project, i) => (
@@ -388,9 +386,23 @@ function App() {
                 viewport={{ once: true }}
                 className="w-full flex flex-col items-center"
               >
-                <h3 className="text-2xl font-semibold text-center">{project.title}</h3>
+                <h3 className="text-2xl font-semibold text-center">{project.title}</h3>                
                 <div className="w-full md:w-3/4 lg:w-2/3 shadow-lg rounded-lg">
                   <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
+                </div>
+                <div className="text-center text-lg mb-4 space-y-2">
+                  <p className="flex items-center gap-2">
+                    <MapPin className="w-5 h-5 text-[#DAA84B]" />
+                    <strong>Ano de Execução:</strong> {project.executionYear}
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Hourglass className="w-5 h-5 text-[#DAA84B]" />
+                    <strong>Prazo de Entrega:</strong> {project.deliveryDeadline}
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Ruler className="w-5 h-5 text-[#DAA84B]" />
+                    <strong>Área Construída:</strong> {project.builtArea} m²
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -443,35 +455,36 @@ function App() {
           </div>
         </div>
       </Section>
-
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h4 className="text-xl font-bold mb-4">Altus</h4>
-              <p className="text-gray-400">
-                Excelência em gestão e execução de obras de alto padrão.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-xl font-bold mb-4">Contato</h4>
-              <p className="text-gray-400">contato@altus.com.br</p>
-              <div className="flex items-center mt-4">
-                <a href="https://www.instagram.com/altusengenhariabh/" className="text-white hover:text-gray-300">
-                  <Instagram className="w-6 h-6" />
-                </a>
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center space-x-2">
-                <Award className="w-6 h-6" />
-                <span className="text-sm">Compromisso com qualidade e sustentabilidade</span>
-              </div>
-            </div>
+      <footer className="bg-black text-white py-10">
+        <div className="container mx-auto px-6 lg:px-12 flex flex-col items-center justify-center text-center gap-4">
+          {/* Logo */}
+          <img src={Logo2} alt="Altus" className="w-32 mb-4" />
+          {/* Navegação */}
+          <nav className="flex space-x-6 text-lg text-[#DAA84B]">
+            <a href="#" className="hover:underline">Sobre</a>
+            <a href="#" className="hover:underline">Serviços</a>
+            <a href="#" className="hover:underline">Portfólio</a>
+          </nav>
+          {/* Ícones Redes Sociais */}
+          <div className="flex space-x-4">
+            <a href="#" className="text-[#DAA84B] hover:text-gray-300">
+              <Instagram className="w-6 h-6" />
+            </a>
+            <a href="#" className="text-[#DAA84B] hover:text-gray-300">
+              <Facebook className="w-6 h-6" />
+            </a>
+            <a href="#" className="text-[#DAA84B] hover:text-gray-300">
+              <MessageCircle className="w-6 h-6" />
+            </a>
           </div>
-          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-            <p>&copy; 2025 Altus. Todos os direitos reservados.</p>
+        </div>
+        {/* Linha divisória e Direitos Autorais */}
+        <div className="mt-8 border-t border-white/30 pt-4 text-center text-sm">
+          <p>&copy; 2025 Altus. Todos os direitos reservados.</p>
+          <div className="flex justify-center space-x-4 mt-2 text-[#DAA84B]">
+            <a href="#" className="hover:underline">Política de Privacidade</a>
+            <a href="#" className="hover:underline">Termos de Uso</a>
           </div>
         </div>
       </footer>
