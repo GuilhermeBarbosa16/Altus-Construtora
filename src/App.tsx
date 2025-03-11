@@ -238,13 +238,43 @@ function App() {
 
 
       <Section>
-        <div id='video' className='text-3xl font-bold text-center mb-0'>
-          <h1>Sobre a Altus</h1>
-        </div>
-        <div className="flex flex-col items-center">
+
+        <div id='video' className="flex flex-col items-center">
           {/* Para vídeo horizontal 16:9 */}
           <div className="relative w-full max-w-3xl overflow-hidden" style={{ paddingTop: '5%' }}> {/* 16:9 */}
             <YouTubePlayer videoId="5JZ2rlNg82Q" aspectRatio="16/9" />
+          </div>
+        </div>
+      </Section>
+       {/* Sobre Section */}
+      <Section>
+      <div className='text-3xl font-bold text-center mb-0'>
+          <h1>Sobre a Altus</h1>
+        </div>
+        <div id='Sobre' className="container mx-auto px-4">
+          <div className="flex justify-center">
+            <div className="bg-transparent text-gray-800 p-8 rounded-lg w-full max-w-3xl transition-transform transform hover:scale-105">
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Título à esquerda com padding no topo */}
+                <div className="flex flex-col">
+                  <h2 className="text-3xl font-bold text-left">
+                    Oferecemos soluções completas para construção e reforma, do alicerce ao acabamento.
+                  </h2>
+                  {/* Imagem abaixo do título */}
+                  <img src={Logo2} alt="Descrição da Imagem" className="w-200 h-500 object-cover rounded-md mt-2" />
+                </div>
+                {/* Texto à direita */}
+                <p className="text-lg text-left">
+                  Desde o planejamento inicial, desenvolvemos um cronograma detalhado, garantindo que todas as etapas sejam executadas dentro do prazo. Nossa mão de obra qualificada é composta por profissionais experientes e capacitados, que trabalham com precisão e dedicação para transformar seu sonho em realidade. Com a Altus Engenharia, você tem a certeza de uma obra entregue no prazo, sem surpresas e com a qualidade que só nós oferecemos. Deixe a burocracia e os imprevistos com a gente e foque no que realmente importa: desfrutar do seu espaço dos sonhos. 🏗️✨
+                </p>
+              </div>
+              {/* Ícone do Instagram */}
+              <div className="flex justify-center mt-4">
+                <a href="https://www.instagram.com/altusengenhariabh/" target="_blank" rel="noopener noreferrer">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="w-8 h-8" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </Section>
@@ -265,7 +295,7 @@ function App() {
 
         {/* Grid dos ícones mais larga */}
         <div className="container max-w-6xl mx-auto px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24">
-          <div className="grid md:grid-cols-3 gap-10 justify-items-center">
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 justify-items-center">
             {[
               { icon: ClipboardList, title: "Gestão Profissional", desc: "Planejamento detalhado e execução impecável, garantindo que cada etapa da obra seja realizada com eficiência e organização." },
               { icon: CalendarCheck, title: "Diário de Obra", desc: "Acompanhamento em tempo real da evolução da obra, com atualizações constantes para que você saiba exatamente o que está acontecendo." },
@@ -374,8 +404,8 @@ function App() {
 
       {/* Projects Section */}
       <Section>
-        <div id="Servicos" className="container ml-4 md:ml-8 lg:ml-20"> 
-          <h2 className="text-3xl font-bold text-center mb-8">Sonhos que ja realizamos</h2>
+        <div id="Servicos" className="container ml-4 md:ml-8 lg:ml-20">
+          <h2 className="text-3xl font-bold text-center mb-8">Sonhos que já realizamos</h2>
           <div className="flex flex-col gap-16">
             {beforeAfterProjects.map((project, i) => (
               <motion.div
@@ -386,16 +416,20 @@ function App() {
                 viewport={{ once: true }}
                 className="w-full flex flex-col md:flex-row items-center md:items-start gap-8"
               >
-                {/* Imagem (Esquerda) */}
+                {/* Texto (Acima da Imagem) */}
+                <div className="w-full md:w-1/2 text-left space-y-4">
+                  <p className="text-center md:text-left">Antes e Depois</p>
+                  <h3 className="text-2xl font-semibold text-center md:text-left">{project.title}</h3>
+                  <p className="text-center md:text-left">Execução de uma casa de alto padrão no condomínio Amendoeiras</p>
+                </div>
+
+                {/* Imagem */}
                 <div className="w-full md:w-1/2 lg:w-1/2 shadow-lg rounded-lg flex justify-center">
                   <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
                 </div>
 
-                {/* Texto (Direita) */}
+                {/* Informações da Obra */}
                 <div className="w-full md:w-1/2 text-left space-y-4">
-                  <p>Antes e Depois</p>
-                  <h3 className="text-2xl font-semibold text-center md:text-left">{project.title}</h3>
-                  <p>Execução de uma casa de alto padrão no condomínio Amendoeiras</p>
                   <div className="text-lg space-y-2">
                     <p className="flex items-center gap-2">
                       <MapPin className="w-5 h-5 text-[#DAA84B]" />
@@ -416,40 +450,12 @@ function App() {
           </div>
         </div>
       </Section>
-
       <Section>
         <div className="flex flex-col items-center justify-center">
           <PhotoSlider />
         </div>
       </Section>
-      <Section>
-        <div id='Sobre' className="container mx-auto px-4">
-          <div className="flex justify-center">
-            <div className="bg-gray-500 text-gray-800 p-8 rounded-lg shadow-lg w-full max-w-3xl transition-transform transform hover:scale-105">
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Título à esquerda com padding no topo */}
-                <div className="flex flex-col">
-                  <h2 className="text-3xl font-bold text-left">
-                    Oferecemos soluções completas para construção e reforma, do alicerce ao acabamento.
-                  </h2>
-                  {/* Imagem abaixo do título */}
-                  <img src={Logo2} alt="Descrição da Imagem" className="w-200 h-500 object-cover rounded-md mt-2" />
-                </div>
-                {/* Texto à direita */}
-                <p className="text-lg text-left">
-                  Desde o planejamento inicial, desenvolvemos um cronograma detalhado, garantindo que todas as etapas sejam executadas dentro do prazo. Nossa mão de obra qualificada é composta por profissionais experientes e capacitados, que trabalham com precisão e dedicação para transformar seu sonho em realidade. Com a Altus Engenharia, você tem a certeza de uma obra entregue no prazo, sem surpresas e com a qualidade que só nós oferecemos. Deixe a burocracia e os imprevistos com a gente e foque no que realmente importa: desfrutar do seu espaço dos sonhos. 🏗️✨
-                </p>
-              </div>
-              {/* Ícone do Instagram */}
-              <div className="flex justify-center mt-4">
-                <a href="https://www.instagram.com/altusengenhariabh/" target="_blank" rel="noopener noreferrer">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="w-8 h-8" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
+      
       {/* FAQ Section */}
       <Section>
         <div className="container mx-auto px-4">
@@ -468,13 +474,13 @@ function App() {
           <img src={Logo2} alt="Altus" className="w-32 mb-4" />
           {/* Navegação */}
           <nav className="flex space-x-6 text-lg text-[#DAA84B]">
-            <a href="#" className="hover:underline">Sobre</a>
-            <a href="#" className="hover:underline">Serviços</a>
-            <a href="#" className="hover:underline">Portfólio</a>
+            <a href="#Sobre" className="hover:underline">Sobre</a>
+            <a href="#orcamento" className="hover:underline">Serviços</a>
+            <a href="#Servicos" className="hover:underline">Portfólio</a>
           </nav>
           {/* Ícones Redes Sociais */}
           <div className="flex space-x-4">
-            <a href="#" className="text-[#DAA84B] hover:text-gray-300">
+            <a href="https://www.instagram.com/altusengenhariabh/" className="text-[#DAA84B] hover:text-gray-300">
               <Instagram className="w-6 h-6" />
             </a>
             <a href="#" className="text-[#DAA84B] hover:text-gray-300">
