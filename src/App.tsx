@@ -326,21 +326,34 @@ function App() {
         <div id="feedbacks" className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-16">O que nossos clientes dizem</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            {[1, 2].map((i) => (
-              <div key={i} className="bg-white p-8 rounded-lg shadow-lg">
-                <div className="aspect-video bg-gray-200 mb-4 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-500">Depoimento em Vídeo {i}</span>
+            {/* Primeiro vídeo */}
+            <div className="bg-gray-200 p-8 rounded-lg shadow-lg flex flex-col items-center">
+              <div id="video" className="flex flex-col items-center px-4 w-full">
+                <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
+                  <YouTubePlayer videoId="XykPrqgO5OQ" aspectRatio="9/16" />
                 </div>
-                <p className="text-gray-600 italic">
-                  "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
-                </p>
-                <p className="mt-4 font-semibold">Cliente {i}</p>
               </div>
-            ))}
+              <p className="text-black italic mt-4 text-center">
+                "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
+              </p>
+              <p className="mt-4 font-semibold">Cliente 1</p>
+            </div>
+
+            {/* Segundo vídeo */}
+            <div className="bg-gray-200 p-8 rounded-lg shadow-lg flex flex-col items-center">
+              <div id="video" className="flex flex-col items-center px-4 w-full">
+                <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
+                  <YouTubePlayer videoId="fUi3JVMepmQ" aspectRatio="9/16" />
+                </div>
+              </div>
+              <p className="text-black italic mt-4 text-center">
+                "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
+              </p>
+              <p className="mt-4 font-semibold">Cliente 2</p>
+            </div>
           </div>
         </div>
       </Section>
-
       {/* Pain Points Section */}
       <Section>
         <div className="container mx-auto px-4">
@@ -414,10 +427,9 @@ function App() {
                 className="w-full flex flex-col md:flex-row items-center md:items-start gap-8"
               >
                 {/* Imagem (À esquerda em telas grandes) */}
-                <div className="w-full md:w-1/2 lg:w-1/2 shadow-lg rounded-lg flex justify-center max-w-xs mx-auto">
+                <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg shadow-lg rounded-lg flex justify-center mx-auto overflow-hidden">
                   <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
                 </div>
-
                 {/* Texto (À direita em telas grandes) */}
                 <div className="w-full md:w-1/2 text-left space-y-4">
                   <p className="text-center md:text-left">Antes e Depois</p>

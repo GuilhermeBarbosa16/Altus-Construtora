@@ -60,7 +60,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId, aspectRatio = '1
         playerRef.current = new window.YT.Player(containerRef.current, {
           videoId,
           playerVars: {
-            autoplay: 1,
+            autoplay: 0,
             controls: 1,
             modestbranding: 0,
             rel: 0,
