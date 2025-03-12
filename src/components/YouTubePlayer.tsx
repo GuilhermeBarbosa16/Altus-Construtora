@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
@@ -16,12 +16,15 @@ declare global {
 
 interface YouTubePlayerProps {
   videoId: string;
-  aspectRatio?: string; 
+  aspectRatio?: string;
 }
 
-const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId, aspectRatio = '16/9' }) => {
+const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
+  videoId,
+  aspectRatio = "16/9",
+}) => {
   const playerRef = useRef<any>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerId = useRef(`youtube-player-${videoId}`).current; // ID único por vídeo
   const [isPlayerReady, setIsPlayerReady] = useState<boolean>(false);
   const [isApiLoaded, setIsApiLoaded] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -39,11 +42,11 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId, aspectRatio = '1
           };
 
           if (!document.querySelector("#youtube-api-script")) {
-            const script = document.createElement('script');
+            const script = document.createElement("script");
             script.id = "youtube-api-script";
-            script.src = 'https://www.youtube.com/iframe_api';
+            script.src = "https://www.youtube.com/iframe_api";
             script.async = true;
-            script.onerror = () => reject('Erro ao carregar a API do YouTube');
+            script.onerror = () => reject("Erro ao carregar a API do YouTube");
             document.body.appendChild(script);
           }
         }
@@ -51,13 +54,13 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId, aspectRatio = '1
     };
 
     const initializePlayer = () => {
-      if (!window.YT || !containerRef.current) {
+      if (!window.YT || !document.getElementById(containerId)) {
         setError("A API do YouTube não foi carregada corretamente.");
         return;
       }
 
       try {
-        playerRef.current = new window.YT.Player(containerRef.current, {
+        playerRef.current = new window.YT.Player(containerId, {
           videoId,
           playerVars: {
             autoplay: 0,
@@ -70,11 +73,11 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId, aspectRatio = '1
           },
           events: {
             onReady: () => setIsPlayerReady(true),
-            onError: () => setError('Erro ao iniciar o player'),
+            onError: () => setError("Erro ao iniciar o player"),
           },
         });
       } catch (err) {
-        setError('Falha ao inicializar o player');
+        setError("Falha ao inicializar o player");
       }
     };
 
@@ -87,35 +90,27 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId, aspectRatio = '1
         playerRef.current.destroy();
       }
     };
-  }, [videoId]);
+  }, [videoId, containerId]);
 
   if (error) {
     return <div className="text-red-500">{error}</div>;
   }
 
-  const [width, height] = aspectRatio.split('/').map(Number);
-  const aspectRatioValue = (height / width) * 100; 
+  const [width, height] = aspectRatio.split("/").map(Number);
+  const aspectRatioValue = (height / width) * 100;
 
   return (
-    <div className="relative w-full overflow-hidden" style={{ paddingTop: `${aspectRatioValue}%` }}>
+    <div
+      className="relative w-full overflow-hidden"
+      style={{ paddingTop: `${aspectRatioValue}%` }}
+    >
       {!isApiLoaded && <div>Carregando API do YouTube...</div>}
       {!isPlayerReady && <div>Carregando vídeo...</div>}
-  
-      {/* Container que mantém o aspecto definido */}
-      <div ref={containerRef} className="absolute top-0 left-0 w-full h-full">
-        {/* Estilização extra para forçar o preenchimento */}
-        <style>
-          {`
-            iframe {
-              width: 100% !important;
-              height: 100% !important;
-              position: absolute;
-              top: 0;
-              left: 0;
-            }
-          `}
-        </style>
-      </div>
+
+      <div
+        id={containerId}
+        className="absolute top-0 left-0 w-full h-full"
+      ></div>
     </div>
   );
 };
