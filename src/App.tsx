@@ -414,8 +414,8 @@ function App() {
       </Section>
       {/* Projects Section */}
       <Section>
-        <div id="Servicos" className="container ml-4 md:ml-8 lg:ml-20">
-          <h2 className="text-3xl font-bold text-center mb-8">Sonhos que já realizamos</h2>
+        <div id="Servicos" className="container px-4 md:px-8 lg:px-20 overflow-hidden">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 break-words">Sonhos que já realizamos</h2>
           <div className="flex flex-col gap-16">
             {beforeAfterProjects.map((project, i) => (
               <motion.div
