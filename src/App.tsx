@@ -235,16 +235,14 @@ function App() {
           </div>
         </div>
       </Section>
-
-
       <Section>
-
-        <div id='video' className="flex flex-col items-center">
+        <div id='video' className="flex flex-col items-center px-4 w-full">
           {/* Para vídeo horizontal 16:9 */}
-          <div className="relative w-full max-w-3xl overflow-hidden" style={{ paddingTop: '5%' }}> {/* 16:9 */}
+          <div className="relative w-full max-w-3xl overflow-hidden max-sm:max-w-md" style={{ paddingTop: '5%' }}>
             <YouTubePlayer videoId="5JZ2rlNg82Q" aspectRatio="16/9" />
           </div>
         </div>
+
       </Section>
       {/* Sobre Section */}
       <Section>
