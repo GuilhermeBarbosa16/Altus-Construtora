@@ -10,7 +10,6 @@ declare global {
         PAUSED: number;
       };
     };
-    onYouTubeIframeAPIReady: () => void;
   }
 }
 
@@ -24,41 +23,36 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   aspectRatio = "16/9",
 }) => {
   const playerRef = useRef<any>(null);
-  const containerId = useRef(`youtube-player-${videoId}`).current; // ID único por vídeo
-  const [isPlayerReady, setIsPlayerReady] = useState<boolean>(false);
+  const containerId = `youtube-player-${videoId}`; // Garante um ID único para cada vídeo
   const [isApiLoaded, setIsApiLoaded] = useState<boolean>(false);
+  const [isPlayerReady, setIsPlayerReady] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Carregar a API do YouTube uma única vez
   useEffect(() => {
     const loadYouTubeAPI = () => {
-      return new Promise<void>((resolve, reject) => {
-        if (window.YT) {
-          setIsApiLoaded(true);
-          resolve();
-        } else {
-          window.onYouTubeIframeAPIReady = () => {
-            setIsApiLoaded(true);
-            resolve();
-          };
-
-          if (!document.querySelector("#youtube-api-script")) {
-            const script = document.createElement("script");
-            script.id = "youtube-api-script";
-            script.src = "https://www.youtube.com/iframe_api";
-            script.async = true;
-            script.onerror = () => reject("Erro ao carregar a API do YouTube");
-            document.body.appendChild(script);
-          }
-        }
-      });
-    };
-
-    const initializePlayer = () => {
-      if (!window.YT || !document.getElementById(containerId)) {
-        setError("A API do YouTube não foi carregada corretamente.");
+      if (window.YT) {
+        setIsApiLoaded(true);
         return;
       }
 
+      const script = document.createElement("script");
+      script.src = "https://www.youtube.com/iframe_api";
+      script.async = true;
+      script.onload = () => setIsApiLoaded(true);
+      script.onerror = () => setError("Erro ao carregar a API do YouTube");
+
+      document.body.appendChild(script);
+    };
+
+    loadYouTubeAPI();
+  }, []);
+
+  // Criar o player quando a API estiver pronta
+  useEffect(() => {
+    if (!isApiLoaded) return;
+
+    const createPlayer = () => {
       try {
         playerRef.current = new window.YT.Player(containerId, {
           videoId,
@@ -81,16 +75,14 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
       }
     };
 
-    loadYouTubeAPI()
-      .then(() => initializePlayer())
-      .catch((err) => setError(String(err)));
+    createPlayer();
 
     return () => {
       if (playerRef.current) {
         playerRef.current.destroy();
       }
     };
-  }, [videoId, containerId]);
+  }, [isApiLoaded, videoId]);
 
   if (error) {
     return <div className="text-red-500">{error}</div>;
@@ -100,17 +92,12 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   const aspectRatioValue = (height / width) * 100;
 
   return (
-    <div
-      className="relative w-full overflow-hidden"
-      style={{ paddingTop: `${aspectRatioValue}%` }}
-    >
+    <div className="relative w-full overflow-hidden" style={{ paddingTop: `${aspectRatioValue}%` }}>
       {!isApiLoaded && <div>Carregando API do YouTube...</div>}
       {!isPlayerReady && <div>Carregando vídeo...</div>}
 
-      <div
-        id={containerId}
-        className="absolute top-0 left-0 w-full h-full"
-      ></div>
+      {/* ID ÚNICO PARA CADA VÍDEO */}
+      <div id={containerId} className="absolute top-0 left-0 w-full h-full"></div>
     </div>
   );
 };
