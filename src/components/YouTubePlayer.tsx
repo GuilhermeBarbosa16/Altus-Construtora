@@ -71,7 +71,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
           },
         });
       } catch (err) {
-        setError("Falha ao inicializar o player");
+        setError("Falha ao inicializar o (player recarregar a pagina)");
       }
     };
 
