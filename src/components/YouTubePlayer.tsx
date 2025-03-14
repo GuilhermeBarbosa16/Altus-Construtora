@@ -1,41 +1,44 @@
-import React, { useContext, useEffect, useRef } from "react";
-import { YouTubeContext } from "../components/YoutubeAPIProvider";
+import React, { useEffect, useRef, useState } from "react";
 
-interface YouTubePlayerProps {
-  videoId: string;
-  aspectRatio: string;
-}
 declare global {
   interface Window {
-    YT: {
-      Player: any;
-      PlayerState: {
-        ENDED: number;
-        PLAYING: number;
-        PAUSED: number;
-      };
-    };
+    YT: any;
+    onYouTubeIframeAPIReady: () => void;
   }
 }
 
+interface YouTubePlayerProps {
+  videoId: string;
+  aspectRatio?: string;
+}
 
-const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId }) => {
-  const isApiLoaded = useContext(YouTubeContext);
+const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
+  videoId,
+  aspectRatio = "16/9",
+}) => {
   const playerRef = useRef<any>(null);
   const containerId = `youtube-player-${videoId}`;
+  const [isPlayerReady, setIsPlayerReady] = useState<boolean>(false);
 
   useEffect(() => {
-    if (isApiLoaded && window.YT) {
+    const createPlayer = () => {
       playerRef.current = new window.YT.Player(containerId, {
         videoId,
         playerVars: {
           autoplay: 0,
           controls: 1,
-          modestbranding: 1,
-          rel: 0,
-          showinfo: 0,
+        },
+        events: {
+          onReady: () => setIsPlayerReady(true),
+          onError: (e: any) => console.error("Erro no player:", e),
         },
       });
+    };
+
+    if (window.YT) {
+      createPlayer();
+    } else {
+      window.onYouTubeIframeAPIReady = createPlayer;
     }
 
     return () => {
@@ -43,9 +46,17 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId }) => {
         playerRef.current.destroy();
       }
     };
-  }, [isApiLoaded]);
+  }, [videoId]);
 
-  return <div id={containerId} style={{ width: "100%", height: "400px" }} />;
+  const [width, height] = aspectRatio.split("/").map(Number);
+  const aspectRatioValue = (height / width) * 100;
+
+  return (
+    <div className="relative w-full overflow-hidden" style={{ paddingTop: `${aspectRatioValue}%` }}>
+      {!isPlayerReady && <div>Carregando vídeo...</div>}
+      <div id={containerId} className="absolute top-0 left-0 w-full h-full"></div>
+    </div>
+  );
 };
 
 export default YouTubePlayer;

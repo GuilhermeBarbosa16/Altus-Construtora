@@ -1,13 +1,13 @@
-import React, { useEffect, useState, createContext, ReactNode } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
-export const YouTubeContext = createContext<boolean>(false);
-
-interface YouTubeAPIProviderProps {
-  children: ReactNode;
+interface YouTubeAPIContextType {
+  isApiLoaded: boolean;
 }
 
-const YouTubeAPIProvider: React.FC<YouTubeAPIProviderProps> = ({ children }) => {
-  const [isApiLoaded, setIsApiLoaded] = useState(false);
+const YouTubeAPIContext = createContext<YouTubeAPIContextType | undefined>(undefined);
+
+export const YouTubeAPIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [isApiLoaded, setIsApiLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     const loadYouTubeAPI = () => {
@@ -20,6 +20,8 @@ const YouTubeAPIProvider: React.FC<YouTubeAPIProviderProps> = ({ children }) => 
       script.src = "https://www.youtube.com/iframe_api";
       script.async = true;
       script.onload = () => setIsApiLoaded(true);
+      script.onerror = () => console.error("Erro ao carregar a API do YouTube");
+
       document.body.appendChild(script);
     };
 
@@ -27,10 +29,16 @@ const YouTubeAPIProvider: React.FC<YouTubeAPIProviderProps> = ({ children }) => 
   }, []);
 
   return (
-    <YouTubeContext.Provider value={isApiLoaded}>
+    <YouTubeAPIContext.Provider value={{ isApiLoaded }}>
       {children}
-    </YouTubeContext.Provider>
+    </YouTubeAPIContext.Provider>
   );
 };
 
-export default YouTubeAPIProvider;
+export const useYouTubeAPI = (): YouTubeAPIContextType => {
+  const context = useContext(YouTubeAPIContext);
+  if (!context) {
+    throw new Error("useYouTubeAPI deve ser usado dentro de YouTubeAPIProvider");
+  }
+  return context;
+};
