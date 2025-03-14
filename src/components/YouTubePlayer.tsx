@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useYouTubeAPI } from "../components/YoutubeAPIProvider";
 
 declare global {
   interface Window {
@@ -17,34 +16,29 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   videoId,
   aspectRatio = "16/9",
 }) => {
-  const { isApiLoaded } = useYouTubeAPI(); // Verificando se a API foi carregada
   const playerRef = useRef<any>(null);
   const containerId = `youtube-player-${videoId}`;
   const [isPlayerReady, setIsPlayerReady] = useState<boolean>(false);
 
   useEffect(() => {
     const createPlayer = () => {
-      if (window.YT && window.YT.Player) {  // Verificando se YT.Player está disponível
-        playerRef.current = new window.YT.Player(containerId, {
-          videoId,
-          playerVars: {
-            autoplay: 0,
-            controls: 1,
-          },
-          events: {
-            onReady: () => setIsPlayerReady(true),
-            onError: (e: any) => console.error("Erro no player:", e),
-          },
-        });
-      } else {
-        console.error("YouTube API não está disponível.");
-      }
+      playerRef.current = new window.YT.Player(containerId, {
+        videoId,
+        playerVars: {
+          autoplay: 0,
+          controls: 1,
+        },
+        events: {
+          onReady: () => setIsPlayerReady(true),
+          onError: (e: any) => console.error("Erro no player:", e),
+        },
+      });
     };
 
-    if (isApiLoaded) {
+    if (window.YT) {
       createPlayer();
     } else {
-      window.onYouTubeIframeAPIReady = createPlayer;  // Aguardando o carregamento da API
+      window.onYouTubeIframeAPIReady = createPlayer;
     }
 
     return () => {
@@ -52,7 +46,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
         playerRef.current.destroy();
       }
     };
-  }, [videoId, isApiLoaded]); // Certifique-se de que o efeito dependa do estado de isApiLoaded
+  }, [videoId]);
 
   const [width, height] = aspectRatio.split("/").map(Number);
   const aspectRatioValue = (height / width) * 100;

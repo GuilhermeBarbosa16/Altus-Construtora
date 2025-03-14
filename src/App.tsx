@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { CheckCircle2, Menu, Award, Instagram, Clock, Users, Sparkles, ClipboardList, CalendarCheck, CheckCircle, ShieldCheck, PenTool, Briefcase, Eye, HardHat, MapPin, Hourglass, Ruler, Facebook, MessageCircle } from 'lucide-react';
 import YouTubePlayer from './components/YouTubePlayer';
-import { YouTubeAPIProvider } from "../src/components/YoutubeAPIProvider";
 import Logo2 from '../src/assets/logo2.png';
 import ImageComparison from "./components/ImageComparison";
 import PhotoSlider from "./components/PhotoSlider";
@@ -239,11 +238,11 @@ function App() {
       <Section>
         <div id='video' className="flex flex-col items-center px-4 w-full">
           {/* Para vídeo horizontal 16:9 */}
-          <YouTubeAPIProvider>
+         
           <div className="relative w-full max-w-3xl overflow-hidden max-sm:max-w-md" style={{ paddingTop: '5%' }}>
             <YouTubePlayer videoId="zkcjDmi_siQ" aspectRatio="16/9" />
           </div>
-          </YouTubeAPIProvider>
+          
         </div>
 
       </Section>
@@ -332,11 +331,11 @@ function App() {
             {/* Primeiro vídeo */}
             <div className="bg-gray-200 p-8 rounded-lg shadow-lg flex flex-col items-center">
               <div id="video" className="flex flex-col items-center px-4 w-full">
-              <YouTubeAPIProvider>
+             
                 <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
                   <YouTubePlayer videoId="XykPrqgO5OQ" aspectRatio="9/16" />
                 </div>
-              </YouTubeAPIProvider>
+              
               </div>
               <p className="text-black italic mt-4 text-center">
                 "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
@@ -347,11 +346,11 @@ function App() {
             {/* Segundo vídeo */}
             <div className="bg-gray-200 p-8 rounded-lg shadow-lg flex flex-col items-center">
               <div id="video" className="flex flex-col items-center px-4 w-full">
-              <YouTubeAPIProvider>
+             
                 <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
                   <YouTubePlayer videoId="fUi3JVMepmQ" aspectRatio="9/16" />
                 </div>
-                </YouTubeAPIProvider>
+                
               </div>
               <p className="text-black italic mt-4 text-center">
                 "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
