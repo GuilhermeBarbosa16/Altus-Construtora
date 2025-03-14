@@ -4,6 +4,7 @@ declare global {
   interface Window {
     YT: any;
     onYouTubeIframeAPIReady: () => void;
+    onYouTubeIframeAPIReadyCallbacks: (() => void)[];
   }
 }
 
@@ -20,29 +21,39 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   const containerId = `youtube-player-${videoId}`;
   const [isPlayerReady, setIsPlayerReady] = useState<boolean>(false);
 
-  useEffect(() => {
-    const createPlayer = () => {
-      if (window.YT && window.YT.Player) {
-        playerRef.current = new window.YT.Player(containerId, {
-          videoId,
-          playerVars: {
-            autoplay: 0,
-            controls: 1,
-          },
-          events: {
-            onReady: () => setIsPlayerReady(true),
-            onError: (e: any) => console.error("Erro no player:", e),
-          },
-        });
-      }
-    };
+  const createPlayer = () => {
+    if (window.YT && window.YT.Player) {
+      playerRef.current = new window.YT.Player(containerId, {
+        videoId,
+        playerVars: {
+          autoplay: 0,
+          controls: 1,
+        },
+        events: {
+          onReady: () => setIsPlayerReady(true),
+          onError: (e: any) => console.error("Erro no player:", e),
+        },
+      });
+    }
+  };
 
-    // Se a API já está carregada
+  useEffect(() => {
+    // Inicializa a lista de callbacks se ainda não existir
+    if (!window.onYouTubeIframeAPIReadyCallbacks) {
+      window.onYouTubeIframeAPIReadyCallbacks = [];
+    }
+
+    // Adiciona o callback atual à lista
+    window.onYouTubeIframeAPIReadyCallbacks.push(createPlayer);
+
+    // Se a API já foi carregada, executa o callback imediatamente
     if (window.YT && window.YT.Player) {
       createPlayer();
     } else {
-      // Callback para quando a API carregar
-      window.onYouTubeIframeAPIReady = createPlayer;
+      // Garante que a API do YouTube chame todos os callbacks quando carregar
+      window.onYouTubeIframeAPIReady = () => {
+        window.onYouTubeIframeAPIReadyCallbacks.forEach((callback) => callback());
+      };
     }
 
     return () => {
