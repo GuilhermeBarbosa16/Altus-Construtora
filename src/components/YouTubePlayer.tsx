@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useYouTubeAPI } from "../components/YoutubeAPIProvider";
+import { useYouTubeAPI } from "./YouTubeAPIProvider";
 
 declare global {
   interface Window {
