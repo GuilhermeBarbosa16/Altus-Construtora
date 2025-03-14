@@ -1,4 +1,13 @@
 {
+  "compilerOptions": {
+    "baseUrl": "./src",  // Define o diretório base para resolver caminhos
+    "paths": {
+      "components/*": ["src/components/*"]  // Alias para a pasta de componentes
+    },
+    "moduleResolution": "node",  // Usar resolução de módulo estilo Node.js
+    "strict": true,  // Habilita verificações estritas (opcional)
+    "esModuleInterop": true  // Facilita a importação de módulos CommonJS
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
