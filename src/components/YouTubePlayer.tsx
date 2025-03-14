@@ -1,5 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
+import { YouTubeContext } from "../components/YoutubeAPIProvider";
 
+interface YouTubePlayerProps {
+  videoId: string;
+  aspectRatio: string;
+}
 declare global {
   interface Window {
     YT: {
@@ -13,38 +18,11 @@ declare global {
   }
 }
 
-interface YouTubePlayerProps {
-  videoId: string;
-  aspectRatio?: string;
-}
 
 const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId }) => {
+  const isApiLoaded = useContext(YouTubeContext);
   const playerRef = useRef<any>(null);
   const containerId = `youtube-player-${videoId}`;
-  const [isApiLoaded, setIsApiLoaded] = useState(false);
-
-  useEffect(() => {
-    const loadYouTubeAPI = () => {
-      if (window.YT) {
-        setIsApiLoaded(true);
-        return;
-      }
-
-      const script = document.createElement("script");
-      script.src = "https://www.youtube.com/iframe_api";
-      script.async = true;
-      script.onload = () => setIsApiLoaded(true);
-      document.body.appendChild(script);
-    };
-
-    loadYouTubeAPI();
-
-    return () => {
-      if (playerRef.current) {
-        playerRef.current.destroy();
-      }
-    };
-  }, []);
 
   useEffect(() => {
     if (isApiLoaded && window.YT) {
@@ -56,10 +34,15 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({ videoId }) => {
           modestbranding: 1,
           rel: 0,
           showinfo: 0,
-          playsinline: 1,
         },
       });
     }
+
+    return () => {
+      if (playerRef.current) {
+        playerRef.current.destroy();
+      }
+    };
   }, [isApiLoaded]);
 
   return <div id={containerId} style={{ width: "100%", height: "400px" }} />;
