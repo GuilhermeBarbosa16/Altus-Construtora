@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { CheckCircle2, Menu, Award, Instagram, Clock, Users, Sparkles, ClipboardList, CalendarCheck, CheckCircle, ShieldCheck, PenTool, Briefcase, Eye, HardHat, MapPin, Hourglass, Ruler, Facebook, MessageCircle } from 'lucide-react';
 import YouTubePlayer from './components/YouTubePlayer';
-import {YouTubeAPIProvider} from "../src/components/YoutubeAPIProvider";
+import { YouTubeAPIProvider } from "../src/components/YoutubeAPIProvider";
 import Logo2 from '../src/assets/logo2.png';
 import ImageComparison from "./components/ImageComparison";
 import PhotoSlider from "./components/PhotoSlider";
