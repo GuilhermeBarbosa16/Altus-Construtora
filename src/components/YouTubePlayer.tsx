@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useYouTubeAPI } from "./YouTubeAPIProvider";
 
 declare global {
   interface Window {
@@ -17,14 +16,13 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   videoId,
   aspectRatio = "16/9",
 }) => {
-  const { isApiLoaded } = useYouTubeAPI(); // Verificando se a API foi carregada
   const playerRef = useRef<any>(null);
   const containerId = `youtube-player-${videoId}`;
   const [isPlayerReady, setIsPlayerReady] = useState<boolean>(false);
 
   useEffect(() => {
     const createPlayer = () => {
-      if (window.YT && window.YT.Player) {  // Verificando se YT.Player está disponível
+      if (window.YT && window.YT.Player) {
         playerRef.current = new window.YT.Player(containerId, {
           videoId,
           playerVars: {
@@ -36,15 +34,15 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
             onError: (e: any) => console.error("Erro no player:", e),
           },
         });
-      } else {
-        console.error("YouTube API não está disponível.");
       }
     };
 
-    if (isApiLoaded) {
+    // Se a API já está carregada
+    if (window.YT && window.YT.Player) {
       createPlayer();
     } else {
-      window.onYouTubeIframeAPIReady = createPlayer;  // Aguardando o carregamento da API
+      // Callback para quando a API carregar
+      window.onYouTubeIframeAPIReady = createPlayer;
     }
 
     return () => {
@@ -52,7 +50,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
         playerRef.current.destroy();
       }
     };
-  }, [videoId, isApiLoaded]); // Certifique-se de que o efeito dependa do estado de isApiLoaded
+  }, [videoId]);
 
   const [width, height] = aspectRatio.split("/").map(Number);
   const aspectRatioValue = (height / width) * 100;
