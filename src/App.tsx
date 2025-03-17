@@ -328,7 +328,7 @@ function App() {
       <Section>
         <div id="feedbacks" className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-16">O que nossos clientes dizem</h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
             {/* Primeiro vídeo */}
             <div className="bg-gray-200 p-8 rounded-lg shadow-lg flex flex-col items-center">
               <div id="video" className="flex flex-col items-center px-4 w-full">
@@ -357,7 +357,14 @@ function App() {
                 "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
               </p>
               <p className="mt-4 font-semibold">Cliente 2</p>
-            </div>
+            </div>            
+          </div>
+          <div className="flex justify-center items-center">
+            <a href="#orcamento">
+              <button className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
+                Quero começar minha obra!
+              </button>
+            </a>
           </div>
         </div>
       </Section>
