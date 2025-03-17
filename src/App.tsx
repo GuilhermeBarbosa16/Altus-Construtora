@@ -362,7 +362,7 @@ function App() {
           <div className="flex justify-center items-center">
             <a href="#orcamento">
               <button className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
-                Quero começar minha obra!
+                Quero realizar meu sonho!
               </button>
             </a>
           </div>
