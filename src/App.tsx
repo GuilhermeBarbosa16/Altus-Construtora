@@ -361,7 +361,7 @@ function App() {
           </div>
           <div className="flex justify-center items-center">
             <a href="#orcamento">
-              <button className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
+              <button className="bg-black text-[#DAA84B] px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
                 Quero realizar meu sonho!
               </button>
             </a>
@@ -416,14 +416,7 @@ function App() {
                 </li>
               </ul>
             </div>
-          </div>
-          <div className="flex justify-center items-center">
-            <a href="#orcamento">
-              <button className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
-                Quero começar minha obra!
-              </button>
-            </a>
-          </div>
+          </div>          
         </div>
       </Section>
       {/* Projects Section */}
@@ -472,9 +465,16 @@ function App() {
         </div>
       </Section>
       <Section>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center mb-8">
           <PhotoSlider />
         </div>
+        <div className="flex justify-center items-center">
+            <a href="#orcamento">
+              <button className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
+                Quero começar minha obra!
+              </button>
+            </a>
+          </div>
       </Section>
 
       {/* FAQ Section */}
