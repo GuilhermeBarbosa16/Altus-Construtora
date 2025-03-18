@@ -237,22 +237,22 @@ function App() {
         </div>
       </Section>
       <Section>
+        <div id='Sobre' className='text-3xl font-bold text-center mb-0'>
+          <h1>Sobre a Altus</h1>
+        </div>
         <div id='video' className="flex flex-col items-center px-4 w-full">
           {/* Para vídeo horizontal 16:9 */}
           <YouTubeAPIProvider>
-          <div className="relative w-full max-w-3xl overflow-hidden max-sm:max-w-md" style={{ paddingTop: '5%' }}>
-            <YouTubePlayer videoId="zkcjDmi_siQ" aspectRatio="16/9" />
-          </div>
+            <div className="relative w-full max-w-3xl overflow-hidden max-sm:max-w-md" style={{ paddingTop: '5%' }}>
+              <YouTubePlayer videoId="zkcjDmi_siQ" aspectRatio="16/9" />
+            </div>
           </YouTubeAPIProvider>
         </div>
 
       </Section>
       {/* Sobre Section */}
       <Section>
-        <div className='text-3xl font-bold text-center mb-0'>
-          <h1>Sobre a Altus</h1>
-        </div>
-        <div id='Sobre' className="container mx-auto px-4">
+        <div className="container mx-auto px-4">
           <div className="flex justify-center">
             <div className="bg-transparent text-gray-800 p-8 rounded-lg w-full max-w-3xl transition-transform transform hover:scale-105">
               <div className="grid md:grid-cols-2 gap-6">
@@ -332,11 +332,11 @@ function App() {
             {/* Primeiro vídeo */}
             <div className="bg-gray-200 p-8 rounded-lg shadow-lg flex flex-col items-center">
               <div id="video" className="flex flex-col items-center px-4 w-full">
-              <YouTubeAPIProvider>
-                <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
-                  <YouTubePlayer videoId="XykPrqgO5OQ" aspectRatio="9/16" />
-                </div>
-              </YouTubeAPIProvider>
+                <YouTubeAPIProvider>
+                  <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
+                    <YouTubePlayer videoId="XykPrqgO5OQ" aspectRatio="9/16" />
+                  </div>
+                </YouTubeAPIProvider>
               </div>
               <p className="text-black italic mt-4 text-center">
                 "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
@@ -347,17 +347,17 @@ function App() {
             {/* Segundo vídeo */}
             <div className="bg-gray-200 p-8 rounded-lg shadow-lg flex flex-col items-center">
               <div id="video" className="flex flex-col items-center px-4 w-full">
-              <YouTubeAPIProvider>
-                <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
-                  <YouTubePlayer videoId="fUi3JVMepmQ" aspectRatio="9/16" />
-                </div>
+                <YouTubeAPIProvider>
+                  <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
+                    <YouTubePlayer videoId="fUi3JVMepmQ" aspectRatio="9/16" />
+                  </div>
                 </YouTubeAPIProvider>
               </div>
               <p className="text-black italic mt-4 text-center">
                 "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
               </p>
               <p className="mt-4 font-semibold">Cliente 2</p>
-            </div>            
+            </div>
           </div>
           <div className="flex justify-center items-center">
             <a href="#orcamento">
@@ -416,7 +416,7 @@ function App() {
                 </li>
               </ul>
             </div>
-          </div>          
+          </div>
         </div>
       </Section>
       {/* Projects Section */}
@@ -469,12 +469,12 @@ function App() {
           <PhotoSlider />
         </div>
         <div className="flex justify-center items-center">
-            <a href="#orcamento">
-              <button className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
-                Quero começar minha obra!
-              </button>
-            </a>
-          </div>
+          <a href="#orcamento">
+            <button className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
+              Quero começar minha obra!
+            </button>
+          </a>
+        </div>
       </Section>
 
       {/* FAQ Section */}
