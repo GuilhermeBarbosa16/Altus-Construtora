@@ -509,72 +509,86 @@ function App() {
         </div>
       </Section>
       {/* Form Section */}
-      < Section className="" >
+      <Section className="py-16">
         <div id="orcamento" className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8">Solicite um Orçamento</h2>
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <form ref={form} onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="nome" className="block text-gray-700 mb-2">Nome</label>
-                  <input
-                    type="text"
-                    name="from_name"
-                    id="nome"
-                    required
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B]"
-                    value={formData.nome}
-                    onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="telefone" className="block text-gray-700 mb-2">Telefone</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    id="telefone"
-                    required
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B]"
-                    value={formData.telefone}
-                    onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-gray-700 mb-2">E-mail</label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    required
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B]"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="mensagem" className="block text-gray-700 mb-2">Mensagem</label>
-                  <textarea
-                    id="mensagem"
-                    name="message"
-                    rows={4}
-                    required
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B]"
-                    value={formData.mensagem}
-                    onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-[#DAA84B] text-white py-3 rounded-lg font-semibold hover:bg-[#eab308] transition-colors"
-                >
-                  Solicitar Contato
-                </button>
-              </form>
+          <div className="flex flex-col md:flex-row gap-12 items-start">
+            {/* Texto à esquerda */}
+            <div className="md:w-1/2 space-y-6">
+              <h2 className="text-3xl text-center md:text-4xl font-bold pt-40">
+                Pronto para transformar seu projeto em realidade?
+              </h2>
+              <p className="text-lg text-center">
+                Preencha o formulário abaixo e nossa equipe entrará em contato em até 24h para criar uma solução sob medida, com qualidade Altus e zero dor de cabeça.
+              </p>
+              <div className="hidden md:block">
+                {/* Espaço para eventual imagem ou elemento decorativo */}
+              </div>
+            </div>
+
+            {/* Formulário à direita */}
+            <div className="md:w-1/2 w-full">
+              <div className="bg-white p-8 rounded-lg shadow-md">
+                <form ref={form} onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label htmlFor="nome" className="block text-gray-700 mb-2">Nome</label>
+                    <input
+                      type="text"
+                      name="from_name"
+                      id="nome"
+                      required
+                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B]"
+                      value={formData.nome}
+                      onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="telefone" className="block text-gray-700 mb-2">Telefone</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      id="telefone"
+                      required
+                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B]"
+                      value={formData.telefone}
+                      onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-gray-700 mb-2">E-mail</label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      required
+                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B]"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="mensagem" className="block text-gray-700 mb-2">Mensagem</label>
+                    <textarea
+                      id="mensagem"
+                      name="message"
+                      rows={4}
+                      required
+                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B]"
+                      value={formData.mensagem}
+                      onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-[#DAA84B] text-white py-3 rounded-lg font-semibold hover:bg-[#eab308] transition-colors"
+                  >
+                    Solicitar Contato
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </Section >
-
+      </Section>
       {/* FAQ Section */}
       < Section >
         <div className="container mx-auto px-4">
