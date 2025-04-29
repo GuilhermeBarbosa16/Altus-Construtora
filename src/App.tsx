@@ -102,10 +102,10 @@ function App() {
           {isOpen && (
             <div className="absolute top-16 right-4 p-4 rounded-lg shadow-lg bg-gray-800 md:hidden z-20">
               <nav className="flex flex-col space-y-4 text-white">
-                <a href="#Sobre" className="nav-link hover:text-[#DAA84B] transition-colors">Sobre</a>
-                <a href="#Servicos" className="nav-link hover:text-[#DAA84B] transition-colors">Serviços</a>
-                <a href="#feedbacks" className="nav-link hover:text-[#DAA84B] transition-colors">Feedbacks</a>
-                <a href="#orcamento" className="nav-link hover:text-[#DAA84B] transition-colors">Orçamento</a>
+                <a href="#Sobre" className="relative text-white transition-colors after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">Sobre</a>
+                <a href="#Servicos" className="relative text-white transition-colors after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">Serviços</a>
+                <a href="#feedbacks" className="relative text-white transition-colors after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">Feedbacks</a>
+                <a href="#orcamento" className="relative text-white transition-colors after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">Orçamento</a>
               </nav>
             </div>
           )}
