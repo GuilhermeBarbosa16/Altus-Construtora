@@ -82,38 +82,34 @@ function App() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-      <header className="w-full p-3 flex justify-between items-center bg-black bg-opacity-90 fixed top-0 left-0 z-50 h-16">
-        <img src={Logo2} alt="Logo" className="w-20 md:w-24 opacity-90" />
+      <header className="w-full bg-black bg-opacity-90 fixed top-0 left-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
+          <img src={Logo2} alt="Logo" className="w-16 md:w-20 opacity-90" />
 
-        {/* Navegação Desktop */}
-        <nav className="hidden md:flex space-x-6 text-white items-center ml-auto text-sm">
-          <a href="#Sobre" className="nav-link hover:text-[#DAA84B] transition-colors">Sobre</a>
-          <a href="#Servicos" className="nav-link hover:text-[#DAA84B] transition-colors">Serviços</a>
-          {/* <a href="#diferenciais" className="nav-link hover:text-[#DAA84B] transition-colors">Diferenciais</a> */}
-          <a href="#feedbacks" className="nav-link hover:text-[#DAA84B] transition-colors">Feedbacks</a>
-          {/* <a href="#Antes e depois" className="nav-link hover:text-[#DAA84B] transition-colors">Antes e Depois</a> */}
-          <a href="#orcamento" className="nav-link hover:text-[#DAA84B] transition-colors">Orçamento</a>
-          {/* <a href="#FAQ" className="nav-link hover:text-[#DAA84B] transition-colors">FAQ</a> */}
-        </nav>
+          {/* Navegação Desktop */}
+          <nav className="hidden md:flex space-x-6 text-white items-center text-sm">
+            <a href="#Sobre" className="relative text-white transition-colors after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">Sobre</a>
+            <a href="#Servicos" className="relative text-white transition-colors after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">Serviços</a>
+            <a href="#feedbacks" className="relative text-white transition-colors after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">Feedbacks</a>
+            <a href="#orcamento" className="relative text-white transition-colors after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full">Orçamento</a>
+          </nav>
 
-        {/* Menu Mobile */}
-        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
-          <Menu size={20} />
-        </button>
+          {/* Menu Mobile */}
+          <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+            <Menu size={20} />
+          </button>
 
-        {isOpen && (
-          <div className="absolute top-16 right-4 p-4 rounded-lg shadow-lg bg-gray-800 md:hidden z-20">
-            <nav className="flex flex-col space-y-4 text-white">
-              <a href="#Sobre" className="nav-link hover:text-[#DAA84B] transition-colors">Sobre</a>
-              <a href="#Servicos" className="nav-link hover:text-[#DAA84B] transition-colors">Serviços</a>
-              {/* <a href="#diferenciais" className="nav-link hover:text-[#DAA84B] transition-colors">Diferenciais</a> */}
-              <a href="#feedbacks" className="nav-link hover:text-[#DAA84B] transition-colors">Feedbacks</a>
-              {/* <a href="#Antes e depois" className="nav-link hover:text-[#DAA84B] transition-colors">Antes e Depois</a> */}
-              <a href="#orcamento" className="nav-link hover:text-[#DAA84B] transition-colors">Orçamento</a>
-              {/* <a href="#FAQ" className="nav-link hover:text-[#DAA84B] transition-colors">FAQ</a> */}
-            </nav>
-          </div>
-        )}
+          {isOpen && (
+            <div className="absolute top-16 right-4 p-4 rounded-lg shadow-lg bg-gray-800 md:hidden z-20">
+              <nav className="flex flex-col space-y-4 text-white">
+                <a href="#Sobre" className="nav-link hover:text-[#DAA84B] transition-colors">Sobre</a>
+                <a href="#Servicos" className="nav-link hover:text-[#DAA84B] transition-colors">Serviços</a>
+                <a href="#feedbacks" className="nav-link hover:text-[#DAA84B] transition-colors">Feedbacks</a>
+                <a href="#orcamento" className="nav-link hover:text-[#DAA84B] transition-colors">Orçamento</a>
+              </nav>
+            </div>
+          )}
+        </div>
       </header>
     );
   };
@@ -159,7 +155,7 @@ function App() {
   }
 
   return (
-    <div className="font-sans pt-16"> {/* Adicionado pt-16 para compensar o cabeçalho fixo */}
+    <div className="font-sans pt-16">
       <Header />
 
       {/* Hero Section */}
