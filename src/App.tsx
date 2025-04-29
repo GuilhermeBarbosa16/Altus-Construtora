@@ -87,13 +87,13 @@ function App() {
 
         {/* Navegação Desktop */}
         <nav className="hidden md:flex space-x-6 text-white items-center ml-auto text-sm">
-        <a href="#Sobre" className="nav-link hover:text-[#DAA84B] transition-colors">Sobre</a>
-              <a href="#Servicos" className="nav-link hover:text-[#DAA84B] transition-colors">Serviços</a>
-              {/* <a href="#diferenciais" className="nav-link hover:text-[#DAA84B] transition-colors">Diferenciais</a> */}
-              <a href="#feedbacks" className="nav-link hover:text-[#DAA84B] transition-colors">Feedbacks</a>
-              {/* <a href="#Antes e depois" className="nav-link hover:text-[#DAA84B] transition-colors">Antes e Depois</a> */}
-              <a href="#orcamento" className="nav-link hover:text-[#DAA84B] transition-colors">Orçamento</a>
-              {/* <a href="#FAQ" className="nav-link hover:text-[#DAA84B] transition-colors">FAQ</a> */}
+          <a href="#Sobre" className="nav-link hover:text-[#DAA84B] transition-colors">Sobre</a>
+          <a href="#Servicos" className="nav-link hover:text-[#DAA84B] transition-colors">Serviços</a>
+          {/* <a href="#diferenciais" className="nav-link hover:text-[#DAA84B] transition-colors">Diferenciais</a> */}
+          <a href="#feedbacks" className="nav-link hover:text-[#DAA84B] transition-colors">Feedbacks</a>
+          {/* <a href="#Antes e depois" className="nav-link hover:text-[#DAA84B] transition-colors">Antes e Depois</a> */}
+          <a href="#orcamento" className="nav-link hover:text-[#DAA84B] transition-colors">Orçamento</a>
+          {/* <a href="#FAQ" className="nav-link hover:text-[#DAA84B] transition-colors">FAQ</a> */}
         </nav>
 
         {/* Menu Mobile */}
@@ -272,9 +272,11 @@ function App() {
       </Section>
       {/* Fotos */}
       <Section>
-        <div id="Servicos" className="container px-4 md:px-8 lg:px-20 overflow-hidden">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-2 break-words">Sonhos que já realizamos</h2>
-          <p className='text-center mb-4'>Conheça alguns dos projetos que realizamos com maestria.</p>
+        <div id="Servicos" className="container mx-auto px-4 md:px-8 lg:px-20 overflow-hidden text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-2">Sonhos que já realizamos</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg">
+            Conheça alguns dos projetos que realizamos com maestria.
+          </p>
         </div>
         <div className="flex flex-col items-center justify-center mb-8">
           <PhotoSlider />
