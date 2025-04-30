@@ -11,6 +11,7 @@ import emailjs from '@emailjs/browser';
 import imgtexto from '../src/assets/IMG_01.jpg'
 import fundo1 from '../src/assets/FUNDO V1.png'
 import fundo2 from '../src/assets/FUNDO V2.png'
+import LocationSection from './components/LocationSection'
 import './index.css';
 
 function Section({ children, className = '' }: { children: React.ReactNode; className?: string }) {
@@ -155,9 +156,8 @@ function App() {
   }
 
   return (
-    <div className="font-sans pt-16">
+    <div className="font-sans pt--3">
       <Header />
-
       {/* Hero Section */}
       <Section className="relative">
         {/* Background */}
@@ -183,11 +183,20 @@ function App() {
                 personalização única e respeito a cada detalhe da sua jornada — da concepção à entrega,
                 sem preocupações.
               </p>
-              <a href="#orcamento">
-                <button className="bg-[#DAA84B] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#eab308] transition-colors">
-                  Garantir entrega no prazo
-                </button>
-              </a>
+              <div className="flex flex-col items-center gap-12">
+                <a href="#orcamento">
+                  <button className="bg-[#DAA84B] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#eab308] transition-colors">
+                    Garantir entrega no prazo
+                  </button>
+                </a>
+                
+                {/* Scroll Indicator Animation */}
+                <div className="flex justify-center">
+                  <div className="w-8 h-12 border-2 border-white rounded-full relative flex justify-center">
+                    <div className="w-2 h-2 bg-white rounded-full absolute animate-scrollDown" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -269,17 +278,14 @@ function App() {
       {/* Fotos */}
       <Section>
         <div id="Servicos" className="container mx-auto px-4 md:px-8 lg:px-20 overflow-hidden text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-2">Sonhos que já realizamos</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg">
-            Conheça alguns dos projetos que realizamos com maestria.
-          </p>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6">Sonhos que já realizamos</h2>          
         </div>
         <div className="flex flex-col items-center justify-center mb-8">
           <PhotoSlider />
         </div>
         <div className="flex justify-center items-center">
           <a href="#orcamento">
-            <button className="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
+            <button className="bg-[#DAA84B] px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
               Quero começar minha obra!
             </button>
           </a>
@@ -303,7 +309,11 @@ function App() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4">
               {/* Gestão Profissional (Branco) */}
               <div className="text-center p-8 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
-                <div className="mb-5 text-4xl">📊</div>
+                <div className="mb-5 flex justify-center">
+                  <div className="p-3 bg-[#DAA84B]/10 rounded-full">
+                    <ClipboardList className="w-8 h-8 text-[#DAA84B]" />
+                  </div>
+                </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-3">Gestão Profissional</h3>
                 <p className="text-gray-600 mb-4">
                   Planejamento minucioso e acompanhamento diário para garantir prazos e orçamentos sem surpresas.
@@ -326,7 +336,11 @@ function App() {
 
               {/* Qualidade Garantida (Dourado - Destaque) */}
               <div className="text-center p-8 bg-[#DAA84B] rounded-lg shadow-md hover:shadow-lg transition-all">
-                <div className="mb-5 text-4xl">🏆</div>
+                <div className="mb-5 flex justify-center">
+                  <div className="p-3 bg-white/10 rounded-full">
+                    <Award className="w-8 h-8 text-white" />
+                  </div>
+                </div>
                 <h3 className="text-xl font-bold text-white mb-3">Qualidade Garantida</h3>
                 <p className="text-white text-opacity-90 mb-4">
                   Mão de obra especializada para resultados que impressionam. Respeitando sempre os prazos e custos.
@@ -349,7 +363,11 @@ function App() {
 
               {/* Experiência Personalizada (Branco) */}
               <div className="text-center p-8 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
-                <div className="mb-5 text-4xl">🤝</div>
+                <div className="mb-5 flex justify-center">
+                  <div className="p-3 bg-[#DAA84B]/10 rounded-full">
+                    <Users className="w-8 h-8 text-[#DAA84B]" />
+                  </div>
+                </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-3">Experiência Personalizada</h3>
                 <p className="text-gray-600 mb-4">
                   Atendimento exclusivo do projeto à entrega, com comunicação clara e relatórios semanais.
@@ -375,7 +393,7 @@ function App() {
         {/* Botão centralizado */}
         <div className="mt-8 text-center">
           <a href="#orcamento">
-            <button className="bg-[#DAA84B] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#eab308] transition-colors">
+            <button className="bg-[#DAA84B] px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
               Quero um orçamento
             </button>
           </a>
@@ -419,7 +437,7 @@ function App() {
           </div>
           <div className="flex justify-center items-center">
             <a href="#orcamento">
-              <button className="bg-black text-[#DAA84B] px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
+              <button className="bg-[#DAA84B] px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
                 Quero viver a experiência Altus!
               </button>
             </a>
@@ -480,9 +498,9 @@ function App() {
       </Section > */}
       {/* Projects Section */}
       <Section>
-        <div id="Antes e depois" className="container px-4 md:px-8 lg:px-20 overflow-hidden">
+        <div id="Antes e depois" className="max-w-7xl mx-auto px-4 md:px-8 lg:px-20 overflow-hidden">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 break-words">Antes e depois</h2>
-          <div className="flex flex-col gap-16">
+          <div className="flex flex-col gap-16 items-center">
             {beforeAfterProjects.map((project, i) => (
               <motion.div
                 key={i}
@@ -492,16 +510,15 @@ function App() {
                 viewport={{ once: true }}
                 className="w-full flex flex-col items-center gap-8"
               >
-                {/* Container da imagem centralizada */}
-                <div className="w-full flex flex-col items-center">
+                {/* Imagem centralizada */}
+                <div className="w-full flex justify-center">
                   <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl shadow-lg rounded-lg overflow-hidden">
                     <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
                   </div>
-
-                  {/* Títulos centralizados */}
-                  <div className="text-center mt-4 space-y-1">
-                    <h3 className="text-xl font-semibold">Apartamento Bairro Prado</h3>
-                  </div>
+                </div>
+                {/* Títulos centralizados */}
+                <div className="text-center mt-4 space-y-1">
+                  <h3 className="text-xl font-semibold">Apartamento Bairro Prado</h3>
                 </div>
               </motion.div>
             ))}
@@ -511,75 +528,93 @@ function App() {
       {/* Form Section */}
       <Section className="py-16">
         <div id="orcamento" className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row gap-12 items-start">
+          <div className="flex flex-col md:flex-row gap-12 items-center max-w-6xl mx-auto">
             {/* Texto à esquerda */}
             <div className="md:w-1/2 space-y-6">
-              <h2 className="text-3xl text-center md:text-4xl font-bold pt-40">
-                Pronto para transformar seu projeto em realidade?
-              </h2>
-              <p className="text-lg text-center">
-                Preencha o formulário abaixo e nossa equipe entrará em contato em até 24h para criar uma solução sob medida, com qualidade Altus e zero dor de cabeça.
-              </p>
-              <div className="hidden md:block">
-                {/* Espaço para eventual imagem ou elemento decorativo */}
+              <div className="space-y-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-white-800">
+                  Pronto para transformar seu projeto em realidade?
+                </h2>
+                <div className="w-20 h-1 bg-[#DAA84B]"></div>
+                <p className="text-lg text-white-600">
+                  Preencha o formulário abaixo e nossa equipe entrará em contato em até 24h para criar uma solução sob medida, com qualidade Altus e zero dor de cabeça.
+                </p>
+              </div>
+              <div className="hidden md:flex flex-col space-y-4 mt-8">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle2 className="text-[#DAA84B] w-6 h-6" />
+                  <span className="text-white-700">Orçamento personalizado</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle2 className="text-[#DAA84B] w-6 h-6" />
+                  <span className="text-white-700">Resposta em até 24h</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle2 className="text-[#DAA84B] w-6 h-6" />
+                  <span className="text-white-700">Atendimento exclusivo</span>
+                </div>
               </div>
             </div>
 
             {/* Formulário à direita */}
             <div className="md:w-1/2 w-full">
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <form ref={form} onSubmit={handleSubmit} className="space-y-4">
+              <div className="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg border border-gray-100">
+                <form ref={form} onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="nome" className="block text-gray-700 mb-2">Nome</label>
+                    <label htmlFor="nome" className="block text-gray-700 font-medium mb-2">Nome</label>
                     <input
                       type="text"
                       name="from_name"
                       id="nome"
                       required
-                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B]"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B] focus:border-transparent transition-all"
                       value={formData.nome}
                       onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                      placeholder="Seu nome completo"
                     />
                   </div>
                   <div>
-                    <label htmlFor="telefone" className="block text-gray-700 mb-2">Telefone</label>
+                    <label htmlFor="telefone" className="block text-gray-700 font-medium mb-2">Telefone</label>
                     <input
                       type="tel"
                       name="phone"
                       id="telefone"
                       required
-                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B]"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B] focus:border-transparent transition-all"
                       value={formData.telefone}
                       onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+                      placeholder="(00) 00000-0000"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-gray-700 mb-2">E-mail</label>
+                    <label htmlFor="email" className="block text-gray-700 font-medium mb-2">E-mail</label>
                     <input
                       type="email"
                       name="email"
                       id="email"
                       required
-                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B]"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B] focus:border-transparent transition-all"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="seu@email.com"
                     />
                   </div>
                   <div>
-                    <label htmlFor="mensagem" className="block text-gray-700 mb-2">Mensagem</label>
+                    <label htmlFor="mensagem" className="block text-gray-700 font-medium mb-2">Mensagem</label>
                     <textarea
                       id="mensagem"
                       name="message"
                       rows={4}
                       required
-                      className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B]"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B] focus:border-transparent transition-all"
                       value={formData.mensagem}
                       onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
+                      placeholder="Conte-nos sobre seu projeto..."
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-[#DAA84B] text-white py-3 rounded-lg font-semibold hover:bg-[#eab308] transition-colors"
+                    className="w-full bg-[#DAA84B] text-white py-4 rounded-lg font-semibold hover:bg-[#eab308] transition-all transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#DAA84B] focus:ring-offset-2"
                   >
                     Solicitar Contato
                   </button>
@@ -589,9 +624,15 @@ function App() {
           </div>
         </div>
       </Section>
+      {/* Mapa do Google Maps */}
+      <Section>
+        <div className="flex justify-center w-full">
+          <LocationSection />
+        </div>
+      </Section>
       {/* FAQ Section */}
       < Section >
-        <div className="container mx-auto px-4">
+        <div id="faq" className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-16">Perguntas Frequentes</h2>
           <div className="max-w-3xl mx-auto space-y-8">
             {faqs.map((faq, i) => (
@@ -600,40 +641,101 @@ function App() {
           </div>
         </div>
       </Section >
-
       {/* Footer */}
-      < footer className="bg-black text-white py-10" >
-        <div className="container mx-auto px-6 lg:px-12 flex flex-col items-center justify-center text-center gap-4">
-          {/* Logo */}
-          <img src={Logo2} alt="Altus" className="w-32 mb-4" />
-          {/* Navegação */}
-          <nav className="flex space-x-6 text-lg text-[#DAA84B]">
-            <a href="#Sobre" className="hover:underline">Sobre</a>
-            <a href="#orcamento" className="hover:underline">Serviços</a>
-            <a href="#Servicos" className="hover:underline">Portfólio</a>
-          </nav>
-          {/* Ícones Redes Sociais */}
-          <div className="flex space-x-4">
-            <a href="https://www.instagram.com/altusengenhariabh/" className="text-[#DAA84B] hover:text-gray-300">
-              <Instagram className="w-6 h-6" />
-            </a>
-            <a href="#" className="text-[#DAA84B] hover:text-gray-300">
-              <Facebook className="w-6 h-6" />
-            </a>
-            <a href="#" className="text-[#DAA84B] hover:text-gray-300">
-              <MessageCircle className="w-6 h-6" />
-            </a>
+      <footer className="bg-black text-white pt-16 pb-8">
+        <div className="container mx-auto px-6 lg:px-12">
+          {/* Grid Principal */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            {/* Coluna 1 - Logo e Descrição */}
+            <div className="space-y-6">
+              <img src={Logo2} alt="Altus" className="w-32" />
+              <p className="text-gray-400 text-sm">
+                Excelência em engenharia e construção de alto padrão. 
+                Transformando sonhos em realidade com qualidade e pontualidade.
+              </p>
+              <div className="flex space-x-4">
+                <a href="https://www.instagram.com/altusengenhariabh/" 
+                   className="text-[#DAA84B] hover:text-white transition-colors"
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                  <Instagram className="w-6 h-6" />
+                </a>
+                <a href="https://www.facebook.com/altusengenharia" 
+                   className="text-[#DAA84B] hover:text-white transition-colors"
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                  <Facebook className="w-6 h-6" />
+                </a>
+                <a href="https://wa.me/553199999999" 
+                   className="text-[#DAA84B] hover:text-white transition-colors"
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                  <MessageCircle className="w-6 h-6" />
+                </a>
+              </div>
+            </div>
+
+            {/* Coluna 2 - Links Rápidos */}
+            <div>
+              <h3 className="text-lg font-semibold mb-6 text-[#DAA84B]">Menu</h3>
+              <nav className="space-y-4">
+                <a href="#Sobre" className="block text-gray-400 hover:text-white transition-colors">Sobre</a>
+                <a href="#Servicos" className="block text-gray-400 hover:text-white transition-colors">Serviços</a>
+                <a href="#feedbacks" className="block text-gray-400 hover:text-white transition-colors">Feedbacks</a>
+                <a href="#orcamento" className="block text-gray-400 hover:text-white transition-colors">Orçamento</a>
+              </nav>
+            </div>
+
+            {/* Coluna 3 - Serviços */}
+            <div>
+              <h3 className="text-lg font-semibold mb-6 text-[#DAA84B]">Nossos Serviços</h3>
+              <ul className="space-y-4 text-gray-400">
+                <li>Construção de Alto Padrão</li>
+                <li>Reformas e Retrofits</li>
+                <li>Gerenciamento de Obras</li>
+                <li>Projetos Arquitetônicos</li>
+              </ul>
+            </div>
+
+            {/* Coluna 4 - Contato */}
+            <div>
+              <h3 className="text-lg font-semibold mb-6 text-[#DAA84B]">Contato</h3>
+              <div className="space-y-4">
+                <p className="text-gray-400">
+                  <strong className="text-white">Endereço:</strong><br />
+                  Av. Professor Mário Werneck, 2170<br />
+                  Buritis, Belo Horizonte - MG
+                </p>
+                <p className="text-gray-400">
+                  <strong className="text-white">Telefone:</strong><br />
+                  (31) 9999-9999
+                </p>
+                <p className="text-gray-400">
+                  <strong className="text-white">Email:</strong><br />
+                  contato@altusengenharia.com.br
+                </p>
+                <p className="text-gray-400">
+                  <strong className="text-white">CNPJ:</strong><br />
+                  00.000.000/0001-00
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Linha divisória */}
+          <div className="border-t border-gray-800 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-gray-400 text-sm text-center md:text-left">
+                © {new Date().getFullYear()} Altus Engenharia. Todos os direitos reservados.
+              </p>
+              <div className="flex space-x-6 text-sm">
+                <a href="/privacidade" className="text-gray-400 hover:text-white transition-colors">Política de Privacidade</a>
+                <a href="/termos" className="text-gray-400 hover:text-white transition-colors">Termos de Uso</a>
+              </div>
+            </div>
           </div>
         </div>
-        {/* Linha divisória e Direitos Autorais */}
-        <div className="mt-8 border-t border-white/30 pt-4 text-center text-sm">
-          <p>&copy; 2025 Altus. Todos os direitos reservados.</p>
-          <div className="flex justify-center space-x-4 mt-2 text-[#DAA84B]">
-            <a href="#" className="hover:underline">Política de Privacidade</a>
-            <a href="#" className="hover:underline">Termos de Uso</a>
-          </div>
-        </div>
-      </footer >
+      </footer>
     </div >
   );
 }

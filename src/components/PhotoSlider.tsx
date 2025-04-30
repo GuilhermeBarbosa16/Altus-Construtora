@@ -19,6 +19,7 @@ import IMG_11 from "../assets/11.png";
 import IMG_12 from "../assets/12.png";
 import IMG_13 from "../assets/13.png";
 import IMG_14 from "../assets/14.png";
+import React from "react";
 
 // Array de imagens
 const images = [
