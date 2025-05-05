@@ -406,7 +406,7 @@ function App() {
           <h2 className="text-3xl font-bold text-center mb-16">Confira o que os clientes dizem sobre a experiência Altus Engenharia</h2>
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             {/* Primeiro vídeo */}
-            <div className="bg-gray-200 p-8 rounded-lg shadow-lg flex flex-col items-center">
+            <div className="p-8 rounded-lg shadow-lg flex flex-col items-center">
               <div id="video" className="flex flex-col items-center px-4 w-full">
                 <YouTubeAPIProvider>
                   <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
@@ -414,14 +414,14 @@ function App() {
                   </div>
                 </YouTubeAPIProvider>
               </div>
-              <p className="text-black italic mt-4 text-center">
+              <p className="text-withe italic mt-4 text-center">
                 "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
               </p>
               <p className="mt-4 font-semibold">Cliente 1</p>
             </div>
 
             {/* Segundo vídeo */}
-            <div className="bg-gray-200 p-8 rounded-lg shadow-lg flex flex-col items-center">
+            <div className="p-8 rounded-lg shadow-lg flex flex-col items-center">
               <div id="video" className="flex flex-col items-center px-4 w-full">
                 <YouTubeAPIProvider>
                   <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
@@ -429,7 +429,7 @@ function App() {
                   </div>
                 </YouTubeAPIProvider>
               </div>
-              <p className="text-black italic mt-4 text-center">
+              <p className="text-withe italic mt-4 text-center">
                 "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
               </p>
               <p className="mt-4 font-semibold">Cliente 2</p>
