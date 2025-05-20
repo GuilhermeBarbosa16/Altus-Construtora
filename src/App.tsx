@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { CheckCircle2, Menu, Award, Instagram, Clock, Users, Sparkles, ClipboardList, CalendarCheck, CheckCircle, ShieldCheck, PenTool, Briefcase, Eye, HardHat, MapPin, Hourglass, Ruler, Facebook, MessageCircle } from 'lucide-react';
 import YouTubePlayer from './components/YouTubePlayer';
@@ -14,6 +14,32 @@ import fundo2 from '../src/assets/FUNDO V2.png'
 import LocationSection from './components/LocationSection'
 import './index.css';
 
+// Remove the shiny button class
+const shinyButtonClass = "bg-[#DAA84B] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#eab308] transition-colors";
+
+// Add animation variants
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
 function Section({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -25,11 +51,54 @@ function Section({ children, className = '' }: { children: React.ReactNode; clas
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.6 }}
       className={`py-20 ${className}`}
     >
       {children}
     </motion.section>
+  );
+}
+
+// Update Modal Component
+function Modal({ isOpen, onClose, title, children }: { isOpen: boolean; onClose: () => void; title: string; children: React.ReactNode }) {
+  if (!isOpen) return null;
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4"
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          transition={{ type: "spring", duration: 0.5 }}
+          className="bg-gray-900 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden"
+          onClick={e => e.stopPropagation()}
+        >
+          <div className="p-6 border-b border-gray-700">
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-bold text-white">{title}</h2>
+              <button
+                onClick={onClose}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div className="p-6 overflow-y-auto max-h-[calc(90vh-8rem)]">
+            {children}
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
@@ -52,6 +121,8 @@ function App() {
     email: '',
     mensagem: ''
   });
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState<{ title: string; content: React.ReactNode } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -142,7 +213,13 @@ function App() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-      <div className="border-b border-gray-200 pb-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="border-b border-gray-200 pb-6"
+      >
         <div
           onClick={() => setIsOpen(!isOpen)}
           className="cursor-pointer flex justify-between items-center"
@@ -150,10 +227,95 @@ function App() {
           <h3 className="text-xl font-semibold mb-2">{question}</h3>
           <span>{isOpen ? '-' : '+'}</span>
         </div>
-        {isOpen && <p className="text-gray-600">{answer}</p>}
-      </div>
+        {isOpen && (
+          <motion.p
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="text-gray-600"
+          >
+            {answer}
+          </motion.p>
+        )}
+      </motion.div>
     );
   }
+
+  const openModal = (type: 'privacy' | 'terms') => {
+    if (type === 'privacy') {
+      setModalContent({
+        title: 'Política de Privacidade',
+        content: (
+          <div className="space-y-6 text-gray-300">
+            <p className="leading-relaxed">
+              A Atlus Engenharia respeita a sua privacidade e está comprometida com a proteção dos dados pessoais fornecidos por você ao utilizar nosso site.
+            </p>
+            
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">Coleta de Informações</h3>
+              <p className="mb-4">Ao preencher nosso formulário de contato, coletamos as seguintes informações:</p>
+              <ul className="list-disc pl-6 space-y-2 mb-4 text-gray-300">
+                <li>Nome completo</li>
+                <li>Telefone</li>
+                <li>E-mail</li>
+                <li>Mensagem</li>
+              </ul>
+              <p className="mb-4">Esses dados são utilizados exclusivamente para:</p>
+              <ul className="list-disc pl-6 space-y-2 text-gray-300">
+                <li>Entrar em contato com você, caso solicitado;</li>
+                <li>Responder dúvidas, orçamentos ou outras solicitações enviadas por meio do formulário;</li>
+                <li>Melhorar nosso atendimento e os serviços oferecidos.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">Armazenamento e Segurança dos Dados</h3>
+              <p className="leading-relaxed">
+                Seus dados são armazenados com segurança e não são compartilhados, vendidos ou divulgados a terceiros, exceto quando exigido por lei. Adotamos medidas técnicas e administrativas para garantir a proteção dessas informações.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">Direitos do Usuário</h3>
+              <p className="leading-relaxed">
+                Você pode, a qualquer momento, solicitar a atualização, correção ou exclusão dos seus dados pessoais, entrando em contato conosco pelo e-mail informado no site.
+              </p>
+            </div>
+          </div>
+        )
+      });
+    } else {
+      setModalContent({
+        title: 'Termos de Uso',
+        content: (
+          <div className="space-y-6 text-gray-300">
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">Uso do Site</h3>
+              <p className="leading-relaxed">
+                O uso do site da Atlus Engenharia implica na aceitação total dos termos descritos nesta página. O conteúdo do site é destinado exclusivamente para fins informativos e de contato com a empresa.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">Responsabilidades</h3>
+              <p className="leading-relaxed">
+                O usuário se compromete a fornecer informações verídicas ao preencher o formulário de contato. A Atlus Engenharia não se responsabiliza por dados incorretos fornecidos pelo usuário.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">Propriedade Intelectual</h3>
+              <p className="leading-relaxed">
+                Todo o conteúdo presente neste site — textos, imagens, logos e demais elementos — é de propriedade da Atlus Engenharia, sendo proibida a reprodução ou uso sem autorização prévia.
+              </p>
+            </div>
+          </div>
+        )
+      });
+    }
+    setModalOpen(true);
+  };
 
   return (
     <div className="font-sans pt--3">
@@ -185,7 +347,7 @@ function App() {
               </p>
               <div className="flex flex-col items-center gap-12">
                 <a href="#orcamento">
-                  <button className="bg-[#DAA84B] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#eab308] transition-colors">
+                  <button className={shinyButtonClass}>
                     Garantir entrega no prazo
                   </button>
                 </a>
@@ -222,46 +384,114 @@ function App() {
             <div className="bg-transparent text-gray-800 p-6 md:p-8 rounded-lg">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 {/* Left Column with Logo and Title */}
-                <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                  <div className="mb-6">
-                    <img
+                <motion.div 
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ 
+                    duration: 0.8,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  viewport={{ once: true }}
+                  className="flex flex-col items-center md:items-start text-center md:text-left"
+                >
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ 
+                      duration: 0.6,
+                      delay: 0.2
+                    }}
+                    viewport={{ once: true }}
+                    className="mb-6"
+                  >
+                    <motion.img
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.4 }}
+                      viewport={{ once: true }}
                       src={Logo2}
                       alt="Logo Altus Engenharia"
                       className="w-40 md:w-48 mx-auto md:mx-0 mb-4 object-contain"
                     />
-                    <h2 className="text-2xl sm:text-3xl font-bold leading-tight">
+                    <motion.h2 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.6 }}
+                      viewport={{ once: true }}
+                      className="text-2xl sm:text-3xl font-bold leading-tight"
+                    >
                       Oferecemos soluções completas para construção e reforma, do alicerce ao acabamento.
-                    </h2>
-                  </div>
-                </div>
+                    </motion.h2>
+                  </motion.div>
+                </motion.div>
 
                 {/* Right Column with Text */}
-                <div className="space-y-4">
-                  <p className="text-lg font-medium">
+                <motion.div 
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ 
+                    duration: 0.8,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  viewport={{ once: true }}
+                  className="space-y-4"
+                >
+                  <motion.p 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true }}
+                    className="text-lg font-medium"
+                  >
                     Planejamento rigoroso, equipe especializada e materiais premium:
-                  </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <CheckCircle2 className="text-[#DAA84B] mr-2 mt-1 flex-shrink-0" />
-                      <span>Cronograma detalhado com etapas monitoradas para evitar atrasos</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle2 className="text-[#DAA84B] mr-2 mt-1 flex-shrink-0" />
-                      <span>Mão de obra qualificada certificada em técnicas de alta precisão</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle2 className="text-[#DAA84B] mr-2 mt-1 flex-shrink-0" />
-                      <span>Gestão de imprevistos integrada (burocracias e desafios técnicos resolvidos por nós)</span>
-                    </li>
-                  </ul>
-                  <p className="text-lg pt-2">
+                  </motion.p>
+                  <motion.ul 
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    viewport={{ once: true }}
+                    className="space-y-3"
+                  >
+                    {[
+                      "Cronograma detalhado com etapas monitoradas para evitar atrasos",
+                      "Mão de obra qualificada certificada em técnicas de alta precisão",
+                      "Gestão de imprevistos integrada (burocracias e desafios técnicos resolvidos por nós)"
+                    ].map((item, index) => (
+                      <motion.li
+                        key={index}
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4, delay: 0.6 + (index * 0.2) }}
+                        viewport={{ once: true }}
+                        className="flex items-start"
+                      >
+                        <CheckCircle2 className="text-[#DAA84B] mr-2 mt-1 flex-shrink-0" />
+                        <span>{item}</span>
+                      </motion.li>
+                    ))}
+                  </motion.ul>
+                  <motion.p 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 1.2 }}
+                    viewport={{ once: true }}
+                    className="text-lg pt-2"
+                  >
                     Deixe conosco a complexidade da obra e receba um espaço que reflete seu padrão, sem preocupações.
-                  </p>
-                </div>
+                  </motion.p>
+                </motion.div>
               </div>
 
               {/* Instagram Icon */}
-              <div className="flex justify-center mt-8 md:mt-10">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.4 }}
+                viewport={{ once: true }}
+                className="flex justify-center mt-8 md:mt-10"
+              >
                 <a
                   href="https://www.instagram.com/altusengenhariabh/"
                   target="_blank"
@@ -270,26 +500,62 @@ function App() {
                 >
                   <Instagram className="text-[#DAA84B] w-8 h-8" />
                 </a>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </Section>
       {/* Fotos */}
       <Section>
-        <div id="Servicos" className="container mx-auto px-4 md:px-8 lg:px-20 overflow-hidden text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6">Sonhos que já realizamos</h2>          
-        </div>
-        <div className="flex flex-col items-center justify-center mb-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          id="Servicos" 
+          className="container mx-auto px-4 md:px-8 lg:px-20 overflow-hidden text-center"
+        >
+          <motion.h2 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ 
+              duration: 0.6,
+              type: "spring",
+              stiffness: 100
+            }}
+            viewport={{ once: true }}
+            className="text-2xl sm:text-3xl font-bold mb-6"
+          >
+            Sonhos que já realizamos
+          </motion.h2>          
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="flex flex-col items-center justify-center mb-8"
+        >
           <PhotoSlider />
-        </div>
-        <div className="flex justify-center items-center">
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.6,
+            delay: 0.6,
+            type: "spring",
+            stiffness: 100
+          }}
+          viewport={{ once: true }}
+          className="flex justify-center items-center"
+        >
           <a href="#orcamento">
-            <button className="bg-[#DAA84B] px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
+            <button className={shinyButtonClass}>
               Quero começar minha obra!
             </button>
           </a>
-        </div>
+        </motion.div>
       </Section>
       {/* Differentials Section */}
       <div id="diferenciais"></div>
@@ -307,93 +573,69 @@ function App() {
         <div className="bg-transparent py-16 px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4">
-              {/* Gestão Profissional (Branco) */}
-              <div className="text-center p-8 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
-                <div className="mb-5 flex justify-center">
-                  <div className="p-3 bg-[#DAA84B]/10 rounded-full">
-                    <ClipboardList className="w-8 h-8 text-[#DAA84B]" />
+              {[
+                {
+                  icon: <ClipboardList className="w-8 h-8 text-[#DAA84B]" />,
+                  title: "Gestão Profissional",
+                  description: "Planejamento minucioso e acompanhamento diário para garantir prazos e orçamentos sem surpresas.",
+                  items: ["Cronogramas detalhados", "Controle financeiro transparente", "Acompanhamento em tempo real"]
+                },
+                {
+                  icon: <Award className="w-8 h-8 text-white" />,
+                  title: "Qualidade Garantida",
+                  description: "Mão de obra especializada para resultados que impressionam. Respeitando sempre os prazos e custos.",
+                  items: ["Acabamentos impecáveis", "Equipes certificadas", "Inspeções de qualidade semanais"]
+                },
+                {
+                  icon: <Users className="w-8 h-8 text-[#DAA84B]" />,
+                  title: "Experiência Personalizada",
+                  description: "Atendimento exclusivo do projeto à entrega, com comunicação clara e relatórios semanais.",
+                  items: ["1 engenheiro dedicado por obra", "Atualizações frequentes", "Soluções sob medida"]
+                }
+              ].map((service, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  className={`text-center p-8 ${index === 1 ? 'bg-[#DAA84B]' : 'bg-white'} rounded-lg shadow-sm hover:shadow-md transition-all`}
+                >
+                  <div className="mb-5 flex justify-center">
+                    <div className={`p-3 ${index === 1 ? 'bg-white/10' : 'bg-[#DAA84B]/10'} rounded-full`}>
+                      {service.icon}
+                    </div>
                   </div>
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">Gestão Profissional</h3>
-                <p className="text-gray-600 mb-4">
-                  Planejamento minucioso e acompanhamento diário para garantir prazos e orçamentos sem surpresas.
-                </p>
-                <ul className="text-gray-600 text-left space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle2 className="text-[#DAA84B] mr-2 mt-1 flex-shrink-0" />
-                    <span>Cronogramas detalhados</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="text-[#DAA84B] mr-2 mt-1 flex-shrink-0" />
-                    <span>Controle financeiro transparente</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="text-[#DAA84B] mr-2 mt-1 flex-shrink-0" />
-                    <span>Acompanhamento em tempo real</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Qualidade Garantida (Dourado - Destaque) */}
-              <div className="text-center p-8 bg-[#DAA84B] rounded-lg shadow-md hover:shadow-lg transition-all">
-                <div className="mb-5 flex justify-center">
-                  <div className="p-3 bg-white/10 rounded-full">
-                    <Award className="w-8 h-8 text-white" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">Qualidade Garantida</h3>
-                <p className="text-white text-opacity-90 mb-4">
-                  Mão de obra especializada para resultados que impressionam. Respeitando sempre os prazos e custos.
-                </p>
-                <ul className="text-white text-opacity-90 text-left space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle2 className="text-white mr-2 mt-1 flex-shrink-0" />
-                    <span className="text-white">Acabamentos impecáveis</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="text-white mr-2 mt-1 flex-shrink-0" />
-                    <span className="text-white">Equipes certificadas</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="text-white mr-2 mt-1 flex-shrink-0" />
-                    <span className="text-white">Inspeções de qualidade semanais</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Experiência Personalizada (Branco) */}
-              <div className="text-center p-8 bg-white rounded-lg shadow-sm hover:shadow-md transition-all">
-                <div className="mb-5 flex justify-center">
-                  <div className="p-3 bg-[#DAA84B]/10 rounded-full">
-                    <Users className="w-8 h-8 text-[#DAA84B]" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">Experiência Personalizada</h3>
-                <p className="text-gray-600 mb-4">
-                  Atendimento exclusivo do projeto à entrega, com comunicação clara e relatórios semanais.
-                </p>
-                <ul className="text-gray-600 text-left space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle2 className="text-[#DAA84B] mr-2 mt-1 flex-shrink-0" />
-                    <span>1 engenheiro dedicado por obra</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="text-[#DAA84B] mr-2 mt-1 flex-shrink-0" />
-                    <span>Atualizações frequentes</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="text-[#DAA84B] mr-2 mt-1 flex-shrink-0" />
-                    <span>Soluções sob medida</span>
-                  </li>
-                </ul>
-              </div>
+                  <h3 className={`text-xl font-bold ${index === 1 ? 'text-white' : 'text-gray-800'} mb-3`}>
+                    {service.title}
+                  </h3>
+                  <p className={`${index === 1 ? 'text-white' : 'text-gray-600'} mb-4`}>
+                    {service.description}
+                  </p>
+                  <ul className={`${index === 1 ? 'text-white' : 'text-gray-600'} text-left space-y-2`}>
+                    {service.items.map((item, itemIndex) => (
+                      <motion.li
+                        key={itemIndex}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: itemIndex * 0.1 }}
+                        viewport={{ once: true }}
+                        className="flex items-start"
+                      >
+                        <CheckCircle2 className={`${index === 1 ? 'text-white' : 'text-[#DAA84B]'} mr-2 mt-1 flex-shrink-0`} />
+                        <span className={index === 1 ? 'text-white' : ''}>{item}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
         {/* Botão centralizado */}
         <div className="mt-8 text-center">
           <a href="#orcamento">
-            <button className="bg-[#DAA84B] px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
+            <button className={shinyButtonClass}>
               Quero um orçamento
             </button>
           </a>
@@ -401,12 +643,30 @@ function App() {
       </Section >
 
       {/* Testimonials Section */}
-      < Section >
+      <Section>
         <div id="feedbacks" className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-16">Confira o que os clientes dizem sobre a experiência Altus Engenharia</h2>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold text-center mb-16"
+          >
+            Confira o que os clientes dizem sobre a experiência Altus Engenharia
+          </motion.h2>
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             {/* Primeiro vídeo */}
-            <div className="p-8 rounded-lg shadow-lg flex flex-col items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ 
+                duration: 0.8,
+                type: "spring",
+                stiffness: 100
+              }}
+              viewport={{ once: true }}
+              className="p-8 rounded-lg shadow-lg flex flex-col items-center"
+            >
               <div id="video" className="flex flex-col items-center px-4 w-full">
                 <YouTubeAPIProvider>
                   <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
@@ -414,14 +674,38 @@ function App() {
                   </div>
                 </YouTubeAPIProvider>
               </div>
-              <p className="text-withe italic mt-4 text-center">
+              <motion.p 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                viewport={{ once: true }}
+                className="text-withe italic mt-4 text-center"
+              >
                 "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
-              </p>
-              <p className="mt-4 font-semibold">Cliente 1</p>
-            </div>
+              </motion.p>
+              <motion.p 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                viewport={{ once: true }}
+                className="mt-4 font-semibold"
+              >
+                Cliente 1
+              </motion.p>
+            </motion.div>
 
             {/* Segundo vídeo */}
-            <div className="p-8 rounded-lg shadow-lg flex flex-col items-center">
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ 
+                duration: 0.8,
+                type: "spring",
+                stiffness: 100
+              }}
+              viewport={{ once: true }}
+              className="p-8 rounded-lg shadow-lg flex flex-col items-center"
+            >
               <div id="video" className="flex flex-col items-center px-4 w-full">
                 <YouTubeAPIProvider>
                   <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
@@ -429,21 +713,41 @@ function App() {
                   </div>
                 </YouTubeAPIProvider>
               </div>
-              <p className="text-withe italic mt-4 text-center">
+              <motion.p 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                viewport={{ once: true }}
+                className="text-withe italic mt-4 text-center"
+              >
                 "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
-              </p>
-              <p className="mt-4 font-semibold">Cliente 2</p>
-            </div>
+              </motion.p>
+              <motion.p 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                viewport={{ once: true }}
+                className="mt-4 font-semibold"
+              >
+                Cliente 2
+              </motion.p>
+            </motion.div>
           </div>
-          <div className="flex justify-center items-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            viewport={{ once: true }}
+            className="flex justify-center items-center"
+          >
             <a href="#orcamento">
-              <button className="bg-[#DAA84B] px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 hover:text-black transition-colors">
+              <button className={shinyButtonClass}>
                 Quero viver a experiência Altus!
               </button>
             </a>
-          </div>
+          </motion.div>
         </div>
-      </Section >
+      </Section>
 
       {/* Pain Points Section */}
       {/* < Section >
@@ -498,32 +802,86 @@ function App() {
       </Section > */}
       {/* Projects Section */}
       <Section>
-        <div id="Antes e depois" className="max-w-7xl mx-auto px-4 md:px-8 lg:px-20 overflow-hidden">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 break-words">Antes e depois</h2>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          id="Antes e depois" 
+          className="max-w-7xl mx-auto px-4 md:px-8 lg:px-20 overflow-hidden"
+        >
+          <motion.h2 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ 
+              duration: 0.6,
+              type: "spring",
+              stiffness: 100
+            }}
+            viewport={{ once: true }}
+            className="text-2xl sm:text-3xl font-bold text-center mb-8 break-words"
+          >
+            Antes e depois
+          </motion.h2>
           <div className="flex flex-col gap-16 items-center">
             {beforeAfterProjects.map((project, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.8,
+                  type: "spring",
+                  stiffness: 50,
+                  delay: i * 0.3
+                }}
+                viewport={{ once: true, margin: "-100px" }}
                 className="w-full flex flex-col items-center gap-8"
               >
                 {/* Imagem centralizada */}
-                <div className="w-full flex justify-center">
-                  <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl shadow-lg rounded-lg overflow-hidden">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ 
+                    duration: 0.6,
+                    delay: 0.2
+                  }}
+                  viewport={{ once: true }}
+                  className="w-full flex justify-center"
+                >
+                  <motion.div 
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl shadow-lg rounded-lg overflow-hidden"
+                  >
                     <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
                 {/* Títulos centralizados */}
-                <div className="text-center mt-4 space-y-1">
-                  <h3 className="text-xl font-semibold">Apartamento Bairro Prado</h3>
-                </div>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.6,
+                    delay: 0.4
+                  }}
+                  viewport={{ once: true }}
+                  className="text-center mt-4 space-y-1"
+                >
+                  <motion.h3 
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.6 }}
+                    viewport={{ once: true }}
+                    className="text-xl font-semibold"
+                  >
+                    Apartamento Bairro Prado
+                  </motion.h3>
+                </motion.div>
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </Section>
       {/* Form Section */}
       <Section className="py-16">
@@ -614,7 +972,7 @@ function App() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-[#DAA84B] text-white py-4 rounded-lg font-semibold hover:bg-[#eab308] transition-all transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#DAA84B] focus:ring-offset-2"
+                    className={shinyButtonClass}
                   >
                     Solicitar Contato
                   </button>
@@ -631,16 +989,20 @@ function App() {
         </div>
       </Section>
       {/* FAQ Section */}
-      < Section >
+      <Section>
         <div id="faq" className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-16">Perguntas Frequentes</h2>
           <div className="max-w-3xl mx-auto space-y-8">
             {faqs.map((faq, i) => (
-              <FAQItem key={i} question={faq.question} answer={faq.answer} />
+              <FAQItem
+                key={i}
+                question={faq.question}
+                answer={faq.answer}
+              />
             ))}
           </div>
         </div>
-      </Section >
+      </Section>
       {/* Footer */}
       <footer className="bg-black text-white pt-16 pb-8">
         <div className="container mx-auto px-6 lg:px-12">
@@ -729,13 +1091,32 @@ function App() {
                 © {new Date().getFullYear()} Altus Engenharia. Todos os direitos reservados.
               </p>
               <div className="flex space-x-6 text-sm">
-                <a href="/privacidade" className="text-gray-400 hover:text-white transition-colors">Política de Privacidade</a>
-                <a href="/termos" className="text-gray-400 hover:text-white transition-colors">Termos de Uso</a>
+                <button 
+                  onClick={() => openModal('privacy')}
+                  className="text-gray-400 hover:text-white transition-colors bg-transparent border-none p-0"
+                >
+                  Política de Privacidade
+                </button>
+                <button 
+                  onClick={() => openModal('terms')}
+                  className="text-gray-400 hover:text-white transition-colors bg-transparent border-none p-0"
+                >
+                  Termos de Uso
+                </button>
               </div>
             </div>
           </div>
         </div>
       </footer>
+
+      {/* Add Modal */}
+      <Modal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title={modalContent?.title || ''}
+      >
+        {modalContent?.content}
+      </Modal>
     </div >
   );
 }
