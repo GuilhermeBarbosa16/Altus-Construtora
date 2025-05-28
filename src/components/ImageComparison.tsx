@@ -87,7 +87,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
                     clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)`,
                 }}
             >
-                <img src={beforeImageSrc} alt="Antes" className="w-full h-full object-cover" draggable={false} />
+                <img src={beforeImageSrc} alt="Antes" className="w-full h-full object-contain" draggable={false} />
             </div>
 
             {/* Imagem Depois */}
@@ -97,7 +97,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
                     clipPath: `polygon(${sliderPosition}% 0, 100% 0, 100% 100%, ${sliderPosition}% 100%)`,
                 }}
             >
-                <img src={afterImageSrc} alt="Depois" className="w-full h-full object-cover" draggable={false} />
+                <img src={afterImageSrc} alt="Depois" className="w-full h-full object-contain" draggable={false} />
             </div>
 
             {/* Linha do Slider */}

@@ -11,6 +11,8 @@ import emailjs from '@emailjs/browser';
 import imgtexto from '../src/assets/IMG_01.jpg'
 import fundo1 from '../src/assets/FUNDO V1.png'
 import fundo2 from '../src/assets/FUNDO V2.png'
+import antes1 from '../src/assets/Em breve branco.png'
+import depois1 from '../src/assets/Em breve preto.png'
 import LocationSection from './components/LocationSection'
 import './index.css';
 
@@ -105,8 +107,8 @@ function Modal({ isOpen, onClose, title, children }: { isOpen: boolean; onClose:
 function App() {
   const beforeAfterProjects = [
     {
-      before: "https://images.unsplash.com/photo-1504307651254-35680f356dfd",
-      after: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+      before: antes1,
+      after: depois1,
       title: "Residêncial Amendoeiras",
       executionYear: "2025",
       deliveryDeadline: "1 ano",
@@ -871,7 +873,7 @@ function App() {
                   <motion.div 
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
-                    className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl shadow-lg rounded-lg overflow-hidden"
+                    className="w-full max-w-full sm:max-w-full md:max-w-full lg:max-w-full xl:max-w-full shadow-lg rounded-lg overflow-hidden"
                   >
                     <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
                   </motion.div>
