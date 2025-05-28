@@ -114,36 +114,55 @@ function App() {
     }
   ];
   const form = useRef<HTMLFormElement>(null);
-  const [, setFormStatus] = useState('');
+  const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [formData, setFormData] = useState({
     nome: '',
     telefone: '',
     email: '',
-    mensagem: ''
+    mensagem: '',
+    person_type: '',
+    project_type: '',
+    location: '',
   });
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState<{ title: string; content: React.ReactNode } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setFormStatus('idle');
+
+    // Construir o objeto de parâmetros manualmente
+    const templateParams = {
+      to_name: 'Altus Engenharia',
+      name: formData.nome,
+      whatsapp: formData.telefone,
+      email: formData.email,
+      project_details: formData.mensagem,
+      location: formData.location,
+      person_type: formData.person_type,
+      project_type: formData.project_type,
+    };
 
     try {
-      if (form.current) {
-        await emailjs.sendForm(
-          'service_wp9q7pe',
-          'template_7ehwa7c',
-          form.current,
-          'QCv7x6qbx04dK9m7Q'
-        );
+      // Usar emailjs.send com o objeto de parâmetros
+      await emailjs.send(
+        'service_eh3fwwp',
+        'template_8hrcx2e',
+        templateParams,
+        'B2EZKyeGy9AUZwq5L'
+      );
 
-        setFormStatus('success');
-        setFormData({
-          nome: '',
-          telefone: '',
-          email: '',
-          mensagem: ''
-        });
-      }
+      setFormStatus('success');
+      // Limpar o formulário
+      setFormData({
+        nome: '',
+        telefone: '',
+        email: '',
+        mensagem: '',
+        person_type: '',
+        project_type: '',
+        location: '',
+      });
     } catch (error) {
       console.error('Erro ao enviar formulário:', error);
       setFormStatus('error');
@@ -886,7 +905,7 @@ function App() {
       {/* Form Section */}
       <Section className="py-16">
         <div id="orcamento" className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row gap-12 items-center max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row gap-12 items-start max-w-6xl mx-auto">
             {/* Texto à esquerda */}
             <div className="md:w-1/2 space-y-6">
               <div className="space-y-4">
@@ -898,7 +917,7 @@ function App() {
                   Preencha o formulário abaixo e nossa equipe entrará em contato em até 24h para criar uma solução sob medida, com qualidade Altus e zero dor de cabeça.
                 </p>
               </div>
-              <div className="hidden md:flex flex-col space-y-4 mt-8">
+              <div className="hidden md:flex flex-col space-y-4">
                 <div className="flex items-center space-x-3">
                   <CheckCircle2 className="text-[#DAA84B] w-6 h-6" />
                   <span className="text-white-700">Orçamento personalizado</span>
@@ -922,7 +941,7 @@ function App() {
                     <label htmlFor="nome" className="block text-gray-700 font-medium mb-2">Nome</label>
                     <input
                       type="text"
-                      name="from_name"
+                      name="name"
                       id="nome"
                       required
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B] focus:border-transparent transition-all"
@@ -935,7 +954,7 @@ function App() {
                     <label htmlFor="telefone" className="block text-gray-700 font-medium mb-2">Telefone</label>
                     <input
                       type="tel"
-                      name="phone"
+                      name="whatsapp"
                       id="telefone"
                       required
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B] focus:border-transparent transition-all"
@@ -957,11 +976,82 @@ function App() {
                       placeholder="seu@email.com"
                     />
                   </div>
+                  <div className="mb-4">
+                    <label className="block text-gray-700 font-medium mb-2">Quem é você?</label>
+                    <div className="flex items-center space-x-4">
+                      <label className="inline-flex items-center">
+                        <input
+                          type="radio"
+                          name="person_type"
+                          value="Cliente"
+                          required
+                          className="form-radio text-[#DAA84B] focus:ring-2 focus:ring-[#DAA84B]"
+                          checked={formData.person_type === 'Cliente'}
+                          onChange={(e) => setFormData({ ...formData, person_type: e.target.value })}
+                        />
+                        <span className="ml-2 text-gray-700">Cliente</span>
+                      </label>
+                      <label className="inline-flex items-center">
+                        <input
+                          type="radio"
+                          name="person_type"
+                          value="Arquiteta"
+                          required
+                          className="form-radio text-[#DAA84B] focus:ring-2 focus:ring-[#DAA84B]"
+                          checked={formData.person_type === 'Arquiteta'}
+                          onChange={(e) => setFormData({ ...formData, person_type: e.target.value })}
+                        />
+                        <span className="ml-2 text-gray-700">Arquiteta</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-gray-700 font-medium mb-2">Tipo de Obra:</label>
+                    <div className="flex items-center space-x-4">
+                      <label className="inline-flex items-center">
+                        <input
+                          type="radio"
+                          name="project_type"
+                          value="Construção"
+                          required
+                          className="form-radio text-[#DAA84B] focus:ring-2 focus:ring-[#DAA84B]"
+                          checked={formData.project_type === 'Construção'}
+                          onChange={(e) => setFormData({ ...formData, project_type: e.target.value })}
+                        />
+                        <span className="ml-2 text-gray-700">Construção</span>
+                      </label>
+                      <label className="inline-flex items-center">
+                        <input
+                          type="radio"
+                          name="project_type"
+                          value="Reforma"
+                          required
+                          className="form-radio text-[#DAA84B] focus:ring-2 focus:ring-[#DAA84B]"
+                          checked={formData.project_type === 'Reforma'}
+                          onChange={(e) => setFormData({ ...formData, project_type: e.target.value })}
+                        />
+                        <span className="ml-2 text-gray-700">Reforma</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="location" className="block text-gray-700 font-medium mb-2">Localização (bairro e cidade)</label>
+                    <input
+                      type="text"
+                      name="location"
+                      id="location"
+                      required
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B] focus:border-transparent transition-all"
+                      value={formData.location || ''}
+                      onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                      placeholder="Ex: Centro, Belo Horizonte"
+                    />
+                  </div>
                   <div>
                     <label htmlFor="mensagem" className="block text-gray-700 font-medium mb-2">Mensagem</label>
                     <textarea
                       id="mensagem"
-                      name="message"
+                      name="project_details"
                       rows={4}
                       required
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA84B] focus:border-transparent transition-all"
@@ -970,6 +1060,7 @@ function App() {
                       placeholder="Conte-nos sobre seu projeto..."
                     />
                   </div>
+                  <input type="hidden" name="to_name" value="Altus Engenharia" />
                   <button
                     type="submit"
                     className={shinyButtonClass}
@@ -977,6 +1068,18 @@ function App() {
                     Solicitar Contato
                   </button>
                 </form>
+                {formStatus === 'success' && (
+                  <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                    <strong className="font-bold">Sucesso!</strong>
+                    <span className="block sm:inline"> Mensagem enviada com sucesso. Entraremos em contato em breve!</span>
+                  </div>
+                )}
+                {formStatus === 'error' && (
+                  <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <strong className="font-bold">Erro!</strong>
+                    <span className="block sm:inline"> Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.</span>
+                  </div>
+                )}
               </div>
             </div>
           </div>
