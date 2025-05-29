@@ -873,7 +873,7 @@ function App() {
                   <motion.div 
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
-                    className="w-full max-w-full sm:max-w-full md:max-w-full lg:max-w-full xl:max-w-full shadow-lg rounded-lg overflow-hidden"
+                    className="w-full max-w-full overflow-hidden shadow-lg rounded-lg"
                   >
                     <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
                   </motion.div>

@@ -76,7 +76,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
     return (
         <div
             ref={containerRef}
-            className="relative w-full h-[400px] overflow-hidden rounded-lg shadow-lg select-none"
+            className="relative w-full h-[400px] overflow-hidden rounded-lg shadow-lg select-none touch-none"
             onMouseDown={handlePointerDown}
             onTouchStart={handlePointerDown}
         >
@@ -87,7 +87,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
                     clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)`,
                 }}
             >
-                <img src={beforeImageSrc} alt="Antes" className="w-full h-full object-contain" draggable={false} />
+                <img src={beforeImageSrc} alt="Antes" className="w-full h-full object-contain pointer-events-none" draggable={false} />
             </div>
 
             {/* Imagem Depois */}
@@ -97,12 +97,12 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
                     clipPath: `polygon(${sliderPosition}% 0, 100% 0, 100% 100%, ${sliderPosition}% 100%)`,
                 }}
             >
-                <img src={afterImageSrc} alt="Depois" className="w-full h-full object-contain" draggable={false} />
+                <img src={afterImageSrc} alt="Depois" className="w-full h-full object-contain pointer-events-none" draggable={false} />
             </div>
 
             {/* Linha do Slider */}
             <div
-                className="absolute top-0 bottom-0 flex items-center justify-center cursor-pointer select-none"
+                className="absolute top-0 bottom-0 flex items-center justify-center cursor-pointer select-none touch-none"
                 style={{
                     left: `${sliderPosition}%`,
                     transform: "translateX(-50%)",
