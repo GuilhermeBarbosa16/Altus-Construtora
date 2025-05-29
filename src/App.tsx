@@ -339,7 +339,7 @@ function App() {
   };
 
   return (
-    <div className="font-sans pt--3">
+    <div className="font-sans pt--3 overflow-x-hidden">
       <Header />
       {/* Hero Section */}
       <Section className="relative">
@@ -389,9 +389,9 @@ function App() {
         <div id='Sobre' className='text-3xl font-bold text-center mb-0'>
           <h1>Sobre a Altus</h1>
         </div>
-        <div id='video' className="flex flex-col items-center px-4 w-full">
+        <div id='video' className="flex flex-col items-center px-4 w-full max-w-full">
           <YouTubeAPIProvider>
-            <div className="relative w-full max-w-3xl overflow-hidden max-sm:max-w-md" style={{ paddingTop: '5%' }}>
+            <div className="relative w-full max-w-3xl overflow-hidden" style={{ paddingTop: '5%' }}>
               <YouTubePlayer videoId="zkcjDmi_siQ" aspectRatio="16/9" />
             </div>
           </YouTubeAPIProvider>
@@ -665,7 +665,7 @@ function App() {
 
       {/* Testimonials Section */}
       <Section>
-        <div id="feedbacks" className="container mx-auto px-4">
+        <div id="feedbacks" className="container mx-auto px-4 max-w-full">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -844,7 +844,7 @@ function App() {
           >
             Antes e depois
           </motion.h2>
-          <div className="flex flex-col gap-16 items-center">
+          <div className="flex flex-col gap-16 items-center overflow-x-hidden">
             {beforeAfterProjects.map((project, i) => (
               <motion.div
                 key={i}
@@ -857,7 +857,7 @@ function App() {
                   delay: i * 0.3
                 }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="w-full flex flex-col items-center gap-8"
+                className="w-full flex flex-col items-center gap-8 overflow-x-hidden"
               >
                 {/* Imagem centralizada */}
                 <motion.div 
@@ -868,7 +868,7 @@ function App() {
                     delay: 0.2
                   }}
                   viewport={{ once: true }}
-                  className="w-full flex justify-center"
+                  className="w-full flex justify-center overflow-x-hidden"
                 >
                   <motion.div 
                     whileHover={{ scale: 1.02 }}
@@ -906,7 +906,7 @@ function App() {
       </Section>
       {/* Form Section */}
       <Section className="py-16">
-        <div id="orcamento" className="container mx-auto px-4">
+        <div id="orcamento" className="container mx-auto px-4 max-w-full">
           <div className="flex flex-col md:flex-row gap-12 items-start max-w-6xl mx-auto">
             {/* Texto à esquerda */}
             <div className="md:w-1/2 space-y-6">
@@ -1109,8 +1109,8 @@ function App() {
         </div>
       </Section>
       {/* Footer */}
-      <footer className="bg-black text-white pt-16 pb-8">
-        <div className="container mx-auto px-6 lg:px-12">
+      <footer className="bg-black text-white pt-16 pb-8 overflow-hidden">
+        <div className="container mx-auto px-6 lg:px-12 max-w-full">
           {/* Grid Principal */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
             {/* Coluna 1 - Logo e Descrição */}

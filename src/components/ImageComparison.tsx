@@ -76,9 +76,10 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
     return (
         <div
             ref={containerRef}
-            className="relative w-full h-[400px] overflow-hidden rounded-lg shadow-lg select-none touch-none"
+            className="relative w-full h-[400px] overflow-hidden rounded-lg shadow-lg select-none touch-none max-w-full"
             onMouseDown={handlePointerDown}
             onTouchStart={handlePointerDown}
+            style={{ touchAction: 'none' }}
         >
             {/* Imagem Antes */}
             <div
@@ -87,7 +88,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
                     clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)`,
                 }}
             >
-                <img src={beforeImageSrc} alt="Antes" className="w-full h-full object-contain pointer-events-none" draggable={false} />
+                <img src={beforeImageSrc} alt="Antes" className="w-full h-full object-contain pointer-events-none select-none" draggable={false} />
             </div>
 
             {/* Imagem Depois */}
@@ -97,7 +98,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
                     clipPath: `polygon(${sliderPosition}% 0, 100% 0, 100% 100%, ${sliderPosition}% 100%)`,
                 }}
             >
-                <img src={afterImageSrc} alt="Depois" className="w-full h-full object-contain pointer-events-none" draggable={false} />
+                <img src={afterImageSrc} alt="Depois" className="w-full h-full object-contain pointer-events-none select-none" draggable={false} />
             </div>
 
             {/* Linha do Slider */}
@@ -107,6 +108,7 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
                     left: `${sliderPosition}%`,
                     transform: "translateX(-50%)",
                     userSelect: "none",
+                    touchAction: 'none'
                 }}
                 onMouseDown={handlePointerDown}
                 onTouchStart={handlePointerDown}
