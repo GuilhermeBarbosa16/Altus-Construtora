@@ -1129,7 +1129,7 @@ function App() {
                    rel="noopener noreferrer">
                   <Facebook className="w-6 h-6" />
                 </a>
-                <a href="https://wa.me/553199999999" 
+                <a href="https://wa.me/5531998641351" 
                    className="text-[#DAA84B] hover:text-white transition-colors"
                    target="_blank" 
                    rel="noopener noreferrer">
