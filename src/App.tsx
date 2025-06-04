@@ -829,7 +829,7 @@ function App() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           id="Antes e depois" 
-          className="max-w-7xl mx-auto px-4 md:px-8 lg:px-20 overflow-hidden"
+          className="max-w-4xl mx-auto px-4 md:px-8 lg:px-20 overflow-hidden"
         >
           <motion.h2 
             initial={{ opacity: 0, scale: 0.9 }}
@@ -844,7 +844,7 @@ function App() {
           >
             Antes e depois
           </motion.h2>
-          <div className="flex flex-col gap-16 items-center overflow-x-hidden">
+          <div className="flex flex-col gap-16 items-center">
             {beforeAfterProjects.map((project, i) => (
               <motion.div
                 key={i}
@@ -857,9 +857,8 @@ function App() {
                   delay: i * 0.3
                 }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="w-full flex flex-col items-center gap-8 overflow-x-hidden"
+                className="w-full flex flex-col items-center gap-8"
               >
-                {/* Imagem centralizada */}
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -868,17 +867,14 @@ function App() {
                     delay: 0.2
                   }}
                   viewport={{ once: true }}
-                  className="w-full flex justify-center overflow-x-hidden"
+                  className="w-full"
                 >
-                  <motion.div 
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                    className="w-full max-w-full overflow-hidden shadow-lg rounded-lg"
+                  <div 
+                    className="w-full overflow-hidden shadow-lg rounded-lg"
                   >
                     <ImageComparison beforeImageSrc={project.before} afterImageSrc={project.after} />
-                  </motion.div>
+                  </div>
                 </motion.div>
-                {/* Títulos centralizados */}
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -1170,20 +1166,20 @@ function App() {
               <div className="space-y-4">
                 <p className="text-gray-400">
                   <strong className="text-white">Endereço:</strong><br />
-                  Av. Professor Mário Werneck, 2170<br />
-                  Buritis, Belo Horizonte - MG
+                  Av. Professor Mário Werneck, 2170, Sala 802/803<br />
+                  Buritis, Belo Horizonte - MG 
                 </p>
                 <p className="text-gray-400">
                   <strong className="text-white">Telefone:</strong><br />
-                  (31) 9999-9999
+                  (31) 99864-1351
                 </p>
                 <p className="text-gray-400">
                   <strong className="text-white">Email:</strong><br />
-                  contato@altusengenharia.com.br
+                  altusengenhariabh@gmail.com
                 </p>
                 <p className="text-gray-400">
                   <strong className="text-white">CNPJ:</strong><br />
-                  00.000.000/0001-00
+                  54.592.488/0001-12
                 </p>
               </div>
             </div>

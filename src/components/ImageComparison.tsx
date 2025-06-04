@@ -74,49 +74,74 @@ const ImageComparison: React.FC<ImageComparisonProps> = ({ beforeImageSrc, after
     }, []);
 
     return (
-        <div
-            ref={containerRef}
-            className="relative w-full h-[400px] overflow-hidden rounded-lg shadow-lg select-none touch-none max-w-full"
-            onMouseDown={handlePointerDown}
-            onTouchStart={handlePointerDown}
-            style={{ touchAction: 'none' }}
+        <div 
+            className="w-[450px] h-[450px] mx-auto"
+            style={{ 
+                overflow: 'hidden',
+                position: 'relative',
+                touchAction: 'none'
+            }}
         >
-            {/* Imagem Antes */}
             <div
-                className="absolute inset-0"
-                style={{
-                    clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)`,
-                }}
-            >
-                <img src={beforeImageSrc} alt="Antes" className="w-full h-full object-contain pointer-events-none select-none" draggable={false} />
-            </div>
-
-            {/* Imagem Depois */}
-            <div
-                className="absolute inset-0"
-                style={{
-                    clipPath: `polygon(${sliderPosition}% 0, 100% 0, 100% 100%, ${sliderPosition}% 100%)`,
-                }}
-            >
-                <img src={afterImageSrc} alt="Depois" className="w-full h-full object-contain pointer-events-none select-none" draggable={false} />
-            </div>
-
-            {/* Linha do Slider */}
-            <div
-                className="absolute top-0 bottom-0 flex items-center justify-center cursor-pointer select-none touch-none"
-                style={{
-                    left: `${sliderPosition}%`,
-                    transform: "translateX(-50%)",
-                    userSelect: "none",
+                ref={containerRef}
+                className="relative w-full h-full rounded-lg shadow-lg select-none touch-none"
+                style={{ 
+                    overflow: 'hidden',
                     touchAction: 'none'
                 }}
                 onMouseDown={handlePointerDown}
                 onTouchStart={handlePointerDown}
             >
-                {/* Indicador de arrasto */}
-                <div className="flex items-center justify-center p-2 rounded-full shadow-lg ">
-                    <FaChevronLeft className="text-gray-700 text-lg" />
-                    <FaChevronRight className="text-gray-700 text-lg ml-2" />
+                {/* Imagem Antes */}
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)`,
+                    }}
+                >
+                    <img 
+                        src={beforeImageSrc} 
+                        alt="Antes" 
+                        className="w-full h-full object-cover pointer-events-none select-none" 
+                        draggable={false} 
+                    />
+                </div>
+
+                {/* Imagem Depois */}
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        clipPath: `polygon(${sliderPosition}% 0, 100% 0, 100% 100%, ${sliderPosition}% 100%)`,
+                    }}
+                >
+                    <img 
+                        src={afterImageSrc} 
+                        alt="Depois" 
+                        className="w-full h-full object-cover pointer-events-none select-none" 
+                        draggable={false} 
+                    />
+                </div>
+
+                {/* Linha do Slider */}
+                <div
+                    className="absolute top-0 bottom-0 flex items-center justify-center cursor-ew-resize select-none touch-none"
+                    style={{
+                        left: `${sliderPosition}%`,
+                        transform: "translateX(-50%)",
+                        userSelect: "none",
+                        touchAction: 'none'
+                    }}
+                    onMouseDown={handlePointerDown}
+                    onTouchStart={handlePointerDown}
+                >
+                    {/* Linha vertical */}
+                    <div className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg"></div>
+                    
+                    {/* Indicador de arrasto */}
+                    <div className="flex items-center justify-center p-2 rounded-full bg-white shadow-lg">
+                        <FaChevronLeft className="text-gray-700 text-lg" />
+                        <FaChevronRight className="text-gray-700 text-lg ml-2" />
+                    </div>
                 </div>
             </div>
         </div>
