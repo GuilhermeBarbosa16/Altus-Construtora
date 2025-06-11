@@ -9,8 +9,8 @@ import ImageComparison from "./components/ImageComparison";
 import PhotoSlider from "./components/PhotoSlider";
 import emailjs from '@emailjs/browser';
 import imgtexto from '../src/assets/IMG_01.jpg'
-import fundo1 from '../src/assets/FUNDO V1.png'
-import fundo2 from '../src/assets/FUNDO V2.png'
+import fundo1 from '../src/assets/AltusV1.png'
+import fundo2 from '../src/assets/Fundos-bg.png'
 import antes1 from '../src/assets/Em breve branco.png'
 import depois1 from '../src/assets/Em breve preto.png'
 import LocationSection from './components/LocationSection'
@@ -339,7 +339,7 @@ function App() {
   };
 
   return (
-    <div className="font-sans pt--3 overflow-x-hidden">
+    <div className="font-sans pt--3 overflow-x-hidden" style={{ backgroundImage: `url(${fundo2})`, backgroundSize: 'cover', backgroundAttachment: 'fixed' }}>
       <Header />
       {/* Hero Section */}
       <Section className="relative">
@@ -347,7 +347,7 @@ function App() {
         <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url(${fundo2})`,
+            backgroundImage: `url(${fundo1})`,
             filter: 'brightness(0.3)',
           }}
         />
