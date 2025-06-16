@@ -9,10 +9,11 @@ import ImageComparison from "./components/ImageComparison";
 import PhotoSlider from "./components/PhotoSlider";
 import emailjs from '@emailjs/browser';
 import imgtexto from '../src/assets/IMG_01.jpg'
-import fundo1 from '../src/assets/AltusV1.png'
-import fundo2 from '../src/assets/Fundos-bg.png'
+import fundo1 from '../src/assets/FUNDO V1.png'
+import fundo2 from '../src/assets/FUNDO V2.png'
 import antes1 from '../src/assets/Em breve branco.png'
 import depois1 from '../src/assets/Em breve preto.png'
+import bgLpAltus from '../src/assets/BG-LP-ALTUS.png'
 import LocationSection from './components/LocationSection'
 import './index.css';
 
@@ -339,7 +340,7 @@ function App() {
   };
 
   return (
-    <div className="font-sans pt--3 overflow-x-hidden" style={{ backgroundImage: `url(${fundo2})`, backgroundSize: 'cover', backgroundAttachment: 'fixed' }}>
+    <div className="font-sans pt--3 overflow-x-hidden">
       <Header />
       {/* Hero Section */}
       <Section className="relative">
@@ -348,7 +349,7 @@ function App() {
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url(${fundo1})`,
-            filter: 'brightness(0.3)',
+            filter: 'brightness(0.7)',
           }}
         />
 
@@ -389,12 +390,15 @@ function App() {
         <div id='Sobre' className='text-3xl font-bold text-center mb-0'>
           <h1>Sobre a Altus</h1>
         </div>
-        <div id='video' className="flex flex-col items-center px-4 w-full max-w-full">
-          <YouTubeAPIProvider>
-            <div className="relative w-full max-w-3xl overflow-hidden" style={{ paddingTop: '5%' }}>
-              <YouTubePlayer videoId="zkcjDmi_siQ" aspectRatio="16/9" />
-            </div>
-          </YouTubeAPIProvider>
+        <div id='video' className="flex flex-col items-center px-4 w-full max-w-full relative">
+          <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30" style={{ backgroundImage: `url(${bgLpAltus})` }}></div>
+          <div className="relative z-10">
+            <YouTubeAPIProvider>
+              <div className="relative w-full max-w-3xl overflow-hidden" style={{ paddingTop: '5%' }}>
+                <YouTubePlayer videoId="zkcjDmi_siQ" aspectRatio="16/9" />
+              </div>
+            </YouTubeAPIProvider>
+          </div>
         </div>
       </Section>
 
@@ -665,108 +669,111 @@ function App() {
 
       {/* Testimonials Section */}
       <Section>
-        <div id="feedbacks" className="container mx-auto px-4 max-w-full">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold text-center mb-8"
-          >
-            Confira o que os clientes dizem sobre a experiência Altus Engenharia
-          </motion.h2>
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            {/* Primeiro vídeo */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ 
-                duration: 0.8,
-                type: "spring",
-                stiffness: 100
-              }}
+        <div id="feedbacks" className="container mx-auto px-4 max-w-full relative">
+          <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30" style={{ backgroundImage: `url(${bgLpAltus})` }}></div>
+          <div className="relative z-10">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="p-8 rounded-lg shadow-lg flex flex-col items-center"
+              className="text-3xl font-bold text-center mb-8"
             >
-              <div id="video" className="flex flex-col items-center px-4 w-full">
-                <YouTubeAPIProvider>
-                  <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
-                    <YouTubePlayer videoId="XykPrqgO5OQ" aspectRatio="9/16" />
-                  </div>
-                </YouTubeAPIProvider>
-              </div>
-              <motion.p 
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
+              Confira o que os clientes dizem sobre a experiência Altus Engenharia
+            </motion.h2>
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              {/* Primeiro vídeo */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ 
+                  duration: 0.8,
+                  type: "spring",
+                  stiffness: 100
+                }}
                 viewport={{ once: true }}
-                className="text-withe italic mt-4 text-center"
+                className="p-8 rounded-lg shadow-lg flex flex-col items-center"
               >
-                "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
-              </motion.p>
-              <motion.p 
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-                viewport={{ once: true }}
-                className="mt-4 font-semibold"
-              >
-                Cliente 1
-              </motion.p>
-            </motion.div>
+                <div id="video" className="flex flex-col items-center px-4 w-full">
+                  <YouTubeAPIProvider>
+                    <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
+                      <YouTubePlayer videoId="XykPrqgO5OQ" aspectRatio="9/16" />
+                    </div>
+                  </YouTubeAPIProvider>
+                </div>
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  viewport={{ once: true }}
+                  className="text-withe italic mt-4 text-center"
+                >
+                  "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
+                </motion.p>
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.6 }}
+                  viewport={{ once: true }}
+                  className="mt-4 font-semibold"
+                >
+                  Cliente 1
+                </motion.p>
+              </motion.div>
 
-            {/* Segundo vídeo */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ 
-                duration: 0.8,
-                type: "spring",
-                stiffness: 100
-              }}
+              {/* Segundo vídeo */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ 
+                  duration: 0.8,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                viewport={{ once: true }}
+                className="p-8 rounded-lg shadow-lg flex flex-col items-center"
+              >
+                <div id="video" className="flex flex-col items-center px-4 w-full">
+                  <YouTubeAPIProvider>
+                    <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
+                      <YouTubePlayer videoId="fUi3JVMepmQ" aspectRatio="9/16" />
+                    </div>
+                  </YouTubeAPIProvider>
+                </div>
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  viewport={{ once: true }}
+                  className="text-withe italic mt-4 text-center"
+                >
+                  "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
+                </motion.p>
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.6 }}
+                  viewport={{ once: true }}
+                  className="mt-4 font-semibold"
+                >
+                  Cliente 2
+                </motion.p>
+              </motion.div>
+            </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
               viewport={{ once: true }}
-              className="p-8 rounded-lg shadow-lg flex flex-col items-center"
+              className="flex justify-center items-center"
             >
-              <div id="video" className="flex flex-col items-center px-4 w-full">
-                <YouTubeAPIProvider>
-                  <div className="relative w-full max-w-xs overflow-hidden max-sm:max-w-sm" style={{ paddingTop: '5%' }}>
-                    <YouTubePlayer videoId="fUi3JVMepmQ" aspectRatio="9/16" />
-                  </div>
-                </YouTubeAPIProvider>
-              </div>
-              <motion.p 
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                viewport={{ once: true }}
-                className="text-withe italic mt-4 text-center"
-              >
-                "A Altus superou todas as nossas expectativas. Profissionalismo e excelência do início ao fim."
-              </motion.p>
-              <motion.p 
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-                viewport={{ once: true }}
-                className="mt-4 font-semibold"
-              >
-                Cliente 2
-              </motion.p>
+              <a href="#orcamento">
+                <button className={shinyButtonClass}>
+                  Quero viver a experiência Altus!
+                </button>
+              </a>
             </motion.div>
           </div>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            viewport={{ once: true }}
-            className="flex justify-center items-center"
-          >
-            <a href="#orcamento">
-              <button className={shinyButtonClass}>
-                Quero viver a experiência Altus!
-              </button>
-            </a>
-          </motion.div>
         </div>
       </Section>
 
@@ -1085,8 +1092,11 @@ function App() {
       </Section>
       {/* Mapa do Google Maps */}
       <Section>
-        <div className="flex justify-center w-full">
-          <LocationSection />
+        <div className="flex justify-center w-full relative">
+          <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30" style={{ backgroundImage: `url(${bgLpAltus})` }}></div>
+          <div className="relative z-10">
+            <LocationSection />
+          </div>
         </div>
       </Section>
       {/* FAQ Section */}
