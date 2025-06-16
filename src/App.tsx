@@ -9,7 +9,7 @@ import ImageComparison from "./components/ImageComparison";
 import PhotoSlider from "./components/PhotoSlider";
 import emailjs from '@emailjs/browser';
 import imgtexto from '../src/assets/IMG_01.jpg'
-import fundo1 from '../src/assets/FUNDO V1.png'
+import fundo1 from '../src/assets/Fundos-P.-AltusV2.png'
 import fundo2 from '../src/assets/FUNDO V2.png'
 import antes1 from '../src/assets/Em breve branco.png'
 import depois1 from '../src/assets/Em breve preto.png'
@@ -354,7 +354,7 @@ function App() {
         />
 
         {/* Conteúdo da Section */}
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-10 py-11">
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-10 py-32">
           <div className="grid md:grid-cols-1 gap-12">
             {/* Texto */}
             <div className="text-white text-center">
@@ -671,17 +671,17 @@ function App() {
       <Section>
         <div id="feedbacks" className="container mx-auto px-4 max-w-full relative">
           <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30" style={{ backgroundImage: `url(${bgLpAltus})` }}></div>
-          <div className="relative z-10">
+          <div className="relative z-10 py-16">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-3xl font-bold text-center mb-8"
+              className="text-3xl font-bold text-center mb-1"
             >
               Confira o que os clientes dizem sobre a experiência Altus Engenharia
             </motion.h2>
-            <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div className="grid md:grid-cols-2 gap-5 mb-16">
               {/* Primeiro vídeo */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
@@ -765,7 +765,7 @@ function App() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
               viewport={{ once: true }}
-              className="flex justify-center items-center"
+              className="flex justify-center items-center mb-16"
             >
               <a href="#orcamento">
                 <button className={shinyButtonClass}>
